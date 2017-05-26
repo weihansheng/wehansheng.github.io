@@ -90,12 +90,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Johan007">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="##Ubuntu 14.04 上安装 CUDA 8.0 详细教程##最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 14.04 上安装 CUDA 8.0 详细教程">
+<meta property="og:url" content="http://yoursite.com/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/index.html">
 <meta property="og:site_name" content="Johan007">
+<meta property="og:description" content="##Ubuntu 14.04 上安装 CUDA 8.0 详细教程##最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他">
+<meta property="og:updated_time" content="2017-05-26T11:59:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Johan007">
+<meta name="twitter:title" content="Ubuntu 14.04 上安装 CUDA 8.0 详细教程">
+<meta name="twitter:description" content="##Ubuntu 14.04 上安装 CUDA 8.0 详细教程##最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/"/>
 
 
 
 
 
-  <title>Johan007</title>
+  <title>Ubuntu 14.04 上安装 CUDA 8.0 详细教程 | Johan007</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -154,9 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,9 +241,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -267,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/" itemprop="url">Ubuntu 14.04 上安装 CUDA 8.0 详细教程</a></h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu 14.04 上安装 CUDA 8.0 详细教程</h1>
         
 
         <div class="post-meta">
@@ -316,9 +316,7 @@
       
 
       
-        
-          
-            <p>##Ubuntu 14.04 上安装 CUDA 8.0 详细教程##<br>最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他软件的时候更新了系统软件（泪奔啊）重启之后就再也进不去了，尝试了很多方法都不行，最后果断重装ubuntu14.04，不敢再更新软件…<br>有个win10+ubuntu14.04的教程写的很详细，推荐给大家：<a href="http://www.jianshu.com/p/2eebd6ad284d" target="_blank" rel="external">win10+ubuntu14.04教程</a></p>
+        <p>##Ubuntu 14.04 上安装 CUDA 8.0 详细教程##<br>最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他软件的时候更新了系统软件（泪奔啊）重启之后就再也进不去了，尝试了很多方法都不行，最后果断重装ubuntu14.04，不敢再更新软件…<br>有个win10+ubuntu14.04的教程写的很详细，推荐给大家：<a href="http://www.jianshu.com/p/2eebd6ad284d" target="_blank" rel="external">win10+ubuntu14.04教程</a></p>
 <p>###下面正是开始安装cuda8.0###<br>安装CUDA主要分三大环节。 </p>
 <p>一、安装前的环境准备和检查 </p>
 <p>二、安装CUDA </p>
@@ -409,20 +407,27 @@ c) 尝试编译cuda提供的矩阵乘法的例子
 <p>在终端中输入<code>$nsight</code>即可启动nsightIDE</p>
 <p>最后祝大家都能顺利安装CUDA~~</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -430,429 +435,38 @@ c) 尝试编译cuda提供的矩阵乘法的例子
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/GreenDao的简单使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/08/GreenDao的简单使用/" itemprop="url">GreenDao的简单使用</a></h1>
-        
+      
 
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T21:30:41+08:00">
-                2017-05-08
-              </time>
+              <a href="/2017/05/08/GreenDao的简单使用/" rel="next" title="GreenDao的简单使用">
+                <i class="fa fa-chevron-left"></i> GreenDao的简单使用
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>###关于GreenDao###</p>
-<p>greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。<br>关于greenDAO的概念可以看官网greenDAO</p>
-<p>###greenDAO 优势###</p>
-<p>1、一个精简的库</p>
-<p>2、性能最大化</p>
-<p>3、内存开销最小化</p>
-<p>4、易于使用的 APIs</p>
-<p>5、对 Android 进行高度优化</p>
-<p>###GreenDao 3.0使用###</p>
-<p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
-<p>一，在as中导入相关的包</p>
-<p><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br>二，在build.gradle中进行配置：</p>
-<p><pre><code>apply plugin: ‘org.greenrobot.greendao’<br>buildscript {<br>    repositories {<br>        mavenCentral()<br>}<br>dependencies {<br>    classpath ‘org.greenrobot:greendao-gradle-plugin:3.0.0’<br>    }<br>}</code></pre><br>在gradle的根模块中加入上述代码。</p>
-<p>三，自定义路径</p>
-<p><pre><code>greendao {<br>    schemaVersion 1<br>    daoPackage ‘com.anye.greendao.gen’<br>    targetGenDir ‘src/main/java’<br>}</code></pre><br>在gradle的根模块中加入上述代码，就完成了我们的基本配置了。<br>属性介绍：<br>schemaVersion–&gt; 指定数据库schema版本号，迁移等操作会用到;<br>daoPackage –&gt; dao的包名，包名默认是entity所在的包；<br>targetGenDir –&gt; 生成数据库文件的目录;</p>
-<p>四，创建一个User的实体类</p>
-<p><pre><code>@Entity<br>public class User {<br>    @Id<br>    private Long id;<br>    private String name;<br>    @Transient<br>    private int tempUsageCount; // not persisted<br>}</code></pre><br>五，MakeProject</p>
-<p>编译项目，User实体类会自动编译，生成get、set方法并且会在com.anye.greendao.gen目录下生成三个文件；</p>
-<p>greenDao<br>GreenDao使用</p>
-<p> <pre><code>public class MyApplication extends Application {<br> private DaoMaster.DevOpenHelper mHelper;<br> private SQLiteDatabase db;<br> private DaoMaster mDaoMaster;<br> private DaoSession mDaoSession;<br> public static MyApplication instances;<br> @Override    public void onCreate() {<br>     super.onCreate();<br>     instances = this;<br>     setDatabase();<br> }<br> public static MyApplication getInstances(){<br>     return instances;<br> }</code></pre></p>
-<p>/**</p>
-<ul>
-<li><p>设置greenDao<br>private void setDatabase() {<br> // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。<br> // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。<br> // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。<br> // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。<br> mHelper = new DaoMaster.DevOpenHelper(this, “notes-db”, null);<br> db = mHelper.getWritableDatabase();<br> // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。<br> mDaoMaster = new DaoMaster(db);<br> mDaoSession = mDaoMaster.newSession();<br>}<br>public DaoSession getDaoSession() {<br>   return mDaoSession;<br>}<br>public SQLiteDatabase getDb() {<br>   return db;<br>}<br>}<br>获取UserDao对象：</p>
-<p><pre><code> mUserDao = MyApplication.getInstances().getDaoSession().getUserDao();</code></pre><br>简单的增删改查实现：</p>
-</li>
-</ul>
-<ol>
-<li>增</li>
-</ol>
-<p><pre><code>mUser = new User((long)2,”anye3”);<br>mUserDao.insert(mUser);//添加一个</code></pre></p>
-<ol>
-<li>删</li>
-</ol>
-<p><pre><code>mUserDao.deleteByKey(id);</code></pre></p>
-<ol>
-<li>改</li>
-</ol>
-<p><pre><code>mUser = new User((long)2,”anye0803”);<br>mUserDao.update(mUser);</code></pre></p>
-<ol>
-<li>查</li>
-</ol>
-<p><pre><code>List<user> users = mUserDao.loadAll();<br>String userName = “”;<br>for (int i = 0; i &lt; users.size(); i++) {<br>    userName += users.get(i).getName()+”,”;<br>}<br>mContext.setText(“查询全部数据==&gt;”+userName);</user></code></pre><br>更多的操作就不一一介绍了，大家可以根据需要去查找资料；</p>
-<p>###greendao中的注解###</p>
-<p>(一) </p>
-<p>@Entity 定义实体</p>
-<p>@nameInDb 在数据库中的名字，如不写则为实体中类名</p>
-<p>@indexes 索引</p>
-<p>@createInDb 是否创建表，默认为true,false时不创建</p>
-<p>@schema 指定架构名称为实体</p>
-<p>@active 无论是更新生成都刷新</p>
-<p>(二) @Id</p>
-<p>(三) @NotNull 不为null</p>
-<p>(四) @Unique 唯一约束</p>
-<p>(五) @ToMany 一对多</p>
-<p>(六) @OrderBy 排序</p>
-<p>(七) @ToOne 一对一</p>
-<p>(八) @Transient 不存储在数据库中</p>
-<p>(九) @generated 由greendao产生的构造函数或方法</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/First/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/08/First/" itemprop="url">First</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T15:22:41+08:00">
-                2017-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这是一个段落</p><br><p>这是另一个段落</p><br><em>这是斜体</em><br><br><em>这也是斜体</em><br><br><strong>这是粗体</strong><br><br><strong><em>这是粗体+斜体</em></strong><br><br><strike>就像这样</strike><br># 这是 H1 #<br>## 这是 H2 ##<br><br>### 这是 H3 ###<br><p>这是一个普通段落：</p>
-
-<pre><code>这是一个代码区块。
-</code></pre>
-
-<hr>
-<p><a href="http://example.com/" target="_blank" rel="external">an example</a></p>
-<p><img src="/path/to/img.jpg" alt="Alt text"></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/08/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T14:06:13+08:00">
-                2017-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -860,6 +474,10 @@ c) 尝试编译cuda提供的矩阵乘法的例子
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1046,6 +664,10 @@ c) 尝试编译cuda提供的矩阵乘法的例子
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
