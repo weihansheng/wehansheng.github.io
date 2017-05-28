@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他软件的时候更新了系统软件（泪奔啊）重启之后就再也进不去了，尝试了很多">
-<meta property="og:updated_time" content="2017-05-28T05:57:58.000Z">
+<meta property="og:updated_time" content="2017-05-28T05:59:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 上安装 CUDA 8.0 详细教程">
 <meta name="twitter:description" content="最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他软件的时候更新了系统软件（泪奔啊）重启之后就再也进不去了，尝试了很多">
@@ -477,7 +477,7 @@ $ export LD_LIBRARY_PATH=/usr/local/cuda8.0/lib64</code></pre>
 <p>终端中输入 : <pre><code>$ env </code></pre><br>在输出的环境变量中检查有无上述 </p>
 <p>g) 中设置的变量，如果有则代表设置成功。</p>
 <p>到此为止，CUDA的安装算是告一段落了。为了保险起见，建议进行下述的检查工作，确保真正的安装成功。</p>
-<h2 id="安装完毕后的检查工作"><a href="#安装完毕后的检查工作" class="headerlink" title="安装完毕后的检查工作"></a>安装完毕后的检查工作</h2><p>a) 检查 NVIDIA Driver是否安装成功</p>
+<h2 id="三、安装完毕后的检查工作"><a href="#三、安装完毕后的检查工作" class="headerlink" title="三、安装完毕后的检查工作"></a>三、安装完毕后的检查工作</h2><p>a) 检查 NVIDIA Driver是否安装成功</p>
 <p>终端输入 ：</p>
 <pre><code>$ cat /proc/driver/nvidia/version </code></pre>会输出NVIDIA Driver的版本号
 
@@ -678,7 +678,7 @@ c) 尝试编译cuda提供的矩阵乘法的例子
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装前的环境准备和检查"><span class="nav-text">一、安装前的环境准备和检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、检查自己的电脑环境是否具备安装CUDA的条件"><span class="nav-text">1、检查自己的电脑环境是否具备安装CUDA的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-选择安装方式"><span class="nav-text">2、 选择安装方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装CUDA"><span class="nav-text">二、安装CUDA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-runfile安装cuda"><span class="nav-text">1.runfile安装cuda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完毕后的检查工作"><span class="nav-text">安装完毕后的检查工作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装前的环境准备和检查"><span class="nav-text">一、安装前的环境准备和检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、检查自己的电脑环境是否具备安装CUDA的条件"><span class="nav-text">1、检查自己的电脑环境是否具备安装CUDA的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-选择安装方式"><span class="nav-text">2、 选择安装方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装CUDA"><span class="nav-text">二、安装CUDA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-runfile安装cuda"><span class="nav-text">1.runfile安装cuda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装完毕后的检查工作"><span class="nav-text">三、安装完毕后的检查工作</span></a></li></ol></div>
             
 
           </div>
