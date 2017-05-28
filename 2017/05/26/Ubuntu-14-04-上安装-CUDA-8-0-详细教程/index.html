@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他软件的时候更新了系统软件（泪奔啊）重启之后就再也进不去了，尝试了很多">
-<meta property="og:updated_time" content="2017-05-28T05:53:52.000Z">
+<meta property="og:updated_time" content="2017-05-28T05:57:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 14.04 上安装 CUDA 8.0 详细教程">
 <meta name="twitter:description" content="最近要用cuda改进一个算法，就开始装cuda，一开始是在虚拟机的ubuntu中装的，后台在装显卡驱动时总是出错，google才知道虚拟机用的是虚拟显卡。因此就装了win10+ubuntu双系统，先装的是16.04，可是在选中安装后总是黑屏，没有任何显示（可能是显卡的原因），后来就换了ubuntu14.04，安装成功。但是在装其他软件的时候更新了系统软件（泪奔啊）重启之后就再也进不去了，尝试了很多">
@@ -421,8 +421,7 @@
 <p>一、安装前的环境准备和检查 </p>
 <p>二、安装CUDA </p>
 <p>三、安装完的校验。</p>
-<p></p><h2>一、安装前的环境准备和检查</h2><br>1、检查自己的电脑环境是否具备安装CUDA的条件<p></p>
-<p>a) 检查自己的GPU是否是CUDA-capable</p>
+<h2 id="一、安装前的环境准备和检查"><a href="#一、安装前的环境准备和检查" class="headerlink" title="一、安装前的环境准备和检查"></a>一、安装前的环境准备和检查</h2><h3 id="1、检查自己的电脑环境是否具备安装CUDA的条件"><a href="#1、检查自己的电脑环境是否具备安装CUDA的条件" class="headerlink" title="1、检查自己的电脑环境是否具备安装CUDA的条件"></a>1、检查自己的电脑环境是否具备安装CUDA的条件</h3><p>a) 检查自己的GPU是否是CUDA-capable</p>
 <p>在终端中输入： <pre><code>$ lspci | grep -i nvidia </code></pre>会显示自己的NVIDIA GPU版本信息<br>去CUDA的官网查看自己的GPU版本是否在CUDA的支持列表中</p>
 <p>b) 检查自己的Linux版本是否支持 CUDA(Ubuntu 14.04没问题)</p>
 <p>c) 检查自己的系统中是否装了gcc</p>
@@ -430,12 +429,10 @@
 <p>d) 检查是否安装了kernel header和 package development</p>
 <p>在终端中输入： <pre><code>$uname –r </code></pre>可以查看自己的kernel版本信息<br>在终端中输入：<pre><code>$ sudo apt-get install linux-headers-$(uname -r) </code></pre><br>可以安装对应kernel版本的kernel header和package development</p>
 <p>以上检查我的电脑系统都满足要求，如果没有满足要求的话，可以参考cuda的官方文档，里面有详细的针对每个问题的解决方案。</p>
-<p>2、 选择安装方式</p>
-<p>CUDA提供两种安装方式：package manager安装和runfile安装<br>我本来选的是 package manager 安装，这种方法相对简单，但尝试了几次都失败。后来是转换到runfile安装才成功的。因此此处只介绍runfile安装方式。</p>
+<h3 id="2、-选择安装方式"><a href="#2、-选择安装方式" class="headerlink" title="2、 选择安装方式"></a>2、 选择安装方式</h3><p>CUDA提供两种安装方式：package manager安装和runfile安装<br>我本来选的是 package manager 安装，这种方法相对简单，但尝试了几次都失败。后来是转换到runfile安装才成功的。因此此处只介绍runfile安装方式。</p>
 <p>下载cuda安装包：cuda官网下载，根据系统信息选择对应的版本，runfile安装的话最后一项要选择 runfile文件</p>
 <p><a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">CUDA 8.0 下载链接</a></p>
-<h2 id="二、安装CUDA"><a href="#二、安装CUDA" class="headerlink" title="二、安装CUDA"></a>二、安装CUDA</h2><p>1.runfile安装cuda</p>
-<p>a) 禁用 nouveau</p>
+<h2 id="二、安装CUDA"><a href="#二、安装CUDA" class="headerlink" title="二、安装CUDA"></a>二、安装CUDA</h2><h3 id="1-runfile安装cuda"><a href="#1-runfile安装cuda" class="headerlink" title="1.runfile安装cuda"></a>1.runfile安装cuda</h3><p>a) 禁用 nouveau</p>
 <p>终端中运行：<pre><code>$ lsmod | grep nouveau</code></pre>如果有输出则代表nouveau正在加载。</p>
 <p>Ubuntu的nouveau禁用方法：<br>在/etc/modprobe.d中创建文件blacklist-nouveau.conf</p>
 <pre><code>$cd /etc/modprobe.d
@@ -681,7 +678,7 @@ c) 尝试编译cuda提供的矩阵乘法的例子
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">一、安装前的环境准备和检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装CUDA"><span class="nav-number">2.</span> <span class="nav-text">二、安装CUDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完毕后的检查工作"><span class="nav-number">3.</span> <span class="nav-text">安装完毕后的检查工作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装前的环境准备和检查"><span class="nav-text">一、安装前的环境准备和检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、检查自己的电脑环境是否具备安装CUDA的条件"><span class="nav-text">1、检查自己的电脑环境是否具备安装CUDA的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-选择安装方式"><span class="nav-text">2、 选择安装方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装CUDA"><span class="nav-text">二、安装CUDA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-runfile安装cuda"><span class="nav-text">1.runfile安装cuda</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完毕后的检查工作"><span class="nav-text">安装完毕后的检查工作</span></a></li></ol></div>
             
 
           </div>
