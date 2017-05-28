@@ -642,14 +642,14 @@ c) 尝试编译cuda提供的矩阵乘法的例子
             <h2>关于GreenDao</h2>
 
 <p>greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。<br>关于greenDAO的概念可以看官网greenDAO</p>
-<h3>greenDAO 优势</h3>
+<h2>GreenDAO 优势</h2>
 
 <p>1、一个精简的库</p>
 <p>2、性能最大化</p>
 <p>3、内存开销最小化</p>
 <p>4、易于使用的 APIs</p>
 <p>5、对 Android 进行高度优化</p>
-<h3>GreenDao 3.0使用</h3>
+<h2>GreenDao 3.0使用</h2>
 
 <p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
 <h4>一，在as中导入相关的包</h4><br><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br><h4>二，在build.gradle中进行配置：</h4>
@@ -683,7 +683,7 @@ c) 尝试编译cuda提供的矩阵乘法的例子
 <li>查</li>
 </ol>
 <p><pre><code>List<user> users = mUserDao.loadAll();<br>String userName = “”;<br>for (int i = 0; i &lt; users.size(); i++) {<br>    userName += users.get(i).getName()+”,”;<br>}<br>mContext.setText(“查询全部数据==&gt;”+userName);</user></code></pre><br>更多的操作就不一一介绍了，大家可以根据需要去查找资料；</p>
-<h3>greendao中的注解</h3>
+<h2>Greendao中的注解</h2>
 
 <p>(一) </p>
 <p>@Entity 定义实体</p>
