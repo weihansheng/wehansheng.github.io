@@ -108,17 +108,17 @@
 
 
 
-<meta name="description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
+<meta name="description" content="关于GreenDaogreenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GreenDao的简单使用">
 <meta property="og:url" content="http://yoursite.com/2017/05/08/GreenDao的简单使用/index.html">
 <meta property="og:site_name" content="Johan007">
-<meta property="og:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
-<meta property="og:updated_time" content="2017-05-28T04:45:49.000Z">
+<meta property="og:description" content="关于GreenDaogreenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生">
+<meta property="og:updated_time" content="2017-05-28T06:02:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GreenDao的简单使用">
-<meta name="twitter:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
+<meta name="twitter:description" content="关于GreenDaogreenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生">
 
 
 
@@ -416,19 +416,13 @@
       
 
       
-        <h2>关于GreenDao</h2>
-
-<p>greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。<br>关于greenDAO的概念可以看官网greenDAO</p>
-<h2>GreenDAO 优势</h2>
-
-<p>1、一个精简的库</p>
+        <h2 id="关于GreenDao"><a href="#关于GreenDao" class="headerlink" title="关于GreenDao"></a>关于GreenDao</h2><p>greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。<br>关于greenDAO的概念可以看官网greenDAO</p>
+<h2 id="GreenDAO-优势"><a href="#GreenDAO-优势" class="headerlink" title="GreenDAO 优势"></a>GreenDAO 优势</h2><p>1、一个精简的库</p>
 <p>2、性能最大化</p>
 <p>3、内存开销最小化</p>
 <p>4、易于使用的 APIs</p>
 <p>5、对 Android 进行高度优化</p>
-<h2>GreenDao 3.0使用</h2>
-
-<p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
+<h2 id="GreenDao-3-0使用"><a href="#GreenDao-3-0使用" class="headerlink" title="GreenDao 3.0使用"></a>GreenDao 3.0使用</h2><p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
 <p>一，在as中导入相关的包<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile<span class="string">'org.greenrobot:greendao:3.0.1'</span></div><div class="line">compile<span class="string">'org.greenrobot:greendao-generator:3.0.0'</span></div></pre></td></tr></table></figure></p>
 <p>二，在build.gradle中进行配置：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'org.greenrobot.greendao'</span></div><div class="line">buildscript &#123; </div><div class="line">    repositories &#123; </div><div class="line">        mavenCentral()    </div><div class="line">&#125;    </div><div class="line">dependencies &#123;</div><div class="line">    classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.0.0'</span>    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -462,10 +456,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">List&lt;User&gt; users = mUserDao.loadAll();</div><div class="line">String userName = <span class="string">""</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; users.size(); i++) &#123;</div><div class="line">    userName += users.get(i).getName()+<span class="string">","</span>;</div><div class="line">&#125;</div><div class="line">mContext.setText(<span class="string">"查询全部数据==&gt;"</span>+userName);</div></pre></td></tr></table></figure>
 <p>更多的操作就不一一介绍了，大家可以根据需要去查找资料。</p>
-<h2>Greendao中的注解</h2>
-
-
-<p>(一) </p>
+<h2 id="Greendao中的注解"><a href="#Greendao中的注解" class="headerlink" title="Greendao中的注解"></a>Greendao中的注解</h2><p>(一) </p>
 <p>@Entity 定义实体</p>
 <p>@nameInDb 在数据库中的名字，如不写则为实体中类名</p>
 <p>@indexes 索引</p>
@@ -663,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">关于GreenDao</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">GreenDAO 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">GreenDao 3.0使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-text">Greendao中的注解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于GreenDao"><span class="nav-text">关于GreenDao</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GreenDAO-优势"><span class="nav-text">GreenDAO 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GreenDao-3-0使用"><span class="nav-text">GreenDao 3.0使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Greendao中的注解"><span class="nav-text">Greendao中的注解</span></a></li></ol></div>
             
 
           </div>
