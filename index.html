@@ -327,118 +327,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/28/Test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/28/Test/" itemprop="url">Test</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-28T11:24:53+08:00">
-                2017-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/2017/05/28/Test/shanghai.jpg" alt="logo"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -751,23 +639,30 @@ c) 尝试编译cuda提供的矩阵乘法的例子
       
         
           
-            <p>###关于GreenDao###</p>
+            <h2>关于GreenDao</h2>
+
 <p>greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。<br>关于greenDAO的概念可以看官网greenDAO</p>
-<p>###greenDAO 优势###</p>
+<h3>greenDAO 优势</h3>
+
 <p>1、一个精简的库</p>
 <p>2、性能最大化</p>
 <p>3、内存开销最小化</p>
 <p>4、易于使用的 APIs</p>
 <p>5、对 Android 进行高度优化</p>
-<p>###GreenDao 3.0使用###</p>
+<h3>GreenDao 3.0使用</h3>
+
 <p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
-<p>一，在as中导入相关的包</p>
-<p><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br>二，在build.gradle中进行配置：</p>
+<h4>一，在as中导入相关的包</h4><br><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br><h4>二，在build.gradle中进行配置：</h4>
+
 <p><pre><code>apply plugin: ‘org.greenrobot.greendao’<br>buildscript {<br>    repositories {<br>        mavenCentral()<br>}<br>dependencies {<br>    classpath ‘org.greenrobot:greendao-gradle-plugin:3.0.0’<br>    }<br>}</code></pre><br>在gradle的根模块中加入上述代码。</p>
-<p>三，自定义路径</p>
+<h4>三，自定义路径</h4>
+
 <p><pre><code>greendao {<br>    schemaVersion 1<br>    daoPackage ‘com.anye.greendao.gen’<br>    targetGenDir ‘src/main/java’<br>}</code></pre><br>在gradle的根模块中加入上述代码，就完成了我们的基本配置了。<br>属性介绍：<br>schemaVersion–&gt; 指定数据库schema版本号，迁移等操作会用到;<br>daoPackage –&gt; dao的包名，包名默认是entity所在的包；<br>targetGenDir –&gt; 生成数据库文件的目录;</p>
-<p>四，创建一个User的实体类</p>
-<p><pre><code>@Entity<br>public class User {<br>    @Id<br>    private Long id;<br>    private String name;<br>    @Transient<br>    private int tempUsageCount; // not persisted<br>}</code></pre><br>五，MakeProject</p>
+<h4>四，创建一个User的实体类</h4>
+
+<p><pre><code>@Entity<br>public class User {<br>    @Id<br>    private Long id;<br>    private String name;<br>    @Transient<br>    private int tempUsageCount; // not persisted<br>}</code></pre></p>
+<h4>五，MakeProject</h4>
+
 <p>编译项目，User实体类会自动编译，生成get、set方法并且会在com.anye.greendao.gen目录下生成三个文件；</p>
 <p>greenDao<br>GreenDao使用</p>
 <p> <pre><code>public class MyApplication extends Application {<br> private DaoMaster.DevOpenHelper mHelper;<br> private SQLiteDatabase db;<br> private DaoMaster mDaoMaster;<br> private DaoSession mDaoSession;<br> public static MyApplication instances;<br> @Override    public void onCreate() {<br>     super.onCreate();<br>     instances = this;<br>     setDatabase();<br> }<br> public static MyApplication getInstances(){<br>     return instances;<br> }</code></pre></p>
@@ -793,7 +688,8 @@ c) 尝试编译cuda提供的矩阵乘法的例子
 <li>查</li>
 </ol>
 <p><pre><code>List<user> users = mUserDao.loadAll();<br>String userName = “”;<br>for (int i = 0; i &lt; users.size(); i++) {<br>    userName += users.get(i).getName()+”,”;<br>}<br>mContext.setText(“查询全部数据==&gt;”+userName);</user></code></pre><br>更多的操作就不一一介绍了，大家可以根据需要去查找资料；</p>
-<p>###greendao中的注解###</p>
+<h3>greendao中的注解</h3>
+
 <p>(一) </p>
 <p>@Entity 定义实体</p>
 <p>@nameInDb 在数据库中的名字，如不写则为实体中类名</p>
@@ -1127,7 +1023,7 @@ private String hello;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

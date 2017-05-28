@@ -108,17 +108,17 @@
 
 
 
-<meta name="description" content="###关于GreenDao### greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO ###greenDAO 优势### 1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 ###GreenDao 3.0使用### GreenDao 3.0采用注解">
+<meta name="description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO greenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GreenDao的简单使用">
 <meta property="og:url" content="http://yoursite.com/2017/05/08/GreenDao的简单使用/index.html">
 <meta property="og:site_name" content="Johan007">
-<meta property="og:description" content="###关于GreenDao### greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO ###greenDAO 优势### 1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 ###GreenDao 3.0使用### GreenDao 3.0采用注解">
-<meta property="og:updated_time" content="2017-05-27T15:18:48.000Z">
+<meta property="og:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO greenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
+<meta property="og:updated_time" content="2017-05-28T03:42:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GreenDao的简单使用">
-<meta name="twitter:description" content="###关于GreenDao### greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO ###greenDAO 优势### 1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 ###GreenDao 3.0使用### GreenDao 3.0采用注解">
+<meta name="twitter:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO greenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
 
 
 
@@ -416,23 +416,30 @@
       
 
       
-        <p>###关于GreenDao###</p>
+        <h2>关于GreenDao</h2>
+
 <p>greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。<br>关于greenDAO的概念可以看官网greenDAO</p>
-<p>###greenDAO 优势###</p>
+<h3>greenDAO 优势</h3>
+
 <p>1、一个精简的库</p>
 <p>2、性能最大化</p>
 <p>3、内存开销最小化</p>
 <p>4、易于使用的 APIs</p>
 <p>5、对 Android 进行高度优化</p>
-<p>###GreenDao 3.0使用###</p>
+<h3>GreenDao 3.0使用</h3>
+
 <p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
-<p>一，在as中导入相关的包</p>
-<p><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br>二，在build.gradle中进行配置：</p>
+<h4>一，在as中导入相关的包</h4><br><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br><h4>二，在build.gradle中进行配置：</h4>
+
 <p><pre><code>apply plugin: ‘org.greenrobot.greendao’<br>buildscript {<br>    repositories {<br>        mavenCentral()<br>}<br>dependencies {<br>    classpath ‘org.greenrobot:greendao-gradle-plugin:3.0.0’<br>    }<br>}</code></pre><br>在gradle的根模块中加入上述代码。</p>
-<p>三，自定义路径</p>
+<h4>三，自定义路径</h4>
+
 <p><pre><code>greendao {<br>    schemaVersion 1<br>    daoPackage ‘com.anye.greendao.gen’<br>    targetGenDir ‘src/main/java’<br>}</code></pre><br>在gradle的根模块中加入上述代码，就完成了我们的基本配置了。<br>属性介绍：<br>schemaVersion–&gt; 指定数据库schema版本号，迁移等操作会用到;<br>daoPackage –&gt; dao的包名，包名默认是entity所在的包；<br>targetGenDir –&gt; 生成数据库文件的目录;</p>
-<p>四，创建一个User的实体类</p>
-<p><pre><code>@Entity<br>public class User {<br>    @Id<br>    private Long id;<br>    private String name;<br>    @Transient<br>    private int tempUsageCount; // not persisted<br>}</code></pre><br>五，MakeProject</p>
+<h4>四，创建一个User的实体类</h4>
+
+<p><pre><code>@Entity<br>public class User {<br>    @Id<br>    private Long id;<br>    private String name;<br>    @Transient<br>    private int tempUsageCount; // not persisted<br>}</code></pre></p>
+<h4>五，MakeProject</h4>
+
 <p>编译项目，User实体类会自动编译，生成get、set方法并且会在com.anye.greendao.gen目录下生成三个文件；</p>
 <p>greenDao<br>GreenDao使用</p>
 <p> <pre><code>public class MyApplication extends Application {<br> private DaoMaster.DevOpenHelper mHelper;<br> private SQLiteDatabase db;<br> private DaoMaster mDaoMaster;<br> private DaoSession mDaoSession;<br> public static MyApplication instances;<br> @Override    public void onCreate() {<br>     super.onCreate();<br>     instances = this;<br>     setDatabase();<br> }<br> public static MyApplication getInstances(){<br>     return instances;<br> }</code></pre></p>
@@ -458,7 +465,8 @@
 <li>查</li>
 </ol>
 <p><pre><code>List<user> users = mUserDao.loadAll();<br>String userName = “”;<br>for (int i = 0; i &lt; users.size(); i++) {<br>    userName += users.get(i).getName()+”,”;<br>}<br>mContext.setText(“查询全部数据==&gt;”+userName);</user></code></pre><br>更多的操作就不一一介绍了，大家可以根据需要去查找资料；</p>
-<p>###greendao中的注解###</p>
+<h3>greendao中的注解</h3>
+
 <p>(一) </p>
 <p>@Entity 定义实体</p>
 <p>@nameInDb 在数据库中的名字，如不写则为实体中类名</p>
@@ -575,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -591,7 +608,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -638,6 +655,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">关于GreenDao</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">greenDAO 优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">GreenDao 3.0使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.1.</span> <span class="nav-text">一，在as中导入相关的包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.2.</span> <span class="nav-text">二，在build.gradle中进行配置：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.3.</span> <span class="nav-text">三，自定义路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.4.</span> <span class="nav-text">四，创建一个User的实体类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.5.</span> <span class="nav-text">五，MakeProject</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">greendao中的注解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
