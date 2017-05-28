@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/08/GreenDao的简单使用/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO greenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
-<meta property="og:updated_time" content="2017-05-28T03:45:20.000Z">
+<meta property="og:updated_time" content="2017-05-28T03:47:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GreenDao的简单使用">
 <meta name="twitter:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO greenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
@@ -442,8 +442,7 @@
 
 <p>编译项目，User实体类会自动编译，生成get、set方法并且会在com.anye.greendao.gen目录下生成三个文件；</p>
 <p>greenDao<br>GreenDao使用</p>
-<p> <pre><code>public class MyApplication extends Application {<br> private DaoMaster.DevOpenHelper mHelper;<br> private SQLiteDatabase db;<br> private DaoMaster mDaoMaster;<br> private DaoSession mDaoSession;<br> public static MyApplication instances;<br> @Override    public void onCreate() {<br>     super.onCreate();<br>     instances = this;<br>     setDatabase();<br> }<br> public static MyApplication getInstances(){<br>     return instances;<br> }</code></pre></p>
-<p>//设置greenDao<br>private void setDatabase() {<br>    // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。<br>    // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。<br>    // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。<br>    // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。<br>    mHelper = new DaoMaster.DevOpenHelper(this, “notes-db”, null);<br>    db = mHelper.getWritableDatabase();<br>    // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。<br>    mDaoMaster = new DaoMaster(db);<br>    mDaoSession = mDaoMaster.newSession();<br>}<br>public DaoSession getDaoSession() {<br>      return mDaoSession;<br>}<br>public SQLiteDatabase getDb() {<br>      return db;<br>  }<br>}<br>获取UserDao对象：</p>
+<p> <pre><code>public class MyApplication extends Application {<br> private DaoMaster.DevOpenHelper mHelper;<br> private SQLiteDatabase db;<br> private DaoMaster mDaoMaster;<br> private DaoSession mDaoSession;<br> public static MyApplication instances;<br> @Override    public void onCreate() {<br>     super.onCreate();<br>     instances = this;<br>     setDatabase();<br> }<br> public static MyApplication getInstances(){<br>     return instances;<br> }<br>private void setDatabase() {<br>    // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。<br>    // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。<br>    // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。<br>    // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。<br>    mHelper = new DaoMaster.DevOpenHelper(this, “notes-db”, null);<br>    db = mHelper.getWritableDatabase();<br>    // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。<br>    mDaoMaster = new DaoMaster(db);<br>    mDaoSession = mDaoMaster.newSession();<br>}<br>public DaoSession getDaoSession() {<br>      return mDaoSession;<br>}<br>public SQLiteDatabase getDb() {<br>      return db;<br>  }<br>}</code></pre><br>获取UserDao对象：</p>
 <p> <pre><code> mUserDao = MyApplication.getInstances().getDaoSession().getUserDao();</code></pre><br>简单的增删改查实现：</p>
 <ol>
 <li>增</li>
