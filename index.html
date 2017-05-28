@@ -666,12 +666,8 @@ c) 尝试编译cuda提供的矩阵乘法的例子
 <p>编译项目，User实体类会自动编译，生成get、set方法并且会在com.anye.greendao.gen目录下生成三个文件；</p>
 <p>greenDao<br>GreenDao使用</p>
 <p> <pre><code>public class MyApplication extends Application {<br> private DaoMaster.DevOpenHelper mHelper;<br> private SQLiteDatabase db;<br> private DaoMaster mDaoMaster;<br> private DaoSession mDaoSession;<br> public static MyApplication instances;<br> @Override    public void onCreate() {<br>     super.onCreate();<br>     instances = this;<br>     setDatabase();<br> }<br> public static MyApplication getInstances(){<br>     return instances;<br> }</code></pre></p>
-<p>/**</p>
-<ul>
-<li><p>设置greenDao<br>private void setDatabase() {<br> // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。<br> // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。<br> // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。<br> // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。<br> mHelper = new DaoMaster.DevOpenHelper(this, “notes-db”, null);<br> db = mHelper.getWritableDatabase();<br> // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。<br> mDaoMaster = new DaoMaster(db);<br> mDaoSession = mDaoMaster.newSession();<br>}<br>public DaoSession getDaoSession() {<br>   return mDaoSession;<br>}<br>public SQLiteDatabase getDb() {<br>   return db;<br>}<br>}<br>获取UserDao对象：</p>
-<p><pre><code> mUserDao = MyApplication.getInstances().getDaoSession().getUserDao();</code></pre><br>简单的增删改查实现：</p>
-</li>
-</ul>
+<p>//设置greenDao<br>private void setDatabase() {<br>    // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。<br>    // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。<br>    // 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。<br>    // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。<br>    mHelper = new DaoMaster.DevOpenHelper(this, “notes-db”, null);<br>    db = mHelper.getWritableDatabase();<br>    // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。<br>    mDaoMaster = new DaoMaster(db);<br>    mDaoSession = mDaoMaster.newSession();<br>}<br>public DaoSession getDaoSession() {<br>      return mDaoSession;<br>}<br>public SQLiteDatabase getDb() {<br>      return db;<br>  }<br>}<br>获取UserDao对象：</p>
+<p> <pre><code> mUserDao = MyApplication.getInstances().getDaoSession().getUserDao();</code></pre><br>简单的增删改查实现：</p>
 <ol>
 <li>增</li>
 </ol>
