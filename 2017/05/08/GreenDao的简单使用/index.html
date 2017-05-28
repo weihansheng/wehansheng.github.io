@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/08/GreenDao的简单使用/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
-<meta property="og:updated_time" content="2017-05-28T04:07:05.000Z">
+<meta property="og:updated_time" content="2017-05-28T04:08:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GreenDao的简单使用">
 <meta name="twitter:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
@@ -429,12 +429,14 @@
 <h2>GreenDao 3.0使用</h2>
 
 <p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
-<h4>一，在as中导入相关的包</h4><br><pre><code>compile’org.greenrobot:greendao:3.0.1’<br>compile’org.greenrobot:greendao-generator:3.0.0’<br></code></pre><br><h4>二，在build.gradle中进行配置：</h4>
+<h4>一，在as中导入相关的包</h4><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile<span class="string">'org.greenrobot:greendao:3.0.1'</span></div><div class="line">compile<span class="string">'org.greenrobot:greendao-generator:3.0.0'</span></div></pre></td></tr></table></figure><br><br><h4>二，在build.gradle中进行配置：</h4>
 
-<p><pre><code>apply plugin: ‘org.greenrobot.greendao’<br>buildscript {<br>    repositories {<br>        mavenCentral()<br>}<br>dependencies {<br>    classpath ‘org.greenrobot:greendao-gradle-plugin:3.0.0’<br>    }<br>}</code></pre><br>在gradle的根模块中加入上述代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'org.greenrobot.greendao'</span></div><div class="line">buildscript &#123; </div><div class="line">    repositories &#123; </div><div class="line">        mavenCentral()    </div><div class="line">&#125;    </div><div class="line">dependencies &#123;</div><div class="line">    classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.0.0'</span>    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在gradle的根模块中加入上述代码。</p>
 <h4>三，自定义路径</h4>
 
-<p><pre><code>greendao {<br>    schemaVersion 1<br>    daoPackage ‘com.anye.greendao.gen’<br>    targetGenDir ‘src/main/java’<br>}</code></pre><br>在gradle的根模块中加入上述代码，就完成了我们的基本配置了。<br>属性介绍：<br>schemaVersion–&gt; 指定数据库schema版本号，迁移等操作会用到;<br>daoPackage –&gt; dao的包名，包名默认是entity所在的包；<br>targetGenDir –&gt; 生成数据库文件的目录;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">greendao &#123;</div><div class="line">    schemaVersion <span class="number">1</span></div><div class="line">    daoPackage <span class="string">'com.anye.greendao.gen'</span></div><div class="line">    targetGenDir <span class="string">'src/main/java'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在gradle的根模块中加入上述代码，就完成了我们的基本配置了。<br>属性介绍：<br>schemaVersion–&gt; 指定数据库schema版本号，迁移等操作会用到;<br>daoPackage –&gt; dao的包名，包名默认是entity所在的包；<br>targetGenDir –&gt; 生成数据库文件的目录;</p>
 <h4>四，创建一个User的实体类</h4>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span> </div><div class="line">    <span class="keyword">private</span> Long id; </div><div class="line">    <span class="keyword">private</span> String name; </div><div class="line">    <span class="meta">@Transient</span> </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> tempUsageCount; <span class="comment">// not persisted  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
