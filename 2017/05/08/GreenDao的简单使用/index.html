@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/08/GreenDao的简单使用/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
-<meta property="og:updated_time" content="2017-05-28T04:13:13.000Z">
+<meta property="og:updated_time" content="2017-05-28T04:18:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GreenDao的简单使用">
 <meta name="twitter:description" content="关于GreenDao  greenDao是一个将对象映射到SQLite数据库中的轻量且快速的ORM解决方案。关于greenDAO的概念可以看官网greenDAO GreenDAO 优势  1、一个精简的库 2、性能最大化 3、内存开销最小化 4、易于使用的 APIs 5、对 Android 进行高度优化 GreenDao 3.0使用  GreenDao 3.0采用注解的方式来定义实体类，通过gra">
@@ -429,19 +429,16 @@
 <h2>GreenDao 3.0使用</h2>
 
 <p>GreenDao 3.0采用注解的方式来定义实体类，通过gradle插件生成相应的代码。</p>
-<h4>一，在as中导入相关的包</h4><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile<span class="string">'org.greenrobot:greendao:3.0.1'</span></div><div class="line">compile<span class="string">'org.greenrobot:greendao-generator:3.0.0'</span></div></pre></td></tr></table></figure><br><br><h4>二，在build.gradle中进行配置：</h4>
-
+<p>一，在as中导入相关的包<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compile<span class="string">'org.greenrobot:greendao:3.0.1'</span></div><div class="line">compile<span class="string">'org.greenrobot:greendao-generator:3.0.0'</span></div></pre></td></tr></table></figure></p>
+<p>二，在build.gradle中进行配置：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'org.greenrobot.greendao'</span></div><div class="line">buildscript &#123; </div><div class="line">    repositories &#123; </div><div class="line">        mavenCentral()    </div><div class="line">&#125;    </div><div class="line">dependencies &#123;</div><div class="line">    classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.0.0'</span>    </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在gradle的根模块中加入上述代码。</p>
-<h4>三，自定义路径</h4>
-
+<p>三，自定义路径</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">greendao &#123;</div><div class="line">    schemaVersion <span class="number">1</span></div><div class="line">    daoPackage <span class="string">'com.anye.greendao.gen'</span></div><div class="line">    targetGenDir <span class="string">'src/main/java'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在gradle的根模块中加入上述代码，就完成了我们的基本配置了。<br>属性介绍：<br>schemaVersion–&gt; 指定数据库schema版本号，迁移等操作会用到;<br>daoPackage –&gt; dao的包名，包名默认是entity所在的包；<br>targetGenDir –&gt; 生成数据库文件的目录;</p>
-<h4>四，创建一个User的实体类</h4>
-
+<p>四，创建一个User的实体类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="meta">@Id</span> </div><div class="line">    <span class="keyword">private</span> Long id; </div><div class="line">    <span class="keyword">private</span> String name; </div><div class="line">    <span class="meta">@Transient</span> </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> tempUsageCount; <span class="comment">// not persisted  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4>五，MakeProject</h4>
-
+<p>五，MakeProject</p>
 <p>编译项目，User实体类会自动编译，生成get、set方法并且会在com.anye.greendao.gen目录下生成三个文件；</p>
 <p>greenDao<br>GreenDao使用</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</div><div class="line"> <span class="keyword">private</span> DaoMaster.DevOpenHelper mHelper;</div><div class="line"> <span class="keyword">private</span> SQLiteDatabase db;</div><div class="line"> <span class="keyword">private</span> DaoMaster mDaoMaster;</div><div class="line"> <span class="keyword">private</span> DaoSession mDaoSession;</div><div class="line"> <span class="keyword">public</span> <span class="keyword">static</span> MyApplication instances;</div><div class="line"> <span class="meta">@Override</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</div><div class="line">     <span class="keyword">super</span>.onCreate();</div><div class="line">     instances = <span class="keyword">this</span>;</div><div class="line">     setDatabase();</div><div class="line"> &#125;</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MyApplication <span class="title">getInstances</span><span class="params">()</span></span>&#123;</div><div class="line">     <span class="keyword">return</span> instances;</div><div class="line"> &#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setDatabase</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。</span></div><div class="line">    <span class="comment">// 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。</span></div><div class="line">    <span class="comment">// 注意：默认的 DaoMaster.DevOpenHelper 会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。</span></div><div class="line">    <span class="comment">// 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。</span></div><div class="line">    mHelper = <span class="keyword">new</span> DaoMaster.DevOpenHelper(<span class="keyword">this</span>, <span class="string">"notes-db"</span>, <span class="keyword">null</span>);</div><div class="line">    db = mHelper.getWritableDatabase();</div><div class="line">    <span class="comment">// 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。 </span></div><div class="line">    mDaoMaster = <span class="keyword">new</span> DaoMaster(db); </div><div class="line">    mDaoSession = mDaoMaster.newSession();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> DaoSession <span class="title">getDaoSession</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> mDaoSession;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> SQLiteDatabase <span class="title">getDb</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> db;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -468,17 +465,14 @@
 <h2>Greendao中的注解</h2>
 
 
-<p>(一) @Entity 定义实体</p>
-<pre><code>@nameInDb 在数据库中的名字，如不写则为实体中类名
-
-@indexes 索引
-
-@createInDb 是否创建表，默认为true,false时不创建
-
-@schema 指定架构名称为实体
-
-@active 无论是更新生成都刷新
-</code></pre><p>(二) @Id</p>
+<p>(一) </p>
+<p>@Entity 定义实体</p>
+<p>@nameInDb 在数据库中的名字，如不写则为实体中类名</p>
+<p>@indexes 索引</p>
+<p>@createInDb 是否创建表，默认为true,false时不创建</p>
+<p>@schema 指定架构名称为实体</p>
+<p>@active 无论是更新生成都刷新</p>
+<p>(二) @Id</p>
 <p>(三) @NotNull 不为null</p>
 <p>(四) @Unique 唯一约束</p>
 <p>(五) @ToMany 一对多</p>
@@ -669,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">关于GreenDao</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">GreenDAO 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">GreenDao 3.0使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.1.</span> <span class="nav-text">一，在as中导入相关的包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.2.</span> <span class="nav-text">二，在build.gradle中进行配置：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.3.</span> <span class="nav-text">三，自定义路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.4.</span> <span class="nav-text">四，创建一个User的实体类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.5.</span> <span class="nav-text">五，MakeProject</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Greendao中的注解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">关于GreenDao</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">GreenDAO 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">GreenDao 3.0使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">Greendao中的注解</span></a></li></ol></div>
             
 
           </div>
