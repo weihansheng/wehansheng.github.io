@@ -961,6 +961,412 @@ private String hello;
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/Bmob查询多对多/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/08/Bmob查询多对多/" itemprop="url">Bmob查询多对多</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T21:30:41+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="使用Bmob进行多对多查询"><a href="#使用Bmob进行多对多查询" class="headerlink" title="使用Bmob进行多对多查询"></a>使用Bmob进行多对多查询</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;PuzzleInfo&gt; query = <span class="keyword">new</span> BmobQuery&lt;PuzzleInfo&gt;();</div><div class="line"><span class="comment">//查询playerName叫“比目”的数据</span></div><div class="line"><span class="comment">//query.addWhereEqualTo("playerName", "比目");</span></div><div class="line"><span class="comment">//返回50条数据，如果不加上这条语句，默认返回10条数据</span></div><div class="line"><span class="comment">//query.setLimit(50);</span></div><div class="line"><span class="comment">//执行查询方法</span></div><div class="line"> <span class="comment">//这里直接使用addWhereEqualTo不使用官方的addWhereRelatedTo </span></div><div class="line"><span class="comment">//addWhereRelatedTo 是用来查询关注该帖子的所有用户</span></div><div class="line">query.addWhereEqualTo(<span class="string">"likes"</span>, user); </div><div class="line">query.order(<span class="string">"-createdAt"</span>);</div><div class="line"><span class="comment">//query.addWhereRelatedTo("likes", new BmobPointer(user));</span></div><div class="line"><span class="comment">//query.include("author");// 希望在查询帖子信息的同时也把发布人的信息查询出来</span></div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;PuzzleInfo&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;PuzzleInfo&gt; object, BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.d(<span class="string">"test"</span>,<span class="string">"查询成功：共"</span>+object.size()+<span class="string">"条数据。"</span>);</div><div class="line">            <span class="comment">//list=object;</span></div><div class="line">            <span class="comment">//Log.d("test","数据"+object.toString());</span></div><div class="line">            <span class="comment">//Log.d("test","组数"+group(object).size()); //执行一次group(object) object就会变少</span></div><div class="line">            <span class="comment">//Log.d("test","分组数据"+group(object).toString());</span></div><div class="line">            mAdapter.addItemLast(GroupUtils.group(object));</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            <span class="comment">//Log.d("test","查询puzzle失败："+e.getMessage()+","+e.getErrorCode());</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/Bomb内部查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/08/Bomb内部查询/" itemprop="url">Bomb内部查询</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T13:20:24+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用Bmob进行内部查询<br>例如：查询带有图片的帖子的评论列表:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;Comment&gt; query = <span class="keyword">new</span> BmobQuery&lt;Comment&gt;();</div><div class="line">BmobQuery&lt;Post&gt; innerQuery = <span class="keyword">new</span> BmobQuery&lt;Post&gt;();</div><div class="line">innerQuery.addWhereExists(<span class="string">"image"</span>, <span class="keyword">true</span>);</div><div class="line"><span class="comment">// 第一个参数为评论表中的帖子字段名post</span></div><div class="line"><span class="comment">// 第二个参数为Post字段的表名，也可以直接用"Post"字符串的形式</span></div><div class="line"><span class="comment">// 第三个参数为内部查询条件</span></div><div class="line">query.addWhereMatchesQuery(<span class="string">"post"</span>, <span class="string">"Post"</span>, innerQuery);</div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;Comment&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;Comment&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"成功"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>查询多对多关联<br>如果希望查询喜欢该帖子（objectId为ESIt3334）的所有用户,那么就需要用到addWhereRelatedTo方法进行多对多关联查询。<br>示例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 查询喜欢这个帖子的所有用户，因此查询的是用户表</span></div><div class="line">BmobQuery&lt;MyUser&gt; query = <span class="keyword">new</span> BmobQuery&lt;MyUser&gt;();</div><div class="line">Post post = <span class="keyword">new</span> Post();</div><div class="line">post.setObjectId(<span class="string">"ESIt3334"</span>);</div><div class="line"><span class="comment">//likes是Post表中的字段，用来存储所有喜欢该帖子的用户</span></div><div class="line">query.addWhereRelatedTo(<span class="string">"likes"</span>, <span class="keyword">new</span> BmobPointer(post));    </div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;MyUser&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;MyUser&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"查询个数："</span>+object.size());</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;PuzzleInfo&gt; query = <span class="keyword">new</span> BmobQuery&lt;PuzzleInfo&gt;();</div><div class="line">BmobQuery&lt;User&gt; innerQuery = <span class="keyword">new</span> BmobQuery&lt;User&gt;();</div><div class="line">User user = <span class="keyword">new</span> User();</div><div class="line">user.setObjectId(<span class="string">"ESIt3334"</span>);</div><div class="line">innerQuery.addWhereRelatedTo(<span class="string">"following"</span>, <span class="keyword">new</span> BmobPointer(user)); </div><div class="line"><span class="comment">//innerQuery.addWhereExists("image", true);</span></div><div class="line"><span class="comment">// 第一个参数为评论表中的帖子字段名post</span></div><div class="line"><span class="comment">// 第二个参数为Post字段的表名，也可以直接用"Post"字符串的形式</span></div><div class="line"><span class="comment">// 第三个参数为内部查询条件</span></div><div class="line">query.addWhereMatchesQuery(<span class="string">"author"</span>, <span class="string">"User"</span>, innerQuery);</div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;PuzzleInfo&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;PuzzleInfo&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"成功"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/02/高德地图的调试版SHA1与发布版SHA1分别的获取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/02/高德地图的调试版SHA1与发布版SHA1分别的获取/" itemprop="url">高德地图的调试版SHA1与发布版SHA1分别的获取</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-02T21:30:41+08:00">
+                2017-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>调试版SHA1的获取：<br>首先：你C盘的jdk文件夹下的bin文件的路径（C:\Program Files\Java\jdk1.7.0_51\bin）应该加到环境变量path中才能执行以下的步骤；<br>其次：找到C:\Users\admin.Android，该.android文件夹下找到debug.keystore，这是你的密钥库文件<br>然后在该密钥库所在的路径下运行cmd，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -list -v -keystore debug.keystore</div></pre></td></tr></table></figure></p>
+<p>密钥库口令可以按 ENTER 跳过，<br>即可得到调试版的SHA1。<br>发布版的SHA1的获取：<br>app为release模式时，应该有自己签名文件，是在生成apk时创建的含alias，password等参数的keystore文件，有此文件才可以与高德地图或者微信等第三方有关联存在。<br>所以，同样，找到该app相关的keystore文件的所在，进入cmd，输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -list -v -keystore xxxx.jks</div></pre></td></tr></table></figure></p>
+<p>密钥口令是你的keystore文件的密码，再按 ENTER 即可得到发布版的SHA1。<br>下图我的keystore存在C:\Users\admin\Desktop\android下，<br>最终填写在高德地图的开发者平台应用信息那里，然后就可以申请高德地图的KEY了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1006,7 +1412,7 @@ private String hello;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
