@@ -327,6 +327,580 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/28/Listview的item是一个HorizontalScrollView，则无法响应onItemClickListener监听器事件了。解决方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/28/Listview的item是一个HorizontalScrollView，则无法响应onItemClickListener监听器事件了。解决方案/" itemprop="url">Listview的item是一个HorizontalScrollView，则无法响应onItemClickListener监听器事件了。解决方案</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-28T14:49:28+08:00">
+                2017-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>—–解决方案——————–</p>
+<p>HorizontalScrollView可滑动，需要做焦点屏蔽</p>
+<p>——解决方案——————–</p>
+<p>HorizontalScrollView如果也设置了监听事件的话外层会被屏蔽</p>
+<p>——解决方案——————–</p>
+<p>listview里面包含了HorizontalScrollView，所以点击事件冲突了，一般写把点击事件写在ontouch里面进行判断是点击，还是滑动，这样就可以区别了</p>
+<p>——解决方案——————–</p>
+<p>在item的xml文件中的根布局中加上一句：<br>android:descendantFocusability=”blocksDescendants”</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/29/hexo命令及Markdown语法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/29/hexo命令及Markdown语法/" itemprop="url">hexo命令及Markdown语法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-29T15:18:46+08:00">
+                2017-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MarkDown/" itemprop="url" rel="index">
+                    <span itemprop="name">MarkDown</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##Markdown</p>
+<p>hexo是使用Markdown编辑文章的，我写的这些文章也都是用这种标记语言完成的。所以，我们先从Markdown说起。</p>
+<p>什么是Markdown<br>Markdown语法<br>例文<br>你可以使用vim工具直接编辑md文件，也可以用记事本打开md文件编辑你的文章，也可以Markdown的编辑器编写，有很多在线的编辑器，何有不少客户端的编辑器，我是Mac系统，用的一个叫 Mou 的编辑器，还比较好使。Windows系统下，你可以自己找一下，应该也会有很好用的编辑器。</p>
+<p>什么是Markdown</p>
+<p>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯和亚伦·斯沃茨。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML文档”。 ——维基百科</p>
+<p>先简单介绍一下，Markdown的语法，具体怎么用，我相信大家一看例文就马上明白了。</p>
+<h2 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h2><p>1、分段： 两个回车</p>
+<p>2、换行 两个空格 + 回车</p>
+<p>3、标题 # ~ ###### 井号的个数表示几级标题，即Markdown可以表示一级标题到六级标题</p>
+<p>4、引用 &gt;</p>
+<p>5、列表 * ， + ， - ， 1. ，选其中之一，注意后面有个空格</p>
+<p>6、代码区块 四个空格 开头</p>
+<p>7、链接 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">8、图片 </div><div class="line"></div><div class="line">```![图片说明](图片地址) ，图片地址可以是本地路劲，也可以是网络地址</div></pre></td></tr></table></figure>
+<p>9、强调</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**文字** ， __文字__ ， _文字_ ， *文字*</div></pre></td></tr></table></figure>
+<p>10、代码 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">```，``</div></pre></td></tr></table></figure>
+<h2 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h2><p>我们在前面的已经略微的接触了一些hexo的命令，如 hexo new “my blog” ， hexo server 等。下面来介绍一下我们经常会用到的hexo命令</p>
+<p>1、新建</p>
+<figure class="highlight plain"><figcaption><span>new "my blog"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">新建的文件在 hexo/source/_posts/my-blog.md</div><div class="line"></div><div class="line">2、编译</div><div class="line"></div><div class="line">```hexo g</div></pre></td></tr></table></figure>
+<p>一般部署上去的时候都需要编译一下，编译后，会出现一个 public 文件夹，将所有的md文件编译成html文件</p>
+<p>3、开启本地服务</p>
+<figure class="highlight plain"><figcaption><span>s```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这个命令，我之前已经用过了，开启本地hexo服务用的</div><div class="line"></div><div class="line">4、部署</div><div class="line"></div><div class="line">```hexo d</div></pre></td></tr></table></figure>
+<p>部署到git上的时候，需要用这个命令，下一篇中，我们会使用到这个命令</p>
+<p>5、清除 public</p>
+<p><code>hexo clean</code></p>
+<p>当 source 文件夹中的部分资源更改过之后，特别是对文件进行了删除或者路径的改变之后，需要执行这个命令，然后重新编译。</p>
+<p>以上这些都是我在使用过程中经常用到的一些hexo命令。最为详细、最为全面的说明文档当然还是在 官网 。请各位猛戳。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/29/子线程更新ui/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/29/子线程更新ui/" itemprop="url">子线程更新ui</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-29T15:02:38+08:00">
+                2017-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-、-在子线程更新ui必须使用handler"><a href="#一-、-在子线程更新ui必须使用handler" class="headerlink" title="一 、 在子线程更新ui必须使用handler"></a>一 、 在子线程更新ui必须使用handler</h2><h3 id="1-在主线程创建handler"><a href="#1-在主线程创建handler" class="headerlink" title="1.在主线程创建handler"></a>1.在主线程创建handler</h3><p> private Handler handler=new Handler(){<br>  public void handleMessage(android.os.Message msg) {<br>   if (msg.what==1) {<br>    Bitmap bitmap=(Bitmap) msg.obj;<br>    iv.setImageBitmap(bitmap);<br>   }else if (msg.what==0) {<br>    Toast.makeText(MainActivity.this, “显示图片失败”, 0).show();<br>   }<br>  };<br> };</p>
+<h3 id="2-告诉主线程一个消息：帮我更改ui-内容bitmap"><a href="#2-告诉主线程一个消息：帮我更改ui-内容bitmap" class="headerlink" title="2. 告诉主线程一个消息：帮我更改ui 内容bitmap"></a>2. 告诉主线程一个消息：帮我更改ui 内容bitmap</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">          Message msg=<span class="keyword">new</span> Message();</div><div class="line">          msg.what=<span class="number">1</span>;</div><div class="line">          msg.obj=bitmap;</div><div class="line">          handler.sendMessage(msg);</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/267127-4a2e85f20feaf2b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">URL url=<span class="keyword">new</span> URL(path);</div><div class="line">         <span class="comment">//根据url发送http的请求</span></div><div class="line">         HttpURLConnection conn=(HttpURLConnection) url.openConnection();</div><div class="line">         <span class="comment">//设置请求的的方式</span></div><div class="line">         conn.setRequestMethod(<span class="string">"GET"</span>);</div><div class="line">         <span class="comment">//设置连接超时时间</span></div><div class="line">         conn.setConnectTimeout(<span class="number">5000</span>);</div><div class="line">         <span class="comment">//设置读取超时时间</span></div><div class="line">         conn.setReadTimeout(<span class="number">2000</span>);</div><div class="line">         <span class="comment">//设置请求</span></div><div class="line">         <span class="comment">//conn.setRequestProperty(path, newValue);</span></div><div class="line">         <span class="comment">//得到服务器返回码</span></div><div class="line">         <span class="keyword">int</span> code=conn.getResponseCode();</div><div class="line">         <span class="keyword">if</span> (code==<span class="number">200</span>) &#123;</div><div class="line">          InputStream is=conn.getInputStream();</div><div class="line">          Bitmap bitmap=BitmapFactory.decodeStream(is);</div><div class="line">          System.out.println(<span class="string">"获取成功"</span>);</div><div class="line">          <span class="comment">//Toast.makeText(MainActivity.this, "显示图片成功", 0).show();</span></div><div class="line">             <span class="comment">//iv.setImageBitmap(bitmap);</span></div><div class="line">          <span class="comment">//2 告诉主线程一个消息：帮我更改ui 内容bitmap</span></div><div class="line">          Message msg=<span class="keyword">new</span> Message();</div><div class="line">          msg.what=<span class="number">1</span>;</div><div class="line">          msg.obj=bitmap;</div><div class="line">          handler.sendMessage(msg);</div><div class="line">          </div><div class="line">         &#125;<span class="keyword">else</span> &#123;</div><div class="line">          Message msg=<span class="keyword">new</span> Message();</div><div class="line">          msg.what=<span class="number">0</span>;</div><div class="line">          handler.sendMessage(msg);</div><div class="line">         &#125;</div></pre></td></tr></table></figure>
+<h2 id="二-、-runOnUiThread-也可以"><a href="#二-、-runOnUiThread-也可以" class="headerlink" title="二 、 runOnUiThread  也可以"></a>二 、 runOnUiThread  也可以</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line"></div><div class="line">      <span class="meta">@Override</span></div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">       <span class="comment">// TODO Auto-generated method stub</span></div><div class="line"></div><div class="line">       Toast.makeText(MainActivity.<span class="keyword">this</span>, result, <span class="number">0</span>).show();</div><div class="line"></div><div class="line">      &#125;</div><div class="line"></div><div class="line">     &#125;);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/29/listview下划线问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/29/listview下划线问题/" itemprop="url">listview下划线问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-29T14:46:55+08:00">
+                2017-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>默认状态下listview是有下划线的  去除默认下划线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">android:divider=<span class="string">"@null"</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/26/Ubuntu-14-04-上安装-CUDA-8-0-详细教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1228,551 +1802,11 @@ private String hello;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/Bomb内部查询/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/08/Bomb内部查询/" itemprop="url">Bomb内部查询</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T13:20:24+08:00">
-                2017-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用Bmob进行内部查询<br>例如：查询带有图片的帖子的评论列表:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;Comment&gt; query = <span class="keyword">new</span> BmobQuery&lt;Comment&gt;();</div><div class="line">BmobQuery&lt;Post&gt; innerQuery = <span class="keyword">new</span> BmobQuery&lt;Post&gt;();</div><div class="line">innerQuery.addWhereExists(<span class="string">"image"</span>, <span class="keyword">true</span>);</div><div class="line"><span class="comment">// 第一个参数为评论表中的帖子字段名post</span></div><div class="line"><span class="comment">// 第二个参数为Post字段的表名，也可以直接用"Post"字符串的形式</span></div><div class="line"><span class="comment">// 第三个参数为内部查询条件</span></div><div class="line">query.addWhereMatchesQuery(<span class="string">"post"</span>, <span class="string">"Post"</span>, innerQuery);</div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;Comment&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;Comment&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"成功"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>查询多对多关联<br>如果希望查询喜欢该帖子（objectId为ESIt3334）的所有用户,那么就需要用到addWhereRelatedTo方法进行多对多关联查询。<br>示例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 查询喜欢这个帖子的所有用户，因此查询的是用户表</span></div><div class="line">BmobQuery&lt;MyUser&gt; query = <span class="keyword">new</span> BmobQuery&lt;MyUser&gt;();</div><div class="line">Post post = <span class="keyword">new</span> Post();</div><div class="line">post.setObjectId(<span class="string">"ESIt3334"</span>);</div><div class="line"><span class="comment">//likes是Post表中的字段，用来存储所有喜欢该帖子的用户</span></div><div class="line">query.addWhereRelatedTo(<span class="string">"likes"</span>, <span class="keyword">new</span> BmobPointer(post));    </div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;MyUser&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;MyUser&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"查询个数："</span>+object.size());</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;PuzzleInfo&gt; query = <span class="keyword">new</span> BmobQuery&lt;PuzzleInfo&gt;();</div><div class="line">BmobQuery&lt;User&gt; innerQuery = <span class="keyword">new</span> BmobQuery&lt;User&gt;();</div><div class="line">User user = <span class="keyword">new</span> User();</div><div class="line">user.setObjectId(<span class="string">"ESIt3334"</span>);</div><div class="line">innerQuery.addWhereRelatedTo(<span class="string">"following"</span>, <span class="keyword">new</span> BmobPointer(user)); </div><div class="line"><span class="comment">//innerQuery.addWhereExists("image", true);</span></div><div class="line"><span class="comment">// 第一个参数为评论表中的帖子字段名post</span></div><div class="line"><span class="comment">// 第二个参数为Post字段的表名，也可以直接用"Post"字符串的形式</span></div><div class="line"><span class="comment">// 第三个参数为内部查询条件</span></div><div class="line">query.addWhereMatchesQuery(<span class="string">"author"</span>, <span class="string">"User"</span>, innerQuery);</div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;PuzzleInfo&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;PuzzleInfo&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"成功"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/02/高德地图的调试版SHA1与发布版SHA1分别的获取/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/02/高德地图的调试版SHA1与发布版SHA1分别的获取/" itemprop="url">高德地图的调试版SHA1与发布版SHA1分别的获取</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-02T21:30:41+08:00">
-                2017-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>调试版SHA1的获取：<br>首先：你C盘的jdk文件夹下的bin文件的路径（C:\Program Files\Java\jdk1.7.0_51\bin）应该加到环境变量path中才能执行以下的步骤；<br>其次：找到C:\Users\admin.Android，该.android文件夹下找到debug.keystore，这是你的密钥库文件<br>然后在该密钥库所在的路径下运行cmd，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -list -v -keystore debug.keystore</div></pre></td></tr></table></figure></p>
-<p>密钥库口令可以按 ENTER 跳过，<br>即可得到调试版的SHA1。<br>发布版的SHA1的获取：<br>app为release模式时，应该有自己签名文件，是在生成apk时创建的含alias，password等参数的keystore文件，有此文件才可以与高德地图或者微信等第三方有关联存在。<br>所以，同样，找到该app相关的keystore文件的所在，进入cmd，输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -list -v -keystore xxxx.jks</div></pre></td></tr></table></figure></p>
-<p>密钥口令是你的keystore文件的密码，再按 ENTER 即可得到发布版的SHA1。<br>下图我的keystore存在C:\Users\admin\Desktop\android下，<br>最终填写在高德地图的开发者平台应用信息那里，然后就可以申请高德地图的KEY了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/长时间无操作监听/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/28/长时间无操作监听/" itemprop="url">长时间无操作监听</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T13:52:20+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> Handler mHandler01 = <span class="keyword">new</span> Handler();  </div><div class="line">    <span class="keyword">private</span> Handler mHandler02 = <span class="keyword">new</span> Handler();  </div><div class="line">      </div><div class="line">    <span class="comment">/* 上一次User有动作的Time Stamp */</span>  </div><div class="line">    <span class="keyword">private</span> Date lastUpdateTime;  </div><div class="line">    <span class="comment">/* 计算User有几秒没有动作的 */</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timePeriod;  </div><div class="line">      </div><div class="line">    <span class="comment">/* 静止超过N秒将自动进入屏保 */</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mHoldStillTime = <span class="number">10</span>;  </div><div class="line">    <span class="comment">/*标识当前是否进入了屏保*/</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isRunScreenSaver;  </div><div class="line">      </div><div class="line">    <span class="comment">/*时间间隔*/</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> intervalScreenSaver = <span class="number">1000</span>;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> intervalKeypadeSaver = <span class="number">1000</span>;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        ((Button)findViewById(R.id.start_screen_Saver)).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;  </div><div class="line">              </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;  </div><div class="line">                <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">                Intent mService = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, ScreenService.class);  </div><div class="line">                mService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  </div><div class="line">                startService(mService);  </div><div class="line">            &#125;  </div><div class="line">        &#125;);  </div><div class="line">          </div><div class="line">        <span class="comment">/* 初始取得User可触碰屏幕的时间 */</span>  </div><div class="line">        lastUpdateTime = <span class="keyword">new</span> Date(System.currentTimeMillis());  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 计时线程 </div><div class="line">     */  </div><div class="line">    <span class="keyword">private</span> Runnable mTask01 = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">          </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            Date timeNow = <span class="keyword">new</span> Date(System.currentTimeMillis());  </div><div class="line">            <span class="comment">/* 计算User静止不动作的时间间距 */</span>  </div><div class="line">            <span class="comment">/**当前的系统时间 - 上次触摸屏幕的时间 = 静止不动的时间**/</span>  </div><div class="line">            timePeriod = (<span class="keyword">long</span>) timeNow.getTime() - (<span class="keyword">long</span>) lastUpdateTime.getTime();  </div><div class="line">              </div><div class="line">            <span class="comment">/*将静止时间毫秒换算成秒*/</span>  </div><div class="line">            <span class="keyword">float</span> timePeriodSecond = ((<span class="keyword">float</span>) timePeriod / <span class="number">1000</span>);  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span>(timePeriodSecond &gt; mHoldStillTime)&#123;  </div><div class="line">                <span class="keyword">if</span>(isRunScreenSaver == <span class="keyword">false</span>)&#123;  <span class="comment">//说明没有进入屏保  </span></div><div class="line">                    <span class="comment">/* 启动线程去显示屏保 */</span>  </div><div class="line">                    mHandler02.postAtTime(mTask02, intervalScreenSaver);  </div><div class="line">                    <span class="comment">/*显示屏保置为true*/</span>  </div><div class="line">                    isRunScreenSaver = <span class="keyword">true</span>;  </div><div class="line">                &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                    <span class="comment">/*屏保正在显示中*/</span>  </div><div class="line">                &#125;  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="comment">/*说明静止之间没有超过规定时长*/</span>  </div><div class="line">                isRunScreenSaver = <span class="keyword">false</span>;  </div><div class="line">            &#125;  </div><div class="line">            <span class="comment">/*反复调用自己进行检查*/</span>  </div><div class="line">            mHandler01.postDelayed(mTask01, intervalKeypadeSaver);    </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 持续屏保显示线程 </div><div class="line">     */  </div><div class="line">    <span class="keyword">private</span> Runnable mTask02 = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">            <span class="keyword">if</span> (isRunScreenSaver == <span class="keyword">true</span>) &#123;  <span class="comment">//如果屏保正在显示，就计算不断持续显示    </span></div><div class="line"><span class="comment">//              hideOriginalLayout();  </span></div><div class="line">                showScreenSaver();  </div><div class="line">                mHandler02.postDelayed(mTask02, intervalScreenSaver);  </div><div class="line">            &#125; <span class="keyword">else</span> &#123;  </div><div class="line">                mHandler02.removeCallbacks(mTask02);  <span class="comment">//如果屏保没有显示则移除线程  </span></div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 显示屏保 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showScreenSaver</span><span class="params">()</span></span>&#123;  </div><div class="line">        Log.d(<span class="string">"danxx"</span>, <span class="string">"显示屏保------&gt;"</span>);  </div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, ScreenSaverActivity.class);  </div><div class="line">        startActivity(intent);  </div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchKeyEvent</span><span class="params">(KeyEvent event)</span> </span>&#123;  </div><div class="line">        updateUserActionTime();  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.dispatchKeyEvent(event);  </div><div class="line">    &#125;  </div><div class="line">     <span class="meta">@Override</span>  </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        updateUserActionTime();</div><div class="line">        <span class="comment">//Log.d("test","捕获了点击");</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(ev);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*用户有操作的时候不断重置静止时间和上次操作的时间*/</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUserActionTime</span><span class="params">()</span> </span>&#123;  </div><div class="line">        Date timeNow = <span class="keyword">new</span> Date(System.currentTimeMillis());  </div><div class="line">        timePeriod = timeNow.getTime() - lastUpdateTime.getTime();  </div><div class="line">        lastUpdateTime.setTime(timeNow.getTime());  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="comment">/*activity显示的时候启动线程*/</span>  </div><div class="line">        mHandler01.postAtTime(mTask01, intervalKeypadeSaver);  </div><div class="line">        <span class="keyword">super</span>.onResume();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="comment">/*activity不可见的时候取消线程*/</span>  </div><div class="line">        mHandler01.removeCallbacks(mTask01);  </div><div class="line">        mHandler02.removeCallbacks(mTask02);  </div><div class="line">        <span class="keyword">super</span>.onPause();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><a href="http://mt.sohu.com/20161031/n471904667.shtml" target="_blank" rel="external">参考:http://mt.sohu.com/20161031/n471904667.shtml</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/23/防止连续多次操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johan007">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Johan007">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/23/防止连续多次操作/" itemprop="url">防止连续多次操作</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-23T14:03:27+08:00">
-                2017-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonUtils</span> </span>&#123;</div><div class="line">    <span class="comment">// 两次次操作间隔不能少于5000毫秒</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_CLICK_DELAY_TIME = <span class="number">5000</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> lastClickTime;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">long</span> curClickTime = System.currentTimeMillis();</div><div class="line">        <span class="keyword">if</span> ((curClickTime - lastClickTime) &gt;= MIN_CLICK_DELAY_TIME) &#123;</div><div class="line">            Log.d(<span class="string">"test"</span>,<span class="string">"curClickTime - lastClickTime=="</span>+(curClickTime - lastClickTime));</div><div class="line">            flag = <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        lastClickTime = curClickTime;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1817,7 +1851,7 @@ private String hello;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1828,7 +1862,7 @@ private String hello;
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1839,7 +1873,7 @@ private String hello;
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

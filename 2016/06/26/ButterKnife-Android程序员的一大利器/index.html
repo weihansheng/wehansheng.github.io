@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="ButterKnife 安卓程序员的一大利器注：最近才看到的这个类库，来自于jakewharton大神的力作，安卓里面的视图注入库另小弟水平有限，翻译的不好，还请多多指正 首先是地址（托管在github上）：http://jakewharton.github.io/butterknife/ 进去后首先看到的是关于用法的讲解，翻译部分正式开始（通俗且精简化，建议对照着看）！ 简介：程序员都是懒惰的，">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ButterKnife Android程序员的一大利器">
+<meta property="og:url" content="http://yoursite.com/2016/06/26/ButterKnife-Android程序员的一大利器/index.html">
+<meta property="og:site_name" content="Johan007">
+<meta property="og:description" content="ButterKnife 安卓程序员的一大利器注：最近才看到的这个类库，来自于jakewharton大神的力作，安卓里面的视图注入库另小弟水平有限，翻译的不好，还请多多指正 首先是地址（托管在github上）：http://jakewharton.github.io/butterknife/ 进去后首先看到的是关于用法的讲解，翻译部分正式开始（通俗且精简化，建议对照着看）！ 简介：程序员都是懒惰的，">
+<meta property="og:updated_time" content="2017-05-29T06:43:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ButterKnife Android程序员的一大利器">
+<meta name="twitter:description" content="ButterKnife 安卓程序员的一大利器注：最近才看到的这个类库，来自于jakewharton大神的力作，安卓里面的视图注入库另小弟水平有限，翻译的不好，还请多多指正 首先是地址（托管在github上）：http://jakewharton.github.io/butterknife/ 进去后首先看到的是关于用法的讲解，翻译部分正式开始（通俗且精简化，建议对照着看）！ 简介：程序员都是懒惰的，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'Q64HSMOKKH',
+      apiKey: '85afafe1d0aaed2b30f0e8c0d98d8f50',
+      indexName: 'Johan007',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/06/26/ButterKnife-Android程序员的一大利器/"/>
+
+
+
+
+
+  <title>ButterKnife Android程序员的一大利器 | Johan007</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Johan007</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/26/ButterKnife-Android程序员的一大利器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ButterKnife Android程序员的一大利器</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-26T14:36:02+08:00">
+                2016-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ButterKnife 安卓程序员的一大利器<br>注：最近才看到的这个类库，来自于jakewharton大神的力作，安卓里面的视图注入库<br>另小弟水平有限，翻译的不好，还请多多指正</p>
+<p>首先是地址（托管在github上）：<a href="http://jakewharton.github.io/butterknife/" target="_blank" rel="external">http://jakewharton.github.io/butterknife/</a></p>
+<p>进去后首先看到的是关于用法的讲解，翻译部分正式开始（通俗且精简化，建议对照着看）！</p>
+<p>简介：<br>程序员都是懒惰的，不想写一大堆像下面这样的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  TextView title;</div><div class="line">  TextView subtitle;</div><div class="line">  TextView footer;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.simple_activity);</div><div class="line">    title = (TextView) findViewById(R.id.title);</div><div class="line">    subtitle = (TextView) findViewById(R.id.subtitle);</div><div class="line">    footer = (TextView) findViewById(R.id.footer);</div><div class="line"></div><div class="line">    <span class="comment">// TODO Use views...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样很不好，因此我们就找到了一个方法，使用魔法一般的注解，来浓缩代码，就像下面这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  <span class="meta">@Magic</span>(R.id.title) TextView title;</div><div class="line">  <span class="meta">@Magic</span>(R.id.subtitle) TextView subtitle;</div><div class="line">  <span class="meta">@Magic</span>(R.id.footer) TextView footer;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.simple_activity);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然而，这样虽然看起来很酷，很Magic，不过还是会带来严重的运行时的问题<br>于是，我们就利用javac 编译器中一大利器来生成前面例子中的findViewById的引用，并且继续保持代码的精简 ，继续看下面的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.title) TextView title;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.subtitle) TextView subtitle;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.footer) TextView footer;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.simple_activity);</div><div class="line">    ButterKnife.inject(<span class="keyword">this</span>);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在原本Magic的地方使用inject 方法来替代，下面是该方法的一段代表（This method delegates to generated code 不明），可以看并debug</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(ExampleActivity activity)</span> </span>&#123;</div><div class="line">  activity.subtitle = (android.widget.TextView) activity.findViewById(<span class="number">2130968578</span>);</div><div class="line">  activity.footer = (android.widget.TextView) activity.findViewById(<span class="number">2130968579</span>);</div><div class="line">  activity.title = (android.widget.TextView) activity.findViewById(<span class="number">2130968577</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>（这段可以忽略吗？貌似翻译不对，看不太懂）有些人称这个为视图注入，并加到了传统的依赖注入框架中，也许在术语上有错误，不过或许有一点作用…….</p>
+<p>NON-ACTIVITY INJECTION<br>我们可以对任意的View对象使用注入，当然了，需要提供view root的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button1) Button button1;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button2) Button button2;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function">View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</div><div class="line">    ButterKnife.inject(<span class="keyword">this</span>, view);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外一个用处是简化list adapter中的View Holder模式，这个例子可以在提供的sample中看到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View view, ViewGroup parent)</span> </span>&#123;</div><div class="line">    ViewHolder holder;</div><div class="line">    <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</div><div class="line">      holder = (ViewHolder) view.getTag();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      view = inflater.inflate(R.layout.whatever, parent, <span class="keyword">false</span>);</div><div class="line">      holder = <span class="keyword">new</span> ViewHolder(view);</div><div class="line">      view.setTag(holder);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    holder.name.setText(<span class="string">"John Doe"</span>);</div><div class="line">    <span class="comment">// etc...</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> convertView;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</div><div class="line">    <span class="meta">@InjectView</span>(R.id.title) TextView name;</div><div class="line">    <span class="meta">@InjectView</span>(R.id.job_title) TextView jobTitle;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">      ButterKnife.inject(<span class="keyword">this</span>, view);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其他的API（这段真心建议看一下原版）<br>   -当使用activity作为view root节点时，你如果使用的是像MVC设计模式，你可以将控制器注入，使用它的acitvity并通过ButterKnife.inject(this, activity)方法<br>   -将一个子View对象字段注入，使用ButterKnife.inject(this)（在前面例子的onCreate方法中就是，不懂的可以参考这个），如果你在一个layout<br>的构造方法中使用<merge>标签并且，inflate了一个自定义View，立即调用这个方法。或者，如果是从xml中inflate自定义view，<br>可以使用这个方法—onLayoutInflated()</merge></p>
+<p>CLICK LISTENER INJECTION</p>
+<p>Click listener 也可以被注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@OnClick</span>(R.id.submit)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// TODO submit data to server...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也可以加一个view对象，特定的类型会被自动转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@OnClick</span>(R.id.submit)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHi</span><span class="params">(Button button)</span> </span>&#123;</div><div class="line">  button.setText(<span class="string">"Hello!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一次指定多个id，同时加事件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@OnClick</span>(&#123; R.id.door1, R.id.door2, R.id.door3 &#125;)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pickDoor</span><span class="params">(DoorView door)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (door.hasPrizeBehind()) &#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"You win!"</span>, LENGTH_SHORT).show();</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"Try again"</span>, LENGTH_SHORT).show();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>INJECTION RESET<br>Fragments 有比Avtivity更多的生命周期 ，如果需要在onCreateView中注入一个fragment，在onDestroyView中销毁它<br>Butter Knife 有一个reset 方法自动实现它</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button1) Button button1;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button2) Button button2;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function">View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</div><div class="line">    ButterKnife.inject(<span class="keyword">this</span>, view);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">void</span> <span class="title">onDestroyView</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onDestroyView();</div><div class="line">    ButterKnife.reset(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>OPTIONAL INJECTIONS<br>默认情况下 @InjectView和@OnClick都是必须加上的，如果当前对象不存在，就会抛出一个异常<br>为了压制这个异常，可以在变量或者方法上加入一下注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Optional</span> <span class="meta">@InjectView</span>(R.id.might_not_be_there) TextView mightNotBeThere;</div><div class="line"></div><div class="line"><span class="meta">@Optional</span> <span class="meta">@OnClick</span>(R.id.maybe_missing) <span class="function"><span class="keyword">void</span> <span class="title">onMaybeMissingClicked</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// TODO ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BONUS</p>
+<p>这段看不太懂，大意估计是除了以上注入方法之外还有一种，类型会自动转换，需要静态导入ButterKnife.findById</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">View view = LayoutInflater.from(context).inflate(R.layout.thing, <span class="keyword">null</span>);</div><div class="line">TextView firstName = ButterKnife.findById(view, R.id.first_name);</div><div class="line">TextView lastName = ButterKnife.findById(view, R.id.last_name);</div><div class="line">ImageView photo = ButterKnife.findById(view, R.id.photo);</div></pre></td></tr></table></figure>
+<p>Download：当前版本 4.0.1</p>
+<p>具体：<a href="http://github.com/JakeWharton/butterknife" target="_blank" rel="external">http://github.com/JakeWharton/butterknife</a><br>jar包：<a href="http://repo1.maven.org/maven2/com/jakewharton/butterknife/4.0.1/butterknife-4.0.1.jar" target="_blank" rel="external">http://repo1.maven.org/maven2/com/jakewharton/butterknife/4.0.1/butterknife-4.0.1.jar</a></p>
+<p>Maven配置：如果你是用maven开发的童鞋，请自觉加上如下依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;com.jakewharton&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;butterknife&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;4.0.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>IDE的配置</p>
+<p>IntelliJ IDEA — 如果你是用外部工具管理工程 (如 Maven pom.xml) 应该能正常工作, 不然就看看这个<br><a href="http://jakewharton.github.io/butterknife/ide-idea.html" target="_blank" rel="external">http://jakewharton.github.io/butterknife/ide-idea.html</a><br>Eclipse — <a href="http://jakewharton.github.io/butterknife/ide-eclipse.html" target="_blank" rel="external">http://jakewharton.github.io/butterknife/ide-eclipse.html</a></p>
+<p>PROGUARD<br>使用注入会导致ProGuard 认为变量未被使用，因此，需要在ProGuard 中加入如下字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-dontwarn butterknife.internal.**</div><div class="line">-keep class **$$ViewInjector &#123; *; &#125;</div><div class="line">-keepnames class * &#123; @butterknife.InjectView *;&#125;</div></pre></td></tr></table></figure></p>
+<p>Having Happy Coding! </p>
+<p><a href="http://www.it165.net/pro/html/201404/12375.html" target="_blank" rel="external">转http://www.it165.net/pro/html/201404/12375.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/25/Java反射机制/" rel="next" title="Java反射机制">
+                <i class="fa fa-chevron-left"></i> Java反射机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/28/点击listview阻止button的方法/" rel="prev" title="点击listview阻止button的方法">
+                点击listview阻止button的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Johan007" />
+          <p class="site-author-name" itemprop="name">Johan007</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johan007</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

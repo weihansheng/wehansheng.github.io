@@ -327,6 +327,546 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/Bomb内部查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/08/Bomb内部查询/" itemprop="url">Bomb内部查询</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T13:20:24+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用Bmob进行内部查询<br>例如：查询带有图片的帖子的评论列表:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;Comment&gt; query = <span class="keyword">new</span> BmobQuery&lt;Comment&gt;();</div><div class="line">BmobQuery&lt;Post&gt; innerQuery = <span class="keyword">new</span> BmobQuery&lt;Post&gt;();</div><div class="line">innerQuery.addWhereExists(<span class="string">"image"</span>, <span class="keyword">true</span>);</div><div class="line"><span class="comment">// 第一个参数为评论表中的帖子字段名post</span></div><div class="line"><span class="comment">// 第二个参数为Post字段的表名，也可以直接用"Post"字符串的形式</span></div><div class="line"><span class="comment">// 第三个参数为内部查询条件</span></div><div class="line">query.addWhereMatchesQuery(<span class="string">"post"</span>, <span class="string">"Post"</span>, innerQuery);</div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;Comment&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;Comment&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"成功"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>查询多对多关联<br>如果希望查询喜欢该帖子（objectId为ESIt3334）的所有用户,那么就需要用到addWhereRelatedTo方法进行多对多关联查询。<br>示例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 查询喜欢这个帖子的所有用户，因此查询的是用户表</span></div><div class="line">BmobQuery&lt;MyUser&gt; query = <span class="keyword">new</span> BmobQuery&lt;MyUser&gt;();</div><div class="line">Post post = <span class="keyword">new</span> Post();</div><div class="line">post.setObjectId(<span class="string">"ESIt3334"</span>);</div><div class="line"><span class="comment">//likes是Post表中的字段，用来存储所有喜欢该帖子的用户</span></div><div class="line">query.addWhereRelatedTo(<span class="string">"likes"</span>, <span class="keyword">new</span> BmobPointer(post));    </div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;MyUser&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;MyUser&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"查询个数："</span>+object.size());</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;PuzzleInfo&gt; query = <span class="keyword">new</span> BmobQuery&lt;PuzzleInfo&gt;();</div><div class="line">BmobQuery&lt;User&gt; innerQuery = <span class="keyword">new</span> BmobQuery&lt;User&gt;();</div><div class="line">User user = <span class="keyword">new</span> User();</div><div class="line">user.setObjectId(<span class="string">"ESIt3334"</span>);</div><div class="line">innerQuery.addWhereRelatedTo(<span class="string">"following"</span>, <span class="keyword">new</span> BmobPointer(user)); </div><div class="line"><span class="comment">//innerQuery.addWhereExists("image", true);</span></div><div class="line"><span class="comment">// 第一个参数为评论表中的帖子字段名post</span></div><div class="line"><span class="comment">// 第二个参数为Post字段的表名，也可以直接用"Post"字符串的形式</span></div><div class="line"><span class="comment">// 第三个参数为内部查询条件</span></div><div class="line">query.addWhereMatchesQuery(<span class="string">"author"</span>, <span class="string">"User"</span>, innerQuery);</div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;PuzzleInfo&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;PuzzleInfo&gt; object,BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"成功"</span>);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            Log.i(<span class="string">"bmob"</span>,<span class="string">"失败："</span>+e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/02/高德地图的调试版SHA1与发布版SHA1分别的获取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/02/高德地图的调试版SHA1与发布版SHA1分别的获取/" itemprop="url">高德地图的调试版SHA1与发布版SHA1分别的获取</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-02T21:30:41+08:00">
+                2017-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>调试版SHA1的获取：<br>首先：你C盘的jdk文件夹下的bin文件的路径（C:\Program Files\Java\jdk1.7.0_51\bin）应该加到环境变量path中才能执行以下的步骤；<br>其次：找到C:\Users\admin.Android，该.android文件夹下找到debug.keystore，这是你的密钥库文件<br>然后在该密钥库所在的路径下运行cmd，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -list -v -keystore debug.keystore</div></pre></td></tr></table></figure></p>
+<p>密钥库口令可以按 ENTER 跳过，<br>即可得到调试版的SHA1。<br>发布版的SHA1的获取：<br>app为release模式时，应该有自己签名文件，是在生成apk时创建的含alias，password等参数的keystore文件，有此文件才可以与高德地图或者微信等第三方有关联存在。<br>所以，同样，找到该app相关的keystore文件的所在，进入cmd，输入<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keytool -list -v -keystore xxxx.jks</div></pre></td></tr></table></figure></p>
+<p>密钥口令是你的keystore文件的密码，再按 ENTER 即可得到发布版的SHA1。<br>下图我的keystore存在C:\Users\admin\Desktop\android下，<br>最终填写在高德地图的开发者平台应用信息那里，然后就可以申请高德地图的KEY了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/长时间无操作监听/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/28/长时间无操作监听/" itemprop="url">长时间无操作监听</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T13:52:20+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> Handler mHandler01 = <span class="keyword">new</span> Handler();  </div><div class="line">    <span class="keyword">private</span> Handler mHandler02 = <span class="keyword">new</span> Handler();  </div><div class="line">      </div><div class="line">    <span class="comment">/* 上一次User有动作的Time Stamp */</span>  </div><div class="line">    <span class="keyword">private</span> Date lastUpdateTime;  </div><div class="line">    <span class="comment">/* 计算User有几秒没有动作的 */</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timePeriod;  </div><div class="line">      </div><div class="line">    <span class="comment">/* 静止超过N秒将自动进入屏保 */</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mHoldStillTime = <span class="number">10</span>;  </div><div class="line">    <span class="comment">/*标识当前是否进入了屏保*/</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isRunScreenSaver;  </div><div class="line">      </div><div class="line">    <span class="comment">/*时间间隔*/</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> intervalScreenSaver = <span class="number">1000</span>;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> intervalKeypadeSaver = <span class="number">1000</span>;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        ((Button)findViewById(R.id.start_screen_Saver)).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;  </div><div class="line">              </div><div class="line">            <span class="meta">@Override</span>  </div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;  </div><div class="line">                <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">                Intent mService = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, ScreenService.class);  </div><div class="line">                mService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  </div><div class="line">                startService(mService);  </div><div class="line">            &#125;  </div><div class="line">        &#125;);  </div><div class="line">          </div><div class="line">        <span class="comment">/* 初始取得User可触碰屏幕的时间 */</span>  </div><div class="line">        lastUpdateTime = <span class="keyword">new</span> Date(System.currentTimeMillis());  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 计时线程 </div><div class="line">     */  </div><div class="line">    <span class="keyword">private</span> Runnable mTask01 = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">          </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            Date timeNow = <span class="keyword">new</span> Date(System.currentTimeMillis());  </div><div class="line">            <span class="comment">/* 计算User静止不动作的时间间距 */</span>  </div><div class="line">            <span class="comment">/**当前的系统时间 - 上次触摸屏幕的时间 = 静止不动的时间**/</span>  </div><div class="line">            timePeriod = (<span class="keyword">long</span>) timeNow.getTime() - (<span class="keyword">long</span>) lastUpdateTime.getTime();  </div><div class="line">              </div><div class="line">            <span class="comment">/*将静止时间毫秒换算成秒*/</span>  </div><div class="line">            <span class="keyword">float</span> timePeriodSecond = ((<span class="keyword">float</span>) timePeriod / <span class="number">1000</span>);  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span>(timePeriodSecond &gt; mHoldStillTime)&#123;  </div><div class="line">                <span class="keyword">if</span>(isRunScreenSaver == <span class="keyword">false</span>)&#123;  <span class="comment">//说明没有进入屏保  </span></div><div class="line">                    <span class="comment">/* 启动线程去显示屏保 */</span>  </div><div class="line">                    mHandler02.postAtTime(mTask02, intervalScreenSaver);  </div><div class="line">                    <span class="comment">/*显示屏保置为true*/</span>  </div><div class="line">                    isRunScreenSaver = <span class="keyword">true</span>;  </div><div class="line">                &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                    <span class="comment">/*屏保正在显示中*/</span>  </div><div class="line">                &#125;  </div><div class="line">            &#125;<span class="keyword">else</span>&#123;  </div><div class="line">                <span class="comment">/*说明静止之间没有超过规定时长*/</span>  </div><div class="line">                isRunScreenSaver = <span class="keyword">false</span>;  </div><div class="line">            &#125;  </div><div class="line">            <span class="comment">/*反复调用自己进行检查*/</span>  </div><div class="line">            mHandler01.postDelayed(mTask01, intervalKeypadeSaver);    </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 持续屏保显示线程 </div><div class="line">     */  </div><div class="line">    <span class="keyword">private</span> Runnable mTask02 = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">            <span class="comment">// TODO Auto-generated method stub  </span></div><div class="line">            <span class="keyword">if</span> (isRunScreenSaver == <span class="keyword">true</span>) &#123;  <span class="comment">//如果屏保正在显示，就计算不断持续显示    </span></div><div class="line"><span class="comment">//              hideOriginalLayout();  </span></div><div class="line">                showScreenSaver();  </div><div class="line">                mHandler02.postDelayed(mTask02, intervalScreenSaver);  </div><div class="line">            &#125; <span class="keyword">else</span> &#123;  </div><div class="line">                mHandler02.removeCallbacks(mTask02);  <span class="comment">//如果屏保没有显示则移除线程  </span></div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">      </div><div class="line">    <span class="comment">/** </span></div><div class="line">     * 显示屏保 </div><div class="line">     */  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showScreenSaver</span><span class="params">()</span></span>&#123;  </div><div class="line">        Log.d(<span class="string">"danxx"</span>, <span class="string">"显示屏保------&gt;"</span>);  </div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, ScreenSaverActivity.class);  </div><div class="line">        startActivity(intent);  </div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchKeyEvent</span><span class="params">(KeyEvent event)</span> </span>&#123;  </div><div class="line">        updateUserActionTime();  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.dispatchKeyEvent(event);  </div><div class="line">    &#125;  </div><div class="line">     <span class="meta">@Override</span>  </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</div><div class="line">        updateUserActionTime();</div><div class="line">        <span class="comment">//Log.d("test","捕获了点击");</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(ev);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/*用户有操作的时候不断重置静止时间和上次操作的时间*/</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUserActionTime</span><span class="params">()</span> </span>&#123;  </div><div class="line">        Date timeNow = <span class="keyword">new</span> Date(System.currentTimeMillis());  </div><div class="line">        timePeriod = timeNow.getTime() - lastUpdateTime.getTime();  </div><div class="line">        lastUpdateTime.setTime(timeNow.getTime());  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="comment">/*activity显示的时候启动线程*/</span>  </div><div class="line">        mHandler01.postAtTime(mTask01, intervalKeypadeSaver);  </div><div class="line">        <span class="keyword">super</span>.onResume();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="comment">/*activity不可见的时候取消线程*/</span>  </div><div class="line">        mHandler01.removeCallbacks(mTask01);  </div><div class="line">        mHandler02.removeCallbacks(mTask02);  </div><div class="line">        <span class="keyword">super</span>.onPause();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="http://mt.sohu.com/20161031/n471904667.shtml" target="_blank" rel="external">参考:http://mt.sohu.com/20161031/n471904667.shtml</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/23/防止连续多次操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/01/23/防止连续多次操作/" itemprop="url">防止连续多次操作</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-23T14:03:27+08:00">
+                2017-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonUtils</span> </span>&#123;</div><div class="line">    <span class="comment">// 两次次操作间隔不能少于5000毫秒</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_CLICK_DELAY_TIME = <span class="number">5000</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> lastClickTime;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">long</span> curClickTime = System.currentTimeMillis();</div><div class="line">        <span class="keyword">if</span> ((curClickTime - lastClickTime) &gt;= MIN_CLICK_DELAY_TIME) &#123;</div><div class="line">            Log.d(<span class="string">"test"</span>,<span class="string">"curClickTime - lastClickTime=="</span>+(curClickTime - lastClickTime));</div><div class="line">            flag = <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        lastClickTime = curClickTime;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/Retrofit-2-0-OkHttp-3-0-配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -461,11 +1001,785 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/30/Json解析错误/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/30/Json解析错误/" itemprop="url">Json解析错误</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-30T14:10:07+08:00">
+                2016-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在项目中遇到bug<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: Unterminated object at line <span class="number">1</span> column <span class="number">2914</span> path $.list[<span class="number">54</span>].agent</div></pre></td></tr></table></figure></p>
+<p>查了很久在发现原来是json数据中有空格造成的</p>
+<p>解决：值中有空格</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/08/Android小技巧之在Android-Studio下快速打开别人项目的正确方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/08/Android小技巧之在Android-Studio下快速打开别人项目的正确方式/" itemprop="url">Android小技巧之在Android Studio下快速打开别人项目的正确方式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-08T14:16:45+08:00">
+                2016-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>AS加入了Gradle大大方便的Android开发，但是同时也带了了不小的麻烦，当我们想阅读别人分享的项目的时候，在自己的AS打开经常会出问题，这里分享一个小技巧。<br> Android Studio正确打开项目只需要两步，或者说找到两个文件进行简单的修改就好，最好在打开之前进行修改</p>
+<p>（1）gradle-wrapper.properities，在项目下按照如下路径可以找到</p>
+<p>…../gradle/wrapper/ gradle-wrapper.properities</p>
+<p>打开后可以看到最后一行是一个地址链接，重点是链接的最后部分gradle-2.10-all.zip，AS不同版本对应的GradleWrapper版本号也不一样，想知道自己当前的是多少，可以在As命令行如gradlew -v查看，也可以新建一个项目到该路径下查看，修改完成后保存。</p>
+<p>（2）第二个需要修改的文件更好找，就是我们常用的Project下的build.gradle，打开后找到如图所示位置，把classpath后的gradle版本号也改成当前对应的就行，至于当前的版本号是多少，随便打开一个自己在本地创建的project就能知道了</p>
+<p>以上两步修改完成后，再用AndroidStudio选定项目，就能快速打开了~</p>
+<p>PS：这里只说了具体的步骤，至于想了解原理的可以去看一下帅张stormzhang的gradle介绍，简单易懂好上手。地址如下：</p>
+<p><a href="http://blog.csdn.net/googdev/article/details/51849844" target="_blank" rel="external">http://blog.csdn.net/googdev/article/details/51849844</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/28/点击listview阻止button的方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/28/点击listview阻止button的方法/" itemprop="url">点击listview阻止button的方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-28T14:44:15+08:00">
+                2016-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>去掉在button的selector中的 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">android:state_focused</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/26/ButterKnife-Android程序员的一大利器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/26/ButterKnife-Android程序员的一大利器/" itemprop="url">ButterKnife Android程序员的一大利器</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-26T14:36:02+08:00">
+                2016-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>ButterKnife 安卓程序员的一大利器<br>注：最近才看到的这个类库，来自于jakewharton大神的力作，安卓里面的视图注入库<br>另小弟水平有限，翻译的不好，还请多多指正</p>
+<p>首先是地址（托管在github上）：<a href="http://jakewharton.github.io/butterknife/" target="_blank" rel="external">http://jakewharton.github.io/butterknife/</a></p>
+<p>进去后首先看到的是关于用法的讲解，翻译部分正式开始（通俗且精简化，建议对照着看）！</p>
+<p>简介：<br>程序员都是懒惰的，不想写一大堆像下面这样的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  TextView title;</div><div class="line">  TextView subtitle;</div><div class="line">  TextView footer;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.simple_activity);</div><div class="line">    title = (TextView) findViewById(R.id.title);</div><div class="line">    subtitle = (TextView) findViewById(R.id.subtitle);</div><div class="line">    footer = (TextView) findViewById(R.id.footer);</div><div class="line"></div><div class="line">    <span class="comment">// TODO Use views...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样很不好，因此我们就找到了一个方法，使用魔法一般的注解，来浓缩代码，就像下面这样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  <span class="meta">@Magic</span>(R.id.title) TextView title;</div><div class="line">  <span class="meta">@Magic</span>(R.id.subtitle) TextView subtitle;</div><div class="line">  <span class="meta">@Magic</span>(R.id.footer) TextView footer;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.simple_activity);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然而，这样虽然看起来很酷，很Magic，不过还是会带来严重的运行时的问题<br>于是，我们就利用javac 编译器中一大利器来生成前面例子中的findViewById的引用，并且继续保持代码的精简 ，继续看下面的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExampleActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.title) TextView title;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.subtitle) TextView subtitle;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.footer) TextView footer;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.simple_activity);</div><div class="line">    ButterKnife.inject(<span class="keyword">this</span>);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在原本Magic的地方使用inject 方法来替代，下面是该方法的一段代表（This method delegates to generated code 不明），可以看并debug</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inject</span><span class="params">(ExampleActivity activity)</span> </span>&#123;</div><div class="line">  activity.subtitle = (android.widget.TextView) activity.findViewById(<span class="number">2130968578</span>);</div><div class="line">  activity.footer = (android.widget.TextView) activity.findViewById(<span class="number">2130968579</span>);</div><div class="line">  activity.title = (android.widget.TextView) activity.findViewById(<span class="number">2130968577</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>（这段可以忽略吗？貌似翻译不对，看不太懂）有些人称这个为视图注入，并加到了传统的依赖注入框架中，也许在术语上有错误，不过或许有一点作用…….</p>
+<p>NON-ACTIVITY INJECTION<br>我们可以对任意的View对象使用注入，当然了，需要提供view root的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button1) Button button1;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button2) Button button2;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function">View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</div><div class="line">    ButterKnife.inject(<span class="keyword">this</span>, view);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外一个用处是简化list adapter中的View Holder模式，这个例子可以在提供的sample中看到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View view, ViewGroup parent)</span> </span>&#123;</div><div class="line">    ViewHolder holder;</div><div class="line">    <span class="keyword">if</span> (view != <span class="keyword">null</span>) &#123;</div><div class="line">      holder = (ViewHolder) view.getTag();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      view = inflater.inflate(R.layout.whatever, parent, <span class="keyword">false</span>);</div><div class="line">      holder = <span class="keyword">new</span> ViewHolder(view);</div><div class="line">      view.setTag(holder);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    holder.name.setText(<span class="string">"John Doe"</span>);</div><div class="line">    <span class="comment">// etc...</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> convertView;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</div><div class="line">    <span class="meta">@InjectView</span>(R.id.title) TextView name;</div><div class="line">    <span class="meta">@InjectView</span>(R.id.job_title) TextView jobTitle;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ViewHolder</span><span class="params">(View view)</span> </span>&#123;</div><div class="line">      ButterKnife.inject(<span class="keyword">this</span>, view);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其他的API（这段真心建议看一下原版）<br>   -当使用activity作为view root节点时，你如果使用的是像MVC设计模式，你可以将控制器注入，使用它的acitvity并通过ButterKnife.inject(this, activity)方法<br>   -将一个子View对象字段注入，使用ButterKnife.inject(this)（在前面例子的onCreate方法中就是，不懂的可以参考这个），如果你在一个layout<br>的构造方法中使用<merge>标签并且，inflate了一个自定义View，立即调用这个方法。或者，如果是从xml中inflate自定义view，<br>可以使用这个方法—onLayoutInflated()</merge></p>
+<p>CLICK LISTENER INJECTION</p>
+<p>Click listener 也可以被注入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@OnClick</span>(R.id.submit)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// TODO submit data to server...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也可以加一个view对象，特定的类型会被自动转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@OnClick</span>(R.id.submit)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHi</span><span class="params">(Button button)</span> </span>&#123;</div><div class="line">  button.setText(<span class="string">"Hello!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一次指定多个id，同时加事件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@OnClick</span>(&#123; R.id.door1, R.id.door2, R.id.door3 &#125;)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pickDoor</span><span class="params">(DoorView door)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (door.hasPrizeBehind()) &#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"You win!"</span>, LENGTH_SHORT).show();</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"Try again"</span>, LENGTH_SHORT).show();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>INJECTION RESET<br>Fragments 有比Avtivity更多的生命周期 ，如果需要在onCreateView中注入一个fragment，在onDestroyView中销毁它<br>Butter Knife 有一个reset 方法自动实现它</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FancyFragment</span> <span class="keyword">extends</span> <span class="title">Fragment</span> </span>&#123;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button1) Button button1;</div><div class="line">  <span class="meta">@InjectView</span>(R.id.button2) Button button2;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function">View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    View view = inflater.inflate(R.layout.fancy_fragment, container, <span class="keyword">false</span>);</div><div class="line">    ButterKnife.inject(<span class="keyword">this</span>, view);</div><div class="line">    <span class="comment">// TODO Use "injected" views...</span></div><div class="line">    <span class="keyword">return</span> view;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="meta">@Override</span> <span class="function"><span class="keyword">void</span> <span class="title">onDestroyView</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onDestroyView();</div><div class="line">    ButterKnife.reset(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>OPTIONAL INJECTIONS<br>默认情况下 @InjectView和@OnClick都是必须加上的，如果当前对象不存在，就会抛出一个异常<br>为了压制这个异常，可以在变量或者方法上加入一下注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Optional</span> <span class="meta">@InjectView</span>(R.id.might_not_be_there) TextView mightNotBeThere;</div><div class="line"></div><div class="line"><span class="meta">@Optional</span> <span class="meta">@OnClick</span>(R.id.maybe_missing) <span class="function"><span class="keyword">void</span> <span class="title">onMaybeMissingClicked</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">// TODO ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>BONUS</p>
+<p>这段看不太懂，大意估计是除了以上注入方法之外还有一种，类型会自动转换，需要静态导入ButterKnife.findById</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">View view = LayoutInflater.from(context).inflate(R.layout.thing, <span class="keyword">null</span>);</div><div class="line">TextView firstName = ButterKnife.findById(view, R.id.first_name);</div><div class="line">TextView lastName = ButterKnife.findById(view, R.id.last_name);</div><div class="line">ImageView photo = ButterKnife.findById(view, R.id.photo);</div></pre></td></tr></table></figure>
+<p>Download：当前版本 4.0.1</p>
+<p>具体：<a href="http://github.com/JakeWharton/butterknife" target="_blank" rel="external">http://github.com/JakeWharton/butterknife</a><br>jar包：<a href="http://repo1.maven.org/maven2/com/jakewharton/butterknife/4.0.1/butterknife-4.0.1.jar" target="_blank" rel="external">http://repo1.maven.org/maven2/com/jakewharton/butterknife/4.0.1/butterknife-4.0.1.jar</a></p>
+<p>Maven配置：如果你是用maven开发的童鞋，请自觉加上如下依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">  &lt;groupId&gt;com.jakewharton&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;butterknife&lt;/artifactId&gt;</div><div class="line">  &lt;version&gt;4.0.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>IDE的配置</p>
+<p>IntelliJ IDEA — 如果你是用外部工具管理工程 (如 Maven pom.xml) 应该能正常工作, 不然就看看这个<br><a href="http://jakewharton.github.io/butterknife/ide-idea.html" target="_blank" rel="external">http://jakewharton.github.io/butterknife/ide-idea.html</a><br>Eclipse — <a href="http://jakewharton.github.io/butterknife/ide-eclipse.html" target="_blank" rel="external">http://jakewharton.github.io/butterknife/ide-eclipse.html</a></p>
+<p>PROGUARD<br>使用注入会导致ProGuard 认为变量未被使用，因此，需要在ProGuard 中加入如下字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-dontwarn butterknife.internal.**</div><div class="line">-keep class **$$ViewInjector &#123; *; &#125;</div><div class="line">-keepnames class * &#123; @butterknife.InjectView *;&#125;</div></pre></td></tr></table></figure></p>
+<p>Having Happy Coding! </p>
+<p><a href="http://www.it165.net/pro/html/201404/12375.html" target="_blank" rel="external">转http://www.it165.net/pro/html/201404/12375.html</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/25/Java反射机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/25/Java反射机制/" itemprop="url">Java反射机制</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-25T14:22:12+08:00">
+                2016-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java反射机制</p>
+<h2 id="一、什么是反射机制"><a href="#一、什么是反射机制" class="headerlink" title="一、什么是反射机制"></a>一、什么是反射机制</h2><pre><code>    简单的来说，反射机制指的是程序在运行时能够获取自身的信息。在java中，只要给定类的名字，  
+那么就可以通过反射机制来获得类的所有信息。
+</code></pre><h2 id="二、哪里用到反射机制"><a href="#二、哪里用到反射机制" class="headerlink" title="二、哪里用到反射机制"></a>二、哪里用到反射机制</h2><pre><code>    有些时候，我们用过一些知识，但是并不知道它的专业术语是什么，在刚刚学jdbc时用过一行代码，  Class.forName(&quot;com.mysql.jdbc.Driver.class&quot;).newInstance();但是那时候只知道那行代码是生成驱动对象实例，并不知道它的具体含义。听了反射机制这节课后，才知道，原来这就是反射，现在很多开  
+框架都用到反射机制，hibernate、struts都是用反射机制实现的。  
+</code></pre><h2 id="三、反射机制的优点与缺点"><a href="#三、反射机制的优点与缺点" class="headerlink" title="三、反射机制的优点与缺点"></a>三、反射机制的优点与缺点</h2><pre><code>    为什么要用反射机制？直接创建对象不就可以了吗，这就涉及到了动态与静态的概念，  
+静态编译：在编译时确定类型，绑定对象,即通过。  
+动态编译：运行时确定类型，绑定对象。动态编译最大限度发挥了java的灵活性，体现了多  
+态的应用，有以降低类之间的藕合性。  
+一句话，反射机制的优点就是可以实现动态创建对象和编译，体现出很大的灵活性，特别是在J2EE的开发中  
+它的灵活性就表现的十分明显。比如，一个大型的软件，不可能一次就把把它设计的很完美，当这个程序编  
+译后，发布了，当发现需要更新某些功能时，我们不可能要用户把以前的卸载，再重新安装新的版本，假如  
+这样的话，这个软件肯定是没有多少人用的。采用静态的话，需要把整个程序重新编译一次才可以实现功能  
+的更新，而采用反射机制的话，它就可以不用卸载，只需要在运行时才动态的创建和编译，就可以实现该功能。  
+   它的缺点是对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它  
+满足我们的要求。这类操作总是慢于只直接执行相同的操作。  
+</code></pre><h2 id="四、利用反射机制能获得什么信息"><a href="#四、利用反射机制能获得什么信息" class="headerlink" title="四、利用反射机制能获得什么信息"></a>四、利用反射机制能获得什么信息</h2><pre><code>     一句话，类中有什么信息，它就可以获得什么信息，不过前提是得知道类的名字，要不就没有后文了  
+首先得根据传入的类的全名来创建Class对象。  
+Class c=Class.forName(&quot;className&quot;);注明：className必须为全名，也就是得包含包名，比如，cn.netjava.pojo.UserInfo;  
+Object obj=c.newInstance();//创建对象的实例  
+OK，有了对象就什么都好办了，想要什么信息就有什么信息了。   
+获得构造函数的方法  
+Constructor getConstructor(Class[] params)//根据指定参数获得public构造器
+Constructor[] getConstructors()//获得public的所有构造器
+Constructor getDeclaredConstructor(Class[] params)//根据指定参数获得public和非public的构造器
+Constructor[] getDeclaredConstructors()//获得public的所有构造器  
+获得类方法的方法  
+Method getMethod(String name, Class[] params),根据方法名，参数类型获得方法
+Method[] getMethods()//获得所有的public方法
+Method getDeclaredMethod(String name, Class[] params)//根据方法名和参数类型，获得public和非public的方法
+Method[] getDeclaredMethods()//获得所以的public和非public方法  
+获得类中属性的方法  
+Field getField(String name)//根据变量名得到相应的public变量
+Field[] getFields()//获得类中所以public的方法
+Field getDeclaredField(String name)//根据方法名获得public和非public变量
+Field[] getDeclaredFields()//获得类中所有的public和非public方法  
+常用的就这些，知道这些，其他的都好办……  
+</code></pre><h2 id="五、用反射机制能干什么事"><a href="#五、用反射机制能干什么事" class="headerlink" title="五、用反射机制能干什么事"></a>五、用反射机制能干什么事</h2><pre><code>    刚开始在使用jdbc时侯，在编写访问数据库时写到想吐，有八个表，每个表都有增删改查中操作  
+那时候还不知道有反射机制这个概念，所以就对不同的表创建不同的dao类,这样不仅开发速率地，而且代码  
+冗余的厉害，最要命的是看着差不多的，然后直接复制修改，由于容易犯各种低级的错误（大小写啊，多一  
+个或少一个字母啊……）,一个错误就可以让你找半天。  
+    有了java反射机制，什么都好办了，只需要写一个dao类，四个方法，增删改查，传入不同的对象，就OK啦，  
+无需为每一个表都创建dao类，反射机制会自动帮我们完成剩下的事情，这就是它的好处。说白了，反射机制就是专门  
+帮我们做那些重复的有规则的事情，所以现在很多的自动生成代码的软件就是运用反射机制来完成的，只要你按照规则  
+输入相关的参数，所以低级的程序员慢慢的就被抹杀了，为什么？因为代码都不用写了，随便一个人都会开发，还要程  
+序员干什么啊？所以我们只有一条出路，那就是努力努力再努力，成为高级程序员，专门开发傻瓜软件，让其他程序员  到 一边凉快去，呵呵~  
+</code></pre><p>##六、用反射机制实现对数据库数据的增、查例子<br>    基本原理；保存数据时，把需要保存的对象的属性值全部取出来再拼凑sql语句  查询时，将查询到的数据全部包装成一个java对象。<br>    游戏规则：俗话说的好，无规矩不成方圆，特别是程序来说，它只能做有规则的事情，没有规则的它干不了，好，那就<br>              先定规则<br>              1）数据库的每一个表对象一个pojo类，表中的每一个字段对应pojo类的中的一个属性。<br>                 并且pojo类的名字和表的名字相同，属性名和字段名相同，大小写没有关系，因为数据库一般不区分大小写<br>              2）为pojo类中的每一个属性添加标准的set和get方法。<br>    有了游戏规则，那么开始游戏吧。<br>1、首先数据库的有一个表，假设数据库名称为：blogsystem,里面的一个表名userinfo。如图：<br><img src="http://dl.iteye.com/upload/attachment/451783/d66bb2a5-e383-39a6-8cd1-62fe5eedc35e.png?_=2423112" alt=""></p>
+<p>2、创建对应的pojo类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.netjava.pojo;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line"><span class="keyword">private</span> String name;</div><div class="line"><span class="keyword">private</span> String pwd;</div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"> </div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"UserInfo [id="</span> + id + <span class="string">", name="</span> + name + <span class="string">", pwd="</span> + pwd + <span class="string">", age="</span></div><div class="line">            + age + <span class="string">"]"</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> id;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.id = id;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> name;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPwd</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> pwd;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPwd</span><span class="params">(String pwd)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.pwd = pwd;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> age;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3、编写获得数据库连接的工厂类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.netjava.factory;</div><div class="line"> </div><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.DriverManager;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Connect2DBFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getDBConnection</span><span class="params">()</span> </span>&#123;</div><div class="line">        Connection conn = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">            String url = <span class="string">"jdbc:mysql://localhost:3306/blogsystem"</span>;</div><div class="line">            String user = <span class="string">"root"</span>;</div><div class="line">            String password = <span class="string">"netjava"</span>;</div><div class="line">            conn = DriverManager.getConnection(url, user, password);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> conn;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4、好戏开始啦，编写操作数据库的dao类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.netjava.session;</div><div class="line"> </div><div class="line"><span class="keyword">import</span> java.lang.reflect.Field;</div><div class="line"><span class="keyword">import</span> java.lang.reflect.Method;</div><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.sql.SQLException;</div><div class="line"><span class="keyword">import</span> java.sql.Statement;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"> </div><div class="line"><span class="keyword">import</span> cn.netjava.factory.Connect2DBFactory;</div><div class="line"><span class="keyword">import</span> cn.netjava.pojo.UserInfo;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NetJavaSession</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 解析出保存对象的sql语句</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> object</div><div class="line">     *            ：需要保存的对象</div><div class="line">     * <span class="doctag">@return</span>：保存对象的sql语句</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getSaveObjectSql</span><span class="params">(Object object)</span> </span>&#123;</div><div class="line">        <span class="comment">// 定义一个sql字符串</span></div><div class="line">        String sql = <span class="string">"insert into "</span>;</div><div class="line">        <span class="comment">// 得到对象的类</span></div><div class="line">        Class c = object.getClass();</div><div class="line">        <span class="comment">// 得到对象中所有的方法</span></div><div class="line">        Method[] methods = c.getMethods();</div><div class="line">        <span class="comment">// 得到对象中所有的属性</span></div><div class="line">        Field[] fields = c.getFields();</div><div class="line">        <span class="comment">// 得到对象类的名字</span></div><div class="line">        String cName = c.getName();</div><div class="line">        <span class="comment">// 从类的名字中解析出表名</span></div><div class="line">        String tableName = cName.substring(cName.lastIndexOf(<span class="string">"."</span>) + <span class="number">1</span>,</div><div class="line">                cName.length());</div><div class="line">        sql += tableName + <span class="string">"("</span>;</div><div class="line">        List&lt;String&gt; mList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        List vList = <span class="keyword">new</span> ArrayList();</div><div class="line">        <span class="keyword">for</span> (Method method : methods) &#123;</div><div class="line">            String mName = method.getName();</div><div class="line">            <span class="keyword">if</span> (mName.startsWith(<span class="string">"get"</span>) &amp;&amp; !mName.startsWith(<span class="string">"getClass"</span>)) &#123;</div><div class="line">                String fieldName = mName.substring(<span class="number">3</span>, mName.length());</div><div class="line">                mList.add(fieldName);</div><div class="line">                System.out.println(<span class="string">"字段名字-----&gt;"</span> + fieldName);</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    Object value = method.invoke(object, <span class="keyword">null</span>);</div><div class="line">                    System.out.println(<span class="string">"执行方法返回的值："</span> + value);</div><div class="line">                    <span class="keyword">if</span> (value <span class="keyword">instanceof</span> String) &#123;</div><div class="line">                        vList.add(<span class="string">"\""</span> + value + <span class="string">"\""</span>);</div><div class="line">                        System.out.println(<span class="string">"字段值------&gt;"</span> + value);</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        vList.add(value);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mList.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i &lt; mList.size() - <span class="number">1</span>) &#123;</div><div class="line">                sql += mList.get(i) + <span class="string">","</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                sql += mList.get(i) + <span class="string">") values("</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vList.size(); i++) &#123;</div><div class="line">            <span class="keyword">if</span> (i &lt; vList.size() - <span class="number">1</span>) &#123;</div><div class="line">                sql += vList.get(i) + <span class="string">","</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                sql += vList.get(i) + <span class="string">")"</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> sql;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List <span class="title">getDatasFromDB</span><span class="params">(String tableName, <span class="keyword">int</span> Id)</span> </span>&#123;</div><div class="line"> </div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"> </div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 将对象保存到数据库中</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> object</div><div class="line">     *            ：需要保存的对象</div><div class="line">     * <span class="doctag">@return</span>：方法执行的结果;1:表示成功，0:表示失败</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">saveObject</span><span class="params">(Object object)</span> </span>&#123;</div><div class="line">        Connection con = Connect2DBFactory.getDBConnection();</div><div class="line">        String sql = getSaveObjectSql(object);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// Statement statement=(Statement) con.createStatement();</span></div><div class="line">            PreparedStatement psmt = con.prepareStatement(sql);</div><div class="line">            psmt.executeUpdate();</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 从数据库中取得对象</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arg0</div><div class="line">     *            ：对象所属的类</div><div class="line">     * <span class="doctag">@param</span> id</div><div class="line">     *            ：对象的id</div><div class="line">     * <span class="doctag">@return</span>:需要查找的对象</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getObject</span><span class="params">(String className, <span class="keyword">int</span> Id)</span> </span>&#123;</div><div class="line">        <span class="comment">// 得到表名字</span></div><div class="line">        String tableName = className.substring(className.lastIndexOf(<span class="string">"."</span>) + <span class="number">1</span>,</div><div class="line">                className.length());</div><div class="line">        <span class="comment">// 根据类名来创建Class对象</span></div><div class="line">        Class c = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            c = Class.forName(className);</div><div class="line"> </div><div class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e1) &#123;</div><div class="line"> </div><div class="line">            e1.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 拼凑查询sql语句</span></div><div class="line">        String sql = <span class="string">"select * from "</span> + tableName + <span class="string">" where Id="</span> + Id;</div><div class="line">        System.out.println(<span class="string">"查找sql语句："</span> + sql);</div><div class="line">        <span class="comment">// 获得数据库链接</span></div><div class="line">        Connection con = Connect2DBFactory.getDBConnection();</div><div class="line">        <span class="comment">// 创建类的实例</span></div><div class="line">        Object obj = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line"> </div><div class="line">            Statement stm = con.createStatement();</div><div class="line">            <span class="comment">// 得到执行查寻语句返回的结果集</span></div><div class="line">            ResultSet set = stm.executeQuery(sql);</div><div class="line">            <span class="comment">// 得到对象的方法数组</span></div><div class="line">            Method[] methods = c.getMethods();</div><div class="line">            <span class="comment">// 遍历结果集</span></div><div class="line">            <span class="keyword">while</span> (set.next()) &#123;</div><div class="line">                obj = c.newInstance();</div><div class="line">                <span class="comment">// 遍历对象的方法</span></div><div class="line">                <span class="keyword">for</span> (Method method : methods) &#123;</div><div class="line">                    String methodName = method.getName();</div><div class="line">                    <span class="comment">// 如果对象的方法以set开头</span></div><div class="line">                    <span class="keyword">if</span> (methodName.startsWith(<span class="string">"set"</span>)) &#123;</div><div class="line">                        <span class="comment">// 根据方法名字得到数据表格中字段的名字</span></div><div class="line">                        String columnName = methodName.substring(<span class="number">3</span>,</div><div class="line">                                methodName.length());</div><div class="line">                        <span class="comment">// 得到方法的参数类型</span></div><div class="line">                        Class[] parmts = method.getParameterTypes();</div><div class="line">                        <span class="keyword">if</span> (parmts[<span class="number">0</span>] == String.class) &#123;</div><div class="line">                            <span class="comment">// 如果参数为String类型，则从结果集中按照列名取得对应的值，并且执行改set方法</span></div><div class="line">                            method.invoke(obj, set.getString(columnName));</div><div class="line">                        &#125;</div><div class="line">                        <span class="keyword">if</span> (parmts[<span class="number">0</span>] == <span class="keyword">int</span>.class) &#123;</div><div class="line">                            method.invoke(obj, set.getInt(columnName));</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line"> </div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"> </div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> obj;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5、开始测试效果怎么样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> cn.netjava.tester;</div><div class="line"> </div><div class="line"><span class="keyword">import</span> cn.netjava.pojo.UserInfo;</div><div class="line"><span class="keyword">import</span> cn.netjava.session.NetJavaSession;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tester</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">        <span class="comment">//获得NetJavaSession对象</span></div><div class="line">        NetJavaSession session = <span class="keyword">new</span> NetJavaSession();</div><div class="line">        <span class="comment">//创建一个UserInfo对象</span></div><div class="line">        UserInfo user = <span class="keyword">new</span> UserInfo();</div><div class="line">        <span class="comment">//设置对象的属性</span></div><div class="line">        user.setId(<span class="number">6988</span>);</div><div class="line">        user.setAge(<span class="number">44</span>);</div><div class="line">        user.setPwd(<span class="string">"pwd"</span>);</div><div class="line">        user.setName(<span class="string">"champion"</span>);</div><div class="line">        <span class="comment">//将对象保存到数据库中</span></div><div class="line">        String sql = session.getSaveObjectSql(user);</div><div class="line">        System.out.println(<span class="string">"保存对象的sql语句："</span> + sql);</div><div class="line">        <span class="comment">//查找对象</span></div><div class="line">        UserInfo userInfo = (UserInfo) session.getObject(</div><div class="line">                <span class="string">"cn.netjava.pojo.UserInfo"</span>, <span class="number">6988</span>);</div><div class="line">        System.out.println(<span class="string">"获取到的信息："</span> + userInfo);</div><div class="line"> </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>6、打印出来的结果：</p>
+<h2 id="七、总节一下"><a href="#七、总节一下" class="headerlink" title="七、总节一下"></a>七、总节一下</h2><pre><code>总的来说，java反射机制是一个很好用的东西，用它可以解决很多死的东西，因为反射机制的灵活行很大，有了他，我们就不要花太多的时间来写操做数据库的代码了，而是方法更多的时间在项目的逻辑功能上，这个可以很大的减少开发时间，而且代码的可读性好。先在的很多开源框架都是才用的反射机制，它只要配置文件，然后按规则来调用他的方法就可以了。
+</code></pre><p><a href="http://www.cnblogs.com/jqyp/archive/2012/03/29/2423112.html" target="_blank" rel="external">http://www.cnblogs.com/jqyp/archive/2012/03/29/2423112.html</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -510,7 +1824,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -521,7 +1835,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -532,7 +1846,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
