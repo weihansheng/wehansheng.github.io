@@ -417,13 +417,19 @@
       
         
           
-            <p>为了避免重复的写一些相同的布局 可以使用include</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;include android:id=<span class="string">"@+id/test"</span></div><div class="line">        layout=<span class="string">"@layout/title"</span>/&gt;</div></pre></td></tr></table></figure>
-<p>title是写好的用于重复使用的布局</p>
-<p>如果像使用title里的控件  例如找到title中的tv1</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ll = (LinearLayout) findViewById(R.id.test);</div><div class="line">tv=ll.findViewById(R.id.tv1);</div></pre></td></tr></table></figure>
+          为了避免重复的写一些相同的布局 可以使用include
+12&lt;include android:id="@+id/test"        layout="@layout/title"/&gt;
+title是写好的用于重复使用的布局
+如果像使用title里的控件  例如找到title中的tv1
 
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/03/18/include的用法/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
