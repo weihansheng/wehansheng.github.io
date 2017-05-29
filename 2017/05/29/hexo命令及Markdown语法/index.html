@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/29/hexo命令及Markdown语法/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="Markdownhexo是使用Markdown编辑文章的，我写的这些文章也都是用这种标记语言完成的。所以，我们先从Markdown说起。 什么是MarkdownMarkdown语法例文你可以使用vim工具直接编辑md文件，也可以用记事本打开md文件编辑你的文章，也可以Markdown的编辑器编写，有很多在线的编辑器，何有不少客户端的编辑器，我是Mac系统，用的一个叫 Mou 的编辑器，还比较好使。">
-<meta property="og:updated_time" content="2017-05-29T07:29:47.000Z">
+<meta property="og:updated_time" content="2017-05-29T07:44:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo命令及Markdown语法">
 <meta name="twitter:description" content="Markdownhexo是使用Markdown编辑文章的，我写的这些文章也都是用这种标记语言完成的。所以，我们先从Markdown说起。 什么是MarkdownMarkdown语法例文你可以使用vim工具直接编辑md文件，也可以用记事本打开md文件编辑你的文章，也可以Markdown的编辑器编写，有很多在线的编辑器，何有不少客户端的编辑器，我是Mac系统，用的一个叫 Mou 的编辑器，还比较好使。">
@@ -428,20 +428,28 @@
 <p>5、列表 * ， + ， - ， 1. ，选其中之一，注意后面有个空格</p>
 <p>6、代码区块 四个空格 开头</p>
 <p>7、链接 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">8、图片 </div><div class="line"></div><div class="line">```![图片说明](图片地址) ，图片地址可以是本地路劲，也可以是网络地址</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[文字](链接地址)</div></pre></td></tr></table></figure>
+<p>8、图片 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![图片说明](图片地址) //图片地址可以是本地路劲，也可以是网络地址</div></pre></td></tr></table></figure>
 <p>9、强调</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">**文字** ， __文字__ ， _文字_ ， *文字*</div></pre></td></tr></table></figure>
 <p>10、代码 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">```，``</div></pre></td></tr></table></figure>
 <h2 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h2><p>我们在前面的已经略微的接触了一些hexo的命令，如 hexo new “my blog” ， hexo server 等。下面来介绍一下我们经常会用到的hexo命令</p>
 <p>1、新建</p>
-<figure class="highlight plain"><figcaption><span>new "my blog"```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">新建的文件在 hexo/source/_posts/my-blog.md</div><div class="line"></div><div class="line">2、编译</div><div class="line"></div><div class="line">```hexo g</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;my blog&quot;</div></pre></td></tr></table></figure>
+<p>新建的文件在 hexo/source/_posts/my-blog.md</p>
+<p>2、生成静态页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g</div></pre></td></tr></table></figure>
 <p>一般部署上去的时候都需要编译一下，编译后，会出现一个 public 文件夹，将所有的md文件编译成html文件</p>
 <p>3、开启本地服务</p>
-<figure class="highlight plain"><figcaption><span>s```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这个命令，我之前已经用过了，开启本地hexo服务用的</div><div class="line"></div><div class="line">4、部署</div><div class="line"></div><div class="line">```hexo d</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
+<p>这个命令，我之前已经用过了，开启本地hexo服务用的</p>
+<p>4、部署</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
 <p>部署到git上的时候，需要用这个命令，下一篇中，我们会使用到这个命令</p>
 <p>5、清除 public</p>
-<p><code>hexo clean</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo clean</div></pre></td></tr></table></figure>
 <p>当 source 文件夹中的部分资源更改过之后，特别是对文件进行了删除或者路径的改变之后，需要执行这个命令，然后重新编译。</p>
 <p>以上这些都是我在使用过程中经常用到的一些hexo命令。最为详细、最为全面的说明文档当然还是在 官网 。请各位猛戳。</p>
 
