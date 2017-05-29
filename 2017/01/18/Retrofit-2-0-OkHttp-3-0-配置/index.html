@@ -108,17 +108,17 @@
 
 
 
-<meta name="description" content="使用Bmob进行多对多查询12345678910111213141516171819202122232425262728BmobQuery&amp;lt;PuzzleInfo&amp;gt; query = new BmobQuery&amp;lt;PuzzleInfo&amp;gt;();//查询playerName叫“比目”的数据//query.addWhereEqualTo(&quot;playerName&quot;, &quot;比目&quot;);//返回">
+<meta name="description" content="Retrofit 和 OkHttp 都是伟大的 Square 公司开源的伟大项目。是极大改善 Android 开发体验的好东西。引入依赖： 12345compile &apos;com.squareup.retrofit2:retrofit:2.0.0-beta4&apos;compile &apos;com.squareup.retrofit2:converter-gson:2.0.0-beta4&apos;compile &apos;com.">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bmob查询多对多">
-<meta property="og:url" content="http://yoursite.com/2017/04/08/Bmob查询多对多/index.html">
+<meta property="og:title" content="Retrofit 2.0 + OkHttp 3.0 配置">
+<meta property="og:url" content="http://yoursite.com/2017/01/18/Retrofit-2-0-OkHttp-3-0-配置/index.html">
 <meta property="og:site_name" content="Johan007">
-<meta property="og:description" content="使用Bmob进行多对多查询12345678910111213141516171819202122232425262728BmobQuery&amp;lt;PuzzleInfo&amp;gt; query = new BmobQuery&amp;lt;PuzzleInfo&amp;gt;();//查询playerName叫“比目”的数据//query.addWhereEqualTo(&quot;playerName&quot;, &quot;比目&quot;);//返回">
-<meta property="og:updated_time" content="2017-05-29T05:47:57.000Z">
+<meta property="og:description" content="Retrofit 和 OkHttp 都是伟大的 Square 公司开源的伟大项目。是极大改善 Android 开发体验的好东西。引入依赖： 12345compile &apos;com.squareup.retrofit2:retrofit:2.0.0-beta4&apos;compile &apos;com.squareup.retrofit2:converter-gson:2.0.0-beta4&apos;compile &apos;com.">
+<meta property="og:updated_time" content="2017-05-29T06:00:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bmob查询多对多">
-<meta name="twitter:description" content="使用Bmob进行多对多查询12345678910111213141516171819202122232425262728BmobQuery&amp;lt;PuzzleInfo&amp;gt; query = new BmobQuery&amp;lt;PuzzleInfo&amp;gt;();//查询playerName叫“比目”的数据//query.addWhereEqualTo(&quot;playerName&quot;, &quot;比目&quot;);//返回">
+<meta name="twitter:title" content="Retrofit 2.0 + OkHttp 3.0 配置">
+<meta name="twitter:description" content="Retrofit 和 OkHttp 都是伟大的 Square 公司开源的伟大项目。是极大改善 Android 开发体验的好东西。引入依赖： 12345compile &apos;com.squareup.retrofit2:retrofit:2.0.0-beta4&apos;compile &apos;com.squareup.retrofit2:converter-gson:2.0.0-beta4&apos;compile &apos;com.">
 
 
 
@@ -146,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/08/Bmob查询多对多/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/18/Retrofit-2-0-OkHttp-3-0-配置/"/>
 
 
 
 
 
-  <title>Bmob查询多对多 | Johan007</title>
+  <title>Retrofit 2.0 + OkHttp 3.0 配置 | Johan007</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -330,7 +330,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/Bmob查询多对多/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/Retrofit-2-0-OkHttp-3-0-配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johan007">
@@ -347,7 +347,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Bmob查询多对多</h2>
+          <h2 class="post-title" itemprop="name headline">Retrofit 2.0 + OkHttp 3.0 配置</h2>
         
 
         <div class="post-meta">
@@ -359,8 +359,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T21:30:41+08:00">
-                2017-04-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-18T13:57:52+08:00">
+                2017-01-18
               </time>
             
 
@@ -416,7 +416,16 @@
       
 
       
-        <h3 id="使用Bmob进行多对多查询"><a href="#使用Bmob进行多对多查询" class="headerlink" title="使用Bmob进行多对多查询"></a>使用Bmob进行多对多查询</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">BmobQuery&lt;PuzzleInfo&gt; query = <span class="keyword">new</span> BmobQuery&lt;PuzzleInfo&gt;();</div><div class="line"><span class="comment">//查询playerName叫“比目”的数据</span></div><div class="line"><span class="comment">//query.addWhereEqualTo("playerName", "比目");</span></div><div class="line"><span class="comment">//返回50条数据，如果不加上这条语句，默认返回10条数据</span></div><div class="line"><span class="comment">//query.setLimit(50);</span></div><div class="line"><span class="comment">//执行查询方法</span></div><div class="line"> <span class="comment">//这里直接使用addWhereEqualTo不使用官方的addWhereRelatedTo </span></div><div class="line"><span class="comment">//addWhereRelatedTo 是用来查询关注该帖子的所有用户</span></div><div class="line">query.addWhereEqualTo(<span class="string">"likes"</span>, user); </div><div class="line">query.order(<span class="string">"-createdAt"</span>);</div><div class="line"><span class="comment">//query.addWhereRelatedTo("likes", new BmobPointer(user));</span></div><div class="line"><span class="comment">//query.include("author");// 希望在查询帖子信息的同时也把发布人的信息查询出来</span></div><div class="line">query.findObjects(<span class="keyword">new</span> FindListener&lt;PuzzleInfo&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(List&lt;PuzzleInfo&gt; object, BmobException e)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(e==<span class="keyword">null</span>)&#123;</div><div class="line">            Log.d(<span class="string">"test"</span>,<span class="string">"查询成功：共"</span>+object.size()+<span class="string">"条数据。"</span>);</div><div class="line">            <span class="comment">//list=object;</span></div><div class="line">            <span class="comment">//Log.d("test","数据"+object.toString());</span></div><div class="line">            <span class="comment">//Log.d("test","组数"+group(object).size()); //执行一次group(object) object就会变少</span></div><div class="line">            <span class="comment">//Log.d("test","分组数据"+group(object).toString());</span></div><div class="line">            mAdapter.addItemLast(GroupUtils.group(object));</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">            <span class="comment">//Log.d("test","查询puzzle失败："+e.getMessage()+","+e.getErrorCode());</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+        <p>Retrofit 和 OkHttp 都是伟大的 Square 公司开源的伟大项目。是极大改善 Android 开发体验的好东西。<br>引入依赖：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0-beta4'</span></div><div class="line">compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0-beta4'</span></div><div class="line">compile <span class="string">'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'</span></div><div class="line">compile <span class="string">'com.squareup.okhttp3:okhttp:3.0.1'</span></div><div class="line">compile <span class="string">'com.squareup.okhttp3:logging-interceptor:3.0.1'</span></div></pre></td></tr></table></figure>
+<p>先说 OkHttp 3.0 的配置，3.0 使用层面上的主要改变是，由原本的 okHttp 对象直接各种 set 进行配置改为 Builder 配置模式，所以原本对应的方法应该到 OkHttpClient.Builder 类对象下寻找。我的一些常用配置如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">HttpLoggingInterceptor interceptor = <span class="keyword">new</span> HttpLoggingInterceptor();</div><div class="line">interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</div><div class="line">OkHttpClient client = <span class="keyword">new</span> OkHttpClient.Builder()</div><div class="line">        .addInterceptor(interceptor)</div><div class="line">        .retryOnConnectionFailure(<span class="keyword">true</span>)</div><div class="line">        .connectTimeout(<span class="number">15</span>, TimeUnit.SECONDS)</div><div class="line">        .addNetworkInterceptor(mTokenInterceptor)</div><div class="line">        .build();</div></pre></td></tr></table></figure></p>
+<p>解释：<br>  ● HttpLoggingInterceptor 是一个拦截器，用于输出网络请求和结果的 Log，可以配置 level 为 BASIC / HEADERS / BODY，都很好理解，对应的是原来 retrofit 的 set log level 方法，现在 retrofit 已经没有这个方法了，所以只能到 OkHttp 这边来配置，并且 BODY 对应原来到 FULL.<br>  ● retryOnConnectionFailure 方法为设置出现错误进行重新连接。<br>  ● connectTimeout 设置超时时间<br>  ● addNetworkInterceptor 让所有网络请求都附上你的拦截器，我这里设置了一个 token 拦截器，就是在所有网络请求的 header 加上 token 参数，下面会稍微讲一下这个内容。<br>让所有网络请求都附上你的拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Interceptor mTokenInterceptor = <span class="keyword">new</span> Interceptor() &#123;</div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        Request originalRequest = chain.request();</div><div class="line">        <span class="keyword">if</span> (Your.sToken == <span class="keyword">null</span> || alreadyHasAuthorizationHeader(originalRequest)) &#123;</div><div class="line">            <span class="keyword">return</span> chain.proceed(originalRequest);</div><div class="line">        &#125;</div><div class="line">        Request authorised = originalRequest.newBuilder()</div><div class="line">            .header(<span class="string">"Authorization"</span>, Your.sToken)</div><div class="line">            .build();</div><div class="line">        <span class="keyword">return</span> chain.proceed(authorised);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>解释：<br>  ● 那个 if 判断意思是，如果你的 token 是空的，就是还没有请求到 token，比如对于登陆请求，是没有 token 的，只有等到登陆之后才有 token，这时候就不进行附着上 token。另外，如果你的请求中已经带有验证 header 了，比如你手动设置了一个另外的 token，那么也不需要再附着这一个 token.<br>  ● header 的 key 通常是 Authorization，如果你的不是这个，可以修改。<br>如果你需要在遇到诸如 401 Not Authorised 的时候进行刷新 token，可以使用 Authenticator，这是一个专门设计用于当验证出现错误的时候，进行询问获取处理的拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Authenticator mAuthenticator = <span class="keyword">new</span> Authenticator() &#123;</div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Request <span class="title">authenticate</span><span class="params">(Route route, Response response)</span></span></div><div class="line">            <span class="keyword">throws</span> IOException &#123;</div><div class="line">        Your.sToken = service.refreshToken();</div><div class="line">        <span class="keyword">return</span> response.request().newBuilder()</div><div class="line">                       .addHeader(<span class="string">"Authorization"</span>, newAccessToken)</div><div class="line">                       .build();        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后，对于以上的两个拦截器，分别使用 OkHttpClient.Builder 对象的 addNetworkInterceptor(mTokenInterceptor) 和 authenticator(mAuthenticator) 即可。<br>Retrofit：<br>对于 Retrofit，我的配置是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</div><div class="line">        .baseUrl(AppConfig.BASE_URL)</div><div class="line">        .client(client)</div><div class="line">        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())</div><div class="line">        .addConverterFactory(GsonConverterFactory.create(gson))</div><div class="line">        .build();</div><div class="line">service = retrofit.create(YourApi.class);</div></pre></td></tr></table></figure>
+<p>解释：<br>  ● baseUrl: 原来的 setEndPoint 方法变成了 baseUrl<br>  ● client 即上面的 OkHttp3 对象<br>  ● addCallAdapterFactory 增加 RxJava 适配器<br>  ● addConverterFactory 增加 Gson 转换器</p>
 
       
     </div>
@@ -459,18 +468,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/08/Bomb内部查询/" rel="next" title="Bomb内部查询">
-                <i class="fa fa-chevron-left"></i> Bomb内部查询
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/28/Bmob添加多对多关系/" rel="prev" title="Bmob添加多对多关系">
-                Bmob添加多对多关系 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/23/防止连续多次操作/" rel="prev" title="防止连续多次操作">
+                防止连续多次操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -518,17 +523,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -590,22 +586,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Bmob进行多对多查询"><span class="nav-text">使用Bmob进行多对多查询</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
