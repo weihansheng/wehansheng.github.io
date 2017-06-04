@@ -1,0 +1,959 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Retrofit," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="上篇文章介绍了Retrofit的简单使用，但是我们可以结合RxJava和OkHttp进一步封装，可以更便捷的使用。下面我们一步一步来实现封装吧。 添加依赖用到的包比较多，所以要添加的依赖也不少。123456789compile &apos;com.squareup.retrofit2:retrofit:2.0.1&apos;compile &apos;com.squareup.retrofit2:converter-gson:">
+<meta name="keywords" content="Android,Retrofit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit+RxJava+OkHttp封装">
+<meta property="og:url" content="http://yoursite.com/2017/06/04/Retrofit+RxJava+OkHttp封装/index.html">
+<meta property="og:site_name" content="Johan007">
+<meta property="og:description" content="上篇文章介绍了Retrofit的简单使用，但是我们可以结合RxJava和OkHttp进一步封装，可以更便捷的使用。下面我们一步一步来实现封装吧。 添加依赖用到的包比较多，所以要添加的依赖也不少。123456789compile &apos;com.squareup.retrofit2:retrofit:2.0.1&apos;compile &apos;com.squareup.retrofit2:converter-gson:">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/267127-dfafcc9fc5cbf0e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-04T11:21:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit+RxJava+OkHttp封装">
+<meta name="twitter:description" content="上篇文章介绍了Retrofit的简单使用，但是我们可以结合RxJava和OkHttp进一步封装，可以更便捷的使用。下面我们一步一步来实现封装吧。 添加依赖用到的包比较多，所以要添加的依赖也不少。123456789compile &apos;com.squareup.retrofit2:retrofit:2.0.1&apos;compile &apos;com.squareup.retrofit2:converter-gson:">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/267127-dfafcc9fc5cbf0e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'Q64HSMOKKH',
+      apiKey: '85afafe1d0aaed2b30f0e8c0d98d8f50',
+      indexName: 'Johan007',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/04/Retrofit+RxJava+OkHttp封装/"/>
+
+
+
+
+
+  <title>Retrofit+RxJava+OkHttp封装 | Johan007</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5467e8029317eba414a20fa8ebbd9c01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Johan007</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/04/Retrofit+RxJava+OkHttp封装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Retrofit+RxJava+OkHttp封装</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-04T17:55:48+08:00">
+                2017-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/04/Retrofit+RxJava+OkHttp封装/" class="leancloud_visitors" data-flag-title="Retrofit+RxJava+OkHttp封装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上篇文章介绍了Retrofit的简单使用，但是我们可以结合RxJava和OkHttp进一步封装，可以更便捷的使用。<br>下面我们一步一步来实现封装吧。</p>
+<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>用到的包比较多，所以要添加的依赖也不少。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.1'</span></div><div class="line">compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.1'</span></div><div class="line">compile <span class="string">'com.squareup.retrofit2:adapter-rxjava:2.0.1'</span></div><div class="line">compile <span class="string">'io.reactivex:rxandroid:1.1.0'</span></div><div class="line">compile <span class="string">'io.reactivex:rxjava:1.1.2'</span></div><div class="line">compile <span class="string">'com.squareup.okhttp3:okhttp:3.2.0'</span></div><div class="line"><span class="comment">//logger</span></div><div class="line">compile <span class="string">'com.orhanobut:logger:1.11'</span></div><div class="line"><span class="comment">//retrofit   打印异常</span></div></pre></td></tr></table></figure></p>
+<p>由于使用了Lambda，需要启用 Java 8 语言功能和 Jack，请在模块层级的 build.gradle 文件的defaultConfig下输入以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">jackOptions &#123;</div><div class="line">            enabled true</div><div class="line">        &#125;</div><div class="line">        compileOptions &#123;</div><div class="line">            sourceCompatibility JavaVersion.VERSION_1_8</div><div class="line">            targetCompatibility JavaVersion.VERSION_1_8</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<p><a href="http://shesmile.cn/2017/06/04/Android-Studio下配置和使用Lambda/" target="_blank" rel="external">具体Lambda在Android中的配置</a></p>
+<h3 id="创建API接口"><a href="#创建API接口" class="headerlink" title="创建API接口"></a>创建API接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">APIClient</span> </span>&#123;</div><div class="line">    <span class="meta">@GET</span>(<span class="string">"repos/square/retrofit/contributors"</span>)</div><div class="line">    Observable&lt;List&lt;ObjectEntity&gt;&gt; contributorsBySimpleGetCall();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="封装方法"><a href="#封装方法" class="headerlink" title="封装方法"></a>封装方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NetRequest</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String TEMP_UPLOAD_IMAGE_PREFIX = <span class="string">"tmp"</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> IMAGE_SIZE_THRESHOLD = <span class="number">400</span> * <span class="number">1024</span>;<span class="comment">//400K</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String BASE_URL = <span class="string">"https://api.github.com"</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String LINE_UP_URL = <span class="string">"https://api.github.com/"</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String AFFAIR_URL = <span class="string">"https://api.github.com/"</span>;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> APIClient APIInstance;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> APIClient APIInstance2;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Cache cache;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            cache = <span class="keyword">new</span> Cache(MyApplication.context.getCacheDir(), <span class="number">1</span> * <span class="number">1024</span> * <span class="number">1024</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        HttpLoggingInterceptor interceptor = <span class="keyword">new</span> HttpLoggingInterceptor();</div><div class="line">        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);</div><div class="line">        OkHttpClient okHttpClient = <span class="keyword">new</span> OkHttpClient().newBuilder()</div><div class="line">                .cache(cache)</div><div class="line">                .connectTimeout(<span class="number">40</span>, TimeUnit.SECONDS)</div><div class="line">                .addInterceptor(interceptor).build();</div><div class="line">        Retrofit.Builder builder = <span class="keyword">new</span> Retrofit.Builder()</div><div class="line">                .client(okHttpClient)</div><div class="line">                .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))</div><div class="line">                .addConverterFactory(GsonConverterFactory.create());</div><div class="line">        APIInstance = builder.baseUrl(BASE_URL).build().create(APIClient.class);</div><div class="line">        APIInstance2 = builder.baseUrl(AFFAIR_URL).build().create(APIClient.class);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ObjectEntity实体类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectEntity</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String login;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">    <span class="keyword">private</span> String avatar_url;</div><div class="line">    <span class="keyword">private</span> String gravatar_id;</div><div class="line">    <span class="keyword">private</span> String url;</div><div class="line">    <span class="keyword">private</span> String html_url;</div><div class="line">    <span class="keyword">private</span> String followers_url;</div><div class="line">    <span class="keyword">private</span> String following_url;</div><div class="line">    <span class="keyword">private</span> String gists_url;</div><div class="line">    <span class="keyword">private</span> String starred_url;</div><div class="line">    <span class="keyword">private</span> String subscriptions_url;</div><div class="line">    <span class="keyword">private</span> String organizations_url;</div><div class="line">    <span class="keyword">private</span> String repos_url;</div><div class="line">    <span class="keyword">private</span> String events_url;</div><div class="line">    <span class="keyword">private</span> String received_events_url;</div><div class="line">    <span class="keyword">private</span> String type;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> site_admin;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> contributions;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getLogin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> login;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLogin</span><span class="params">(String login)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.login = login;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAvatar_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> avatar_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAvatar_url</span><span class="params">(String avatar_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.avatar_url = avatar_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getGravatar_id</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> gravatar_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGravatar_id</span><span class="params">(String gravatar_id)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gravatar_id = gravatar_id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUrl</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUrl</span><span class="params">(String url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.url = url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHtml_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> html_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHtml_url</span><span class="params">(String html_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.html_url = html_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFollowers_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> followers_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFollowers_url</span><span class="params">(String followers_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.followers_url = followers_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFollowing_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> following_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFollowing_url</span><span class="params">(String following_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.following_url = following_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getGists_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> gists_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGists_url</span><span class="params">(String gists_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gists_url = gists_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getStarred_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> starred_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStarred_url</span><span class="params">(String starred_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.starred_url = starred_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSubscriptions_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> subscriptions_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSubscriptions_url</span><span class="params">(String subscriptions_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.subscriptions_url = subscriptions_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getOrganizations_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> organizations_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOrganizations_url</span><span class="params">(String organizations_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.organizations_url = organizations_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRepos_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> repos_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRepos_url</span><span class="params">(String repos_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.repos_url = repos_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getEvents_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> events_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEvents_url</span><span class="params">(String events_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.events_url = events_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getReceived_events_url</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> received_events_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setReceived_events_url</span><span class="params">(String received_events_url)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.received_events_url = received_events_url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getType</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setType</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.type = type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSite_admin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> site_admin;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSite_admin</span><span class="params">(<span class="keyword">boolean</span> site_admin)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.site_admin = site_admin;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getContributions</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> contributions;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContributions</span><span class="params">(<span class="keyword">int</span> contributions)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.contributions = contributions;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="接口调用"><a href="#接口调用" class="headerlink" title="接口调用"></a>接口调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</div><div class="line">        NetRequest.APIInstance2.contributorsBySimpleGetCall()</div><div class="line">                .observeOn(AndroidSchedulers.mainThread())</div><div class="line">                .subscribe(results -&gt; &#123;</div><div class="line">                    Log.d(<span class="string">"test"</span>,<span class="string">"result size="</span>+results.size());</div><div class="line"></div><div class="line">                &#125;, throwable -&gt; &#123;</div><div class="line">                    <span class="keyword">if</span> (throwable <span class="keyword">instanceof</span> HttpException) &#123;</div><div class="line">                        Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"网络连接异常"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        Toast.makeText(MainActivity.<span class="keyword">this</span>,<span class="string">"验证失败"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="http://upload-images.jianshu.io/upload_images/267127-dfafcc9fc5cbf0e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br><a href="https://github.com/weihansheng/retrofitpackage" target="_blank" rel="external">源码地址</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>有了这样一个封装好的方法，我们在以后的项目中就可以很轻松地进行HTTP请求，也不必担心JSON解析的问题</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Retrofit/" rel="tag"># Retrofit</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/04/Retrofit入门/" rel="next" title="Retrofit入门">
+                <i class="fa fa-chevron-left"></i> Retrofit入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Johan007" />
+          <p class="site-author-name" itemprop="name">Johan007</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/weihansheng/" title="Github主页" target="_blank">Github主页</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://puzzle.bmob.site" title="天天拼图" target="_blank">天天拼图</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加依赖"><span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建API接口"><span class="nav-text">创建API接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装方法"><span class="nav-text">封装方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口调用"><span class="nav-text">接口调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johan007</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("FbSpn4W0g080XqqvI0wdpLmP-gzGzoHsz", "x1DqSSPyNXSnRG72bIb59cAw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
