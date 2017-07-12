@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Cuda," />
 
 
 
@@ -108,17 +108,17 @@
 
 
 
-<meta name="description" content="用于OnItemClick事件被屏蔽在activity中先在主类中定义  public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;再在Adapter中的Ontouch中启动activity 123Intent intent =new Intent()">
-<meta name="keywords" content="Android">
+<meta name="description" content="在编写cuda代码时，由于并行处理都是在GPU端，如果在设备端代码中不加捕捉异常的话，即使在GPU端运行出错了，你也不会知道出错了。GPU端的代码又不好调试，因此知道怎么在GPU端的代码添加异常捕捉是非常有必要的，当然这和在cup端的不太一样。以下是一段异常捕捉代码，供大家参考：12345678910void checkCUDAError(const char *msg)     &amp;#123;">
+<meta name="keywords" content="Cuda">
 <meta property="og:type" content="article">
-<meta property="og:title" content="点击自定义listview的item启动另一个activity">
-<meta property="og:url" content="http://shesmile.cn/2016/04/29/点击自定义listview的item启动另一个activity/index.html">
+<meta property="og:title" content="Cuda异常捕捉">
+<meta property="og:url" content="http://shesmile.cn/2017/07/12/Cuda异常捕捉/index.html">
 <meta property="og:site_name" content="Johan007">
-<meta property="og:description" content="用于OnItemClick事件被屏蔽在activity中先在主类中定义  public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;再在Adapter中的Ontouch中启动activity 123Intent intent =new Intent()">
-<meta property="og:updated_time" content="2017-05-29T06:53:28.000Z">
+<meta property="og:description" content="在编写cuda代码时，由于并行处理都是在GPU端，如果在设备端代码中不加捕捉异常的话，即使在GPU端运行出错了，你也不会知道出错了。GPU端的代码又不好调试，因此知道怎么在GPU端的代码添加异常捕捉是非常有必要的，当然这和在cup端的不太一样。以下是一段异常捕捉代码，供大家参考：12345678910void checkCUDAError(const char *msg)     &amp;#123;">
+<meta property="og:updated_time" content="2017-07-12T09:33:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="点击自定义listview的item启动另一个activity">
-<meta name="twitter:description" content="用于OnItemClick事件被屏蔽在activity中先在主类中定义  public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;再在Adapter中的Ontouch中启动activity 123Intent intent =new Intent()">
+<meta name="twitter:title" content="Cuda异常捕捉">
+<meta name="twitter:description" content="在编写cuda代码时，由于并行处理都是在GPU端，如果在设备端代码中不加捕捉异常的话，即使在GPU端运行出错了，你也不会知道出错了。GPU端的代码又不好调试，因此知道怎么在GPU端的代码添加异常捕捉是非常有必要的，当然这和在cup端的不太一样。以下是一段异常捕捉代码，供大家参考：12345678910void checkCUDAError(const char *msg)     &amp;#123;">
 
 
 
@@ -146,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="http://shesmile.cn/2016/04/29/点击自定义listview的item启动另一个activity/"/>
+  <link rel="canonical" href="http://shesmile.cn/2017/07/12/Cuda异常捕捉/"/>
 
 
 
 
 
-  <title>点击自定义listview的item启动另一个activity | Johan007</title>
+  <title>Cuda异常捕捉 | Johan007</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -340,7 +340,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://shesmile.cn/2016/04/29/点击自定义listview的item启动另一个activity/">
+    <link itemprop="mainEntityOfPage" href="http://shesmile.cn/2017/07/12/Cuda异常捕捉/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johan007">
@@ -357,7 +357,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">点击自定义listview的item启动另一个activity</h2>
+          <h2 class="post-title" itemprop="name headline">Cuda异常捕捉</h2>
         
 
         <div class="post-meta">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-29T14:51:53+08:00">
-                2016-04-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-12T17:33:01+08:00">
+                2017-07-12
               </time>
             
 
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/Cuda/" itemprop="url" rel="index">
+                    <span itemprop="name">Cuda</span>
                   </a>
                 </span>
 
@@ -409,7 +409,7 @@
 
           
           
-             <span id="/2016/04/29/点击自定义listview的item启动另一个activity/" class="leancloud_visitors" data-flag-title="点击自定义listview的item启动另一个activity">
+             <span id="/2017/07/12/Cuda异常捕捉/" class="leancloud_visitors" data-flag-title="Cuda异常捕捉">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -437,11 +437,14 @@
       
 
       
-        <p>用于OnItemClick事件被屏蔽<br>在activity中<br>先在主类中定义 </p>
-<p>public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;<br>再在Adapter中的Ontouch中启动activity</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent =<span class="keyword">new</span> Intent();</div><div class="line">intent.setClass(mContext, NewsDetailActivity.class); </div><div class="line">MainUserInfoActivity.mactivity.startActivity(intent);</div></pre></td></tr></table></figure>
-<p>在fragment中<br>先在主类中定义 public static FragmentDrafts mactivity;     FragmentDrafts 为该类名   onCreateView   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mactivity=<span class="keyword">this</span>;</div><div class="line">再在Adapter中的Ontouch中启动activity</div><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setClass(mContext, DraftsEditActivity.class);</div><div class="line">FragmentDrafts.mactivity.startActivity(intent);</div></pre></td></tr></table></figure>
+        <p>在编写cuda代码时，由于并行处理都是在GPU端，如果在设备端代码中不加捕捉异常的话，即使在GPU端运行出错了，你也不会知道出错了。GPU端的代码又不好调试，因此知道怎么在GPU端的代码添加异常捕捉是非常有必要的，当然这和在cup端的不太一样。以下是一段异常捕捉代码，供大家参考：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">void checkCUDAError(const char *msg)     </div><div class="line">&#123;     </div><div class="line">    cudaError_t err = cudaGetLastError();     </div><div class="line">    if( cudaSuccess != err)      </div><div class="line">    &#123;     </div><div class="line">        fprintf(stderr, &quot;Cuda error: %s: %s.\n&quot;, msg,      </div><div class="line">                                  cudaGetErrorString( err) );     </div><div class="line">        exit(EXIT_FAILURE);     </div><div class="line">    &#125;                              </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在代码前端，要记得声明函数，想要在哪里捕捉错误信息，就在哪里调用函数。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compare&lt;&lt;&lt;DimGrid, DimBlock&gt;&gt;&gt;(data,d_inf,d_result,d);  </div><div class="line">checkCUDAError(&quot;kernel invocation&quot;);</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cudaMemcpy(h_result, d_result, sizeof(unsigned long)*row* r_width ,cudaMemcpyDeviceToHost);  </div><div class="line">checkCUDAError(&quot;memcpy&quot;);</div></pre></td></tr></table></figure>
+<p>这里要注意的是CPU和GPU是异步执行的，因此在调用GPU端的compare函数时，即使在后面加了异常捕捉，也是捕捉不到错误的，因为cpu不等GPU端的代码执行完就先往下执行了，因此要等GPU端的代码执行完再捕捉才能捕捉的到。</p>
+<p>下面我跟大家分享一个我觉得大家在编程时需要注意的问题以及解决方案，以免大家重蹈覆辙，造成不必要的困扰。</p>
+<p>我编写的cuda程序在运行小数据的程序时，运行正确，但是运行大数据时，结果就不对了。于是便疯狂寻找程序本身的原因，以为是内存不足，因为显存只有1G，确实需要小心使用。但是尽管把程序的显存使用优化到极致，还是运行不正确。最后加了异常捕捉，出现了如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">out of memory</div></pre></td></tr></table></figure></p>
+<p>出现这个错误的原因是由于机器的显卡在运行CUDA程序的同时，也在承担着机器的图形界面显示，因此不可能让CUDA程序无时间限制地一直占用GPU，这一项在GPU的参数中显示为：</p>
+<p>一旦CUDA程序运行超过5秒钟，GPU就会终止程序的运行。<br>解决这个错误有两种方法：<br>1.在cpu中多次调用kernel函数，也就是把大数据分割成小数据，以保证每个kernel在5秒钟之内能运行完。<br>2.关闭GPU的显示功能，仅供计算使用，这样就会有时间的限制。<br>在Linux端，由于我们的显卡是专门做计算的，因此适合选择第2种方法。<br>目前我研究出的方法：在运行CUDA程序前，利用命令把图形界面关闭。命令：sudo stop gdm<br>当然不排除还有其他的硬性的办法，例如修改配置文件等等。<br>经过这番修改之后，运行cuda程序就没有时间限制了<br><a href="http://blog.csdn.net/l724225271/article/details/27580161" target="_blank" rel="external">参考：http://blog.csdn.net/l724225271/article/details/27580161</a></p>
 
       
     </div>
@@ -471,7 +474,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/Cuda/" rel="tag"># Cuda</a>
           
         </div>
       
@@ -484,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/22/关于Git-add/" rel="next" title="关于Git add">
-                <i class="fa fa-chevron-left"></i> 关于Git add
+              <a href="/2017/07/12/CUDA零复制-Zero-Copy-零拷贝内存/" rel="next" title="Cuda零复制(Zero Copy)(零拷贝内存)">
+                <i class="fa fa-chevron-left"></i> Cuda零复制(Zero Copy)(零拷贝内存)
               </a>
             
           </div>
@@ -493,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/10/在Android-Studio中使用Lambda表达式/" rel="prev" title="在Android Studio中使用Lambda表达式">
-                在Android Studio中使用Lambda表达式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
