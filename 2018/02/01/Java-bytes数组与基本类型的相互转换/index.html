@@ -1,0 +1,1035 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Java bytes数组与基本类型的相互转换文件 – bytes getBytesFromFile SaveBytesToFile  Int -&amp;gt; Bytes int64ToByte8 int48ToByte6 int40ToByte5 int32ToByte4 int24ToByte3 int16ToByte2 int8ToByte  Bytes -&amp;gt; Int bytesToInt6">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java bytes数组与基本类型的相互转换">
+<meta property="og:url" content="http://shesmile.cn/2018/02/01/Java-bytes数组与基本类型的相互转换/index.html">
+<meta property="og:site_name" content="Johan007">
+<meta property="og:description" content="Java bytes数组与基本类型的相互转换文件 – bytes getBytesFromFile SaveBytesToFile  Int -&amp;gt; Bytes int64ToByte8 int48ToByte6 int40ToByte5 int32ToByte4 int24ToByte3 int16ToByte2 int8ToByte  Bytes -&amp;gt; Int bytesToInt6">
+<meta property="og:updated_time" content="2018-02-01T08:02:09.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java bytes数组与基本类型的相互转换">
+<meta name="twitter:description" content="Java bytes数组与基本类型的相互转换文件 – bytes getBytesFromFile SaveBytesToFile  Int -&amp;gt; Bytes int64ToByte8 int48ToByte6 int40ToByte5 int32ToByte4 int24ToByte3 int16ToByte2 int8ToByte  Bytes -&amp;gt; Int bytesToInt6">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'Q64HSMOKKH',
+      apiKey: '85afafe1d0aaed2b30f0e8c0d98d8f50',
+      indexName: 'Johan007',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shesmile.cn/2018/02/01/Java-bytes数组与基本类型的相互转换/"/>
+
+
+
+
+
+  <title>Java bytes数组与基本类型的相互转换 | Johan007</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5467e8029317eba414a20fa8ebbd9c01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Johan007</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Stay Hungry,Stay Foolish.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://shesmile.cn/2018/02/01/Java-bytes数组与基本类型的相互转换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johan007">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Johan007">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Java bytes数组与基本类型的相互转换</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T16:01:35+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/01/Java-bytes数组与基本类型的相互转换/" class="leancloud_visitors" data-flag-title="Java bytes数组与基本类型的相互转换">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Java-bytes数组与基本类型的相互转换"><a href="#Java-bytes数组与基本类型的相互转换" class="headerlink" title="Java bytes数组与基本类型的相互转换"></a>Java bytes数组与基本类型的相互转换</h2><h3 id="文件-–-bytes"><a href="#文件-–-bytes" class="headerlink" title="文件 – bytes"></a>文件 – bytes</h3><ul>
+<li>getBytesFromFile</li>
+<li>SaveBytesToFile</li>
+</ul>
+<h3 id="Int-gt-Bytes"><a href="#Int-gt-Bytes" class="headerlink" title="Int -&gt; Bytes"></a>Int -&gt; Bytes</h3><ul>
+<li>int64ToByte8</li>
+<li>int48ToByte6</li>
+<li>int40ToByte5</li>
+<li>int32ToByte4</li>
+<li>int24ToByte3</li>
+<li>int16ToByte2</li>
+<li>int8ToByte</li>
+</ul>
+<h3 id="Bytes-gt-Int"><a href="#Bytes-gt-Int" class="headerlink" title="Bytes -&gt; Int"></a>Bytes -&gt; Int</h3><ul>
+<li>bytesToInt64</li>
+<li>bytesToInt48</li>
+<li>bytesToInt40</li>
+<li>bytesToInt32</li>
+<li>bytesToInt24</li>
+<li>bytesToInt16</li>
+</ul>
+<h3 id="Uint-gt-Bytes"><a href="#Uint-gt-Bytes" class="headerlink" title="Uint -&gt; Bytes"></a>Uint -&gt; Bytes</h3><ul>
+<li>unsignedInt64ToBytes</li>
+<li>unsignedInt48ToBytes</li>
+<li>unsignedInt40ToBytes</li>
+<li>unsignedInt32ToBytes</li>
+<li>unsignedInt24ToBytes</li>
+<li>unsignedInt16ToBytes</li>
+<li>unsignedInt8ToBytes</li>
+</ul>
+<h3 id="Bytes-gt-Uint"><a href="#Bytes-gt-Uint" class="headerlink" title="Bytes -&gt; Uint"></a>Bytes -&gt; Uint</h3><ul>
+<li>unsignedBytes2Int64</li>
+<li>unsignedBytes2Int48</li>
+<li>unsignedBytes2Int40</li>
+<li>unsignedBytes2Int32</li>
+<li>unsignedBytes2Int24</li>
+<li>unsignedBytes2Int16</li>
+<li>unsignedBytes2Int8</li>
+</ul>
+<h3 id="Float-Double-lt-–-gt-Bytes"><a href="#Float-Double-lt-–-gt-Bytes" class="headerlink" title="Float Double &lt;–&gt; Bytes"></a>Float Double &lt;–&gt; Bytes</h3><ul>
+<li>byte4ToFloat</li>
+<li>floatToByte4</li>
+<li>byte8ToDouble</li>
+<li>doubleToByte8</li>
+</ul>
+<h3 id="String-lt-–-gt-Bytes"><a href="#String-lt-–-gt-Bytes" class="headerlink" title="String &lt;–&gt; Bytes"></a>String &lt;–&gt; Bytes</h3><ul>
+<li>bytesToRadixNubmer</li>
+<li>conver2HexToBytes</li>
+<li>converBytesTo16HexStr</li>
+<li>converByteTo16HexStr</li>
+<li>conver16HexToBytes</li>
+</ul>
+<h3 id="Bytes-gt-Radix"><a href="#Bytes-gt-Radix" class="headerlink" title="Bytes -&gt; Radix"></a>Bytes -&gt; Radix</h3><ul>
+<li>bytesToRadixNubmer</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div><div class="line">533</div><div class="line">534</div><div class="line">535</div><div class="line">536</div><div class="line">537</div><div class="line">538</div><div class="line">539</div><div class="line">540</div><div class="line">541</div><div class="line">542</div><div class="line">543</div><div class="line">544</div><div class="line">545</div><div class="line">546</div><div class="line">547</div><div class="line">548</div><div class="line">549</div><div class="line">550</div><div class="line">551</div><div class="line">552</div><div class="line">553</div><div class="line">554</div><div class="line">555</div><div class="line">556</div><div class="line">557</div><div class="line">558</div><div class="line">559</div><div class="line">560</div><div class="line">561</div><div class="line">562</div><div class="line">563</div><div class="line">564</div><div class="line">565</div><div class="line">566</div><div class="line">567</div><div class="line">568</div><div class="line">569</div><div class="line">570</div><div class="line">571</div><div class="line">572</div><div class="line">573</div><div class="line">574</div><div class="line">575</div><div class="line">576</div><div class="line">577</div><div class="line">578</div><div class="line">579</div><div class="line">580</div><div class="line">581</div><div class="line">582</div><div class="line">583</div><div class="line">584</div><div class="line">585</div><div class="line">586</div><div class="line">587</div><div class="line">588</div><div class="line">589</div><div class="line">590</div><div class="line">591</div><div class="line">592</div><div class="line">593</div><div class="line">594</div><div class="line">595</div><div class="line">596</div><div class="line">597</div><div class="line">598</div><div class="line">599</div><div class="line">600</div><div class="line">601</div><div class="line">602</div><div class="line">603</div><div class="line">604</div><div class="line">605</div><div class="line">606</div><div class="line">607</div><div class="line">608</div><div class="line">609</div><div class="line">610</div><div class="line">611</div><div class="line">612</div><div class="line">613</div><div class="line">614</div><div class="line">615</div><div class="line">616</div><div class="line">617</div><div class="line">618</div><div class="line">619</div><div class="line">620</div><div class="line">621</div><div class="line">622</div><div class="line">623</div><div class="line">624</div><div class="line">625</div><div class="line">626</div><div class="line">627</div><div class="line">628</div><div class="line">629</div><div class="line">630</div></pre></td><td class="code"><pre><div class="line">```java</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.math.BigDecimal;</div><div class="line"><span class="keyword">import</span> java.math.BigInteger;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *</div><div class="line"> * &lt;pre&gt;</div><div class="line"> * 基本数据类型转换(主要是byte和其它类型之间的互转).</div><div class="line"> * &lt;/pre&gt;</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteUtils</span> </span>&#123;</div><div class="line">    <span class="comment">//从文件获取byte数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] getBytesFromFile(String filePath) <span class="keyword">throws</span> IOException &#123;</div><div class="line">        File file = <span class="keyword">new</span> File(filePath);</div><div class="line"></div><div class="line">        <span class="keyword">long</span> fileSize = file.length();</div><div class="line">        <span class="keyword">if</span> (fileSize &gt; Integer.MAX_VALUE) &#123;</div><div class="line">            System.out.println(<span class="string">"file too big..."</span>);</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        FileInputStream fi = <span class="keyword">new</span> FileInputStream(file);</div><div class="line"></div><div class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>) fileSize];</div><div class="line"></div><div class="line">        <span class="keyword">int</span> offset = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> numRead = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">while</span> (offset &lt; buffer.length</div><div class="line"></div><div class="line">                &amp;&amp; (numRead = fi.read(buffer, offset, buffer.length - offset)) &gt;= <span class="number">0</span>) &#123;</div><div class="line"></div><div class="line">            offset += numRead;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 确保所有数据均被读取</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> (offset != buffer.length) &#123;</div><div class="line"></div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Could not completely read file "</span> + file.getName());</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        fi.close();</div><div class="line"></div><div class="line">        <span class="keyword">return</span> buffer;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//将byte数组写入文件</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SaveBytesToFile</span><span class="params">(String path, <span class="keyword">byte</span>[] content)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(path);</div><div class="line">        fos.write(content);</div><div class="line">        fos.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//bytes数组转radix进制字符串</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">bytesToRadixNubmer</span><span class="params">(<span class="keyword">byte</span>[] bytes, <span class="keyword">int</span> radix)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BigInteger(<span class="number">1</span>, bytes).toString(radix);<span class="comment">// 这里的1代表正数</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 二进制字符串转换为byte数组,每个字节以","隔开</div><div class="line">     **/</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] conver2HexToBytes(String hex2Str) &#123;</div><div class="line">        String[] temp = hex2Str.split(<span class="string">","</span>);</div><div class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[temp.length];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</div><div class="line">            b[i] = Long.valueOf(temp[i], <span class="number">2</span>).byteValue();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> b;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * byte数组转换为十六进制的字符串</div><div class="line">     **/</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">converBytesTo16HexStr</span><span class="params">(<span class="keyword">byte</span>[] b)</span> </span>&#123;</div><div class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span> ((b[i] &amp; <span class="number">0xff</span>) &lt; <span class="number">0x10</span>) &#123;</div><div class="line">                result.append(<span class="string">"0"</span>);</div><div class="line">            &#125;</div><div class="line">            result.append(Long.toString(b[i] &amp; <span class="number">0xff</span>, <span class="number">16</span>));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result.toString().toUpperCase();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * byte转换为十六进制的字符串</div><div class="line">     **/</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">converByteTo16HexStr</span><span class="params">(<span class="keyword">byte</span> b)</span> </span>&#123;</div><div class="line">        StringBuffer result = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">if</span> ((b &amp; <span class="number">0xff</span>) &lt; <span class="number">0x10</span>) &#123;</div><div class="line">            result.append(<span class="string">"0"</span>);</div><div class="line">        &#125;</div><div class="line">        result.append(Long.toString(b &amp; <span class="number">0xff</span>, <span class="number">16</span>));</div><div class="line">        <span class="keyword">return</span> result.toString().toUpperCase();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 十六进制的字符串转换为byte数组</div><div class="line">     **/</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] conver16HexToBytes(String hex16Str) &#123;</div><div class="line">        <span class="keyword">char</span>[] c = hex16Str.toCharArray();</div><div class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[c.length / <span class="number">2</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</div><div class="line">            <span class="keyword">int</span> pos = i * <span class="number">2</span>;</div><div class="line">            b[i] = (<span class="keyword">byte</span>) (<span class="string">"0123456789ABCDEF"</span>.indexOf(c[pos]) &lt;&lt; <span class="number">4</span> | <span class="string">"0123456789ABCDEF"</span>.indexOf(c[pos + <span class="number">1</span>]));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> b;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//int转无符号byte 的相互转换</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span> <span class="title">int8ToByte</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">byte</span>) x;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将32位int转换为由3个8位byte数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> sum</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] int16ToByte2(<span class="keyword">int</span> sum) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (sum &amp; <span class="number">0xff</span>);</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将32位int转换为由3个8位byte数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> sum</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] int24ToByte3(<span class="keyword">int</span> sum) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">3</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">16</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">2</span>] = (<span class="keyword">byte</span>) (sum &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将32位int转换为由四个8位byte数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> sum</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] int32ToByte4(<span class="keyword">int</span> sum) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">24</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">16</span>);</div><div class="line">        arr[<span class="number">2</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">3</span>] = (<span class="keyword">byte</span>) (sum &amp; <span class="number">0xff</span>);</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将40位int转换为由5个8位byte数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> sum</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] int40ToByte5(<span class="keyword">long</span> sum) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">5</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">32</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">24</span>);</div><div class="line">        arr[<span class="number">2</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">16</span>);</div><div class="line">        arr[<span class="number">3</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">4</span>] = (<span class="keyword">byte</span>) (sum &amp; <span class="number">0xff</span>);</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将48位int转换为由6个8位byte数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> sum</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] int48ToByte6(<span class="keyword">long</span> sum) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">40</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">32</span>);</div><div class="line">        arr[<span class="number">2</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">24</span>);</div><div class="line">        arr[<span class="number">3</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">16</span>);</div><div class="line">        arr[<span class="number">4</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">5</span>] = (<span class="keyword">byte</span>) (sum &amp; <span class="number">0xff</span>);</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将64位int转换为由8个8位byte数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> sum</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] int64ToByte8(<span class="keyword">long</span> sum) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">56</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">48</span>);</div><div class="line">        arr[<span class="number">2</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">40</span>);</div><div class="line">        arr[<span class="number">3</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">32</span>);</div><div class="line">        arr[<span class="number">4</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">24</span>);</div><div class="line">        arr[<span class="number">5</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">16</span>);</div><div class="line">        arr[<span class="number">6</span>] = (<span class="keyword">byte</span>) (sum &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">7</span>] = (<span class="keyword">byte</span>) (sum &amp; <span class="number">0xff</span>);</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 长度为2的8位byte数组转换为一个16位short数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">short</span> <span class="title">bytesToInt16</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr != <span class="keyword">null</span> &amp;&amp; arr.length != <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是2位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">short</span>) (( arr[<span class="number">0</span>] &lt;&lt; <span class="number">8</span>) | ( arr[<span class="number">1</span>] &amp; <span class="number">0xff</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 长度为3的8位byte数组转换为一个有符号24位int.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> data</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bytesToInt24</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line">        String str=ByteFileHelper.binary(data,<span class="number">2</span>);</div><div class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</div><div class="line">        <span class="comment">//如果是24位第一位肯定是1</span></div><div class="line">        <span class="keyword">if</span> (str.length()==<span class="number">24</span>)&#123;</div><div class="line">            <span class="keyword">char</span>[] chars=str.substring(<span class="number">1</span>).toCharArray();</div><div class="line">            <span class="comment">//去反</span></div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;chars.length; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (chars[i]==<span class="string">'0'</span>)&#123;</div><div class="line">                    chars[i]=<span class="string">'1'</span>;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    chars[i]=<span class="string">'0'</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> c: chars) &#123;</div><div class="line">                sum = sum * <span class="number">2</span> + (c == <span class="string">'1'</span> ? <span class="number">1</span> : <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            sum=sum+<span class="number">1</span>;</div><div class="line">            sum=-sum;</div><div class="line"></div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">char</span>[] chars=str.toCharArray();</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> c: chars) &#123;</div><div class="line">                sum = sum * <span class="number">2</span> + (c == <span class="string">'1'</span> ? <span class="number">1</span> : <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span>  sum;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 长度为4的8位byte数组转换为一个32位int.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">bytesToInt32</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr != <span class="keyword">null</span> &amp;&amp; arr.length != <span class="number">4</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是4位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (((arr[<span class="number">0</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">24</span>) | ((arr[<span class="number">1</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">16</span>) | ((arr[<span class="number">2</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">8</span>) | ((arr[<span class="number">3</span>] &amp; <span class="number">0xff</span>)));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 长度为5的8位byte数组转换为一个40位int.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">bytesToInt40</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length != <span class="number">5</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是5位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">long</span>) ( ((<span class="keyword">long</span>) (arr[<span class="number">0</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">32</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">1</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">24</span>)</div><div class="line">                | ((<span class="keyword">long</span>) (arr[<span class="number">2</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">16</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">3</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">8</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">4</span>] &amp; <span class="number">0xff</span>)));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 长度为6的8位byte数组转换为一个48位int.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">bytesToInt48</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length != <span class="number">6</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是6位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">long</span>) (((<span class="keyword">long</span>) (arr[<span class="number">0</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">40</span>)</div><div class="line">                | ((<span class="keyword">long</span>) (arr[<span class="number">1</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">32</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">2</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">24</span>)</div><div class="line">                | ((<span class="keyword">long</span>) (arr[<span class="number">3</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">16</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">4</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">8</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">5</span>] &amp; <span class="number">0xff</span>)));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 长度为8的8位byte数组转换为一个64位int.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">bytesToInt64</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length != <span class="number">8</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是8位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">long</span>) (((<span class="keyword">long</span>) (arr[<span class="number">0</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">56</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">1</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">48</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">2</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">40</span>)</div><div class="line">                | ((<span class="keyword">long</span>) (arr[<span class="number">3</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">32</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">4</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">24</span>)</div><div class="line">                | ((<span class="keyword">long</span>) (arr[<span class="number">5</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">16</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">6</span>] &amp; <span class="number">0xff</span>) &lt;&lt; <span class="number">8</span>) | ((<span class="keyword">long</span>) (arr[<span class="number">7</span>] &amp; <span class="number">0xff</span>)));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//byte转int</span></div><div class="line">    <span class="comment">// byte8转为u_int8</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">unsignedBytes2Int8</span><span class="params">(<span class="keyword">byte</span> data)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (data)&amp;<span class="number">0x0FF</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// byte16转为u_int16</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">unsignedBytes2Int16</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> bytesToInt16(data)&amp;<span class="number">0x0FFFF</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// byte24转为u_int24</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">unsignedBytes2Int24</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> bytesToInt24(data)&amp;<span class="number">0x0FFFFFF</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// byte32转为u_int32</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">unsignedBytes2Int32</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bytesToInt32(data)&lt;<span class="number">0</span>)&#123;</div><div class="line">            String str=ByteFileHelper.binary(data,<span class="number">2</span>);</div><div class="line">            <span class="keyword">long</span> sum=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> c: str.toCharArray()) &#123;</div><div class="line">                sum = sum * <span class="number">2</span> + (c == <span class="string">'1'</span> ? <span class="number">1</span> : <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>  bytesToInt32(data);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// byte40转为u_int40</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">unsignedBytes2Int40</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bytesToInt40(data)&lt;<span class="number">0</span>)&#123;</div><div class="line">            String str=ByteFileHelper.binary(data,<span class="number">2</span>);</div><div class="line">            <span class="keyword">long</span> sum=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> c: str.toCharArray()) &#123;</div><div class="line">                sum = sum * <span class="number">2</span> + (c == <span class="string">'1'</span> ? <span class="number">1</span> : <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>  bytesToInt40(data);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// byte48转为u_int48</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">unsignedBytes2Int48</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bytesToInt48(data)&lt;<span class="number">0</span>)&#123;</div><div class="line">            String str=ByteFileHelper.binary(data,<span class="number">2</span>);</div><div class="line">            <span class="keyword">long</span> sum=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> c: str.toCharArray()) &#123;</div><div class="line">                sum = sum * <span class="number">2</span> + (c == <span class="string">'1'</span> ? <span class="number">1</span> : <span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>  bytesToInt48(data);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// byte8转为u_int64</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BigInteger <span class="title">unsignedBytes2Int64</span><span class="params">(<span class="keyword">byte</span>[] data)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (bytesToInt64(data)&lt;<span class="number">0</span>)&#123;</div><div class="line">            String str=ByteFileHelper.binary(data,<span class="number">2</span>);</div><div class="line">            BigInteger sum=BigInteger.valueOf(<span class="number">0</span>);</div><div class="line">            BigInteger two=BigInteger.valueOf(<span class="number">2</span>);</div><div class="line">            BigInteger one=BigInteger.valueOf(<span class="number">1</span>);</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">char</span> c: str.toCharArray()) &#123;</div><div class="line">                <span class="keyword">if</span> (c==<span class="string">'1'</span>)&#123;</div><div class="line">                    sum=sum.multiply(two).add(one);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> sum;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>  BigInteger.valueOf(bytesToInt64(data));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//整形String转无符号byte[]</span></div><div class="line">    <span class="comment">// u_int8整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt8ToBytes(String num) &#123;</div><div class="line">        <span class="keyword">int</span> length=<span class="keyword">new</span> Integer(num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// u_int16整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt16ToBytes(String num) &#123;</div><div class="line">        <span class="keyword">int</span> length=<span class="keyword">new</span> Integer(num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// u_int24整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt24ToBytes(String num) &#123;</div><div class="line">        <span class="keyword">int</span> length=<span class="keyword">new</span> Integer(num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">3</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// u_int32整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt32ToBytes(String num) &#123;</div><div class="line">        <span class="keyword">long</span> length=<span class="keyword">new</span> Long(num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// u_int40整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt40ToBytes(String num) &#123;</div><div class="line">        <span class="keyword">long</span> length=<span class="keyword">new</span> Long(num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">5</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// u_int48整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt48ToBytes(String num) &#123;</div><div class="line">        <span class="keyword">long</span> length=<span class="keyword">new</span> Long(num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">6</span>];</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// u_int64整型转为byte类型的数组</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] unsignedInt64ToBytes(String num) &#123;</div><div class="line">        System.out.println(<span class="string">"num------:"</span>+num);</div><div class="line">        <span class="keyword">byte</span>[] targets = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8</span>];</div><div class="line">        BigInteger b=<span class="keyword">new</span>  BigInteger(num);</div><div class="line">        BigInteger maxium=<span class="keyword">new</span>  BigInteger(<span class="string">"9223372036854775807"</span>);</div><div class="line">        <span class="keyword">if</span> (b.compareTo(maxium)==<span class="number">1</span>)&#123;</div><div class="line">            String str=ByteFileHelper.converBytesTo16HexStr(b.toByteArray());</div><div class="line">            <span class="keyword">int</span> index=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c:str.toCharArray())&#123;</div><div class="line">                <span class="keyword">if</span>(c==<span class="string">'0'</span>) &#123;</div><div class="line">                    index++;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            str=str.substring(index);</div><div class="line">            targets=ByteFileHelper.conver16HexToBytes(str);</div><div class="line">            <span class="keyword">return</span> targets;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> length=<span class="keyword">new</span> Long(num);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</div><div class="line">            <span class="keyword">int</span> offset = (targets.length - <span class="number">1</span> - i) * <span class="number">8</span>;</div><div class="line">            targets[i] = (<span class="keyword">byte</span>) ((length &gt;&gt;&gt; offset) &amp; <span class="number">0xff</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> targets;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将4个byte数字组成的数组合并为一个float数.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> <span class="title">byte4ToFloat</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length != <span class="number">4</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是4位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> i = bytesToInt32(arr);</div><div class="line">        <span class="keyword">return</span> Float.intBitsToFloat(i);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将一个float数字转换为4个byte数字组成的数组.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> f</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] floatToByte4(<span class="keyword">float</span> f) &#123;</div><div class="line">        <span class="keyword">int</span> i = Float.floatToIntBits(f);</div><div class="line">        <span class="keyword">return</span> int32ToByte4(i);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将八个byte数字组成的数组转换为一个double数字.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">byte8ToDouble</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length != <span class="number">8</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是8位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> l = bytesToInt64(arr);</div><div class="line">        <span class="keyword">return</span> Double.longBitsToDouble(l);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将一个double数字转换为8个byte数字组成的数组.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> i</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] doubleToByte8(<span class="keyword">double</span> i) &#123;</div><div class="line">        <span class="keyword">long</span> j = Double.doubleToLongBits(i);</div><div class="line">        <span class="keyword">return</span> int64ToByte8(j);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将一个char字符转换为两个byte数字转换为的数组.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> c</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] charToByte2(<span class="keyword">char</span> c) &#123;</div><div class="line">        <span class="keyword">byte</span>[] arr = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</div><div class="line">        arr[<span class="number">0</span>] = (<span class="keyword">byte</span>) (c &gt;&gt; <span class="number">8</span>);</div><div class="line">        arr[<span class="number">1</span>] = (<span class="keyword">byte</span>) (c &amp; <span class="number">0xff</span>);</div><div class="line">        <span class="keyword">return</span> arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *</div><div class="line">     * &lt;pre&gt;</div><div class="line">     * 将2个byte数字组成的数组转换为一个char字符.</div><div class="line">     * &lt;/pre&gt;</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> arr</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span> <span class="title">byte2ToChar</span><span class="params">(<span class="keyword">byte</span>[] arr)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length != <span class="number">2</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"byte数组必须不为空,并且是2位!"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">char</span>) (((<span class="keyword">char</span>) (arr[<span class="number">0</span>] &lt;&lt; <span class="number">8</span>)) | ((<span class="keyword">char</span>) arr[<span class="number">1</span>]));</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">//    //将long类型的数值转无符号数</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> BigDecimal <span class="title">readUnsignedLong</span><span class="params">(<span class="keyword">long</span> value)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (value &gt;= <span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BigDecimal(value);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> lowValue = value &amp; <span class="number">0x7fffffffffffffffL</span>;</div><div class="line"><span class="comment">//        17524406870024074136</span></div><div class="line">        <span class="keyword">return</span> BigDecimal.valueOf(lowValue).add(BigDecimal.valueOf(Long.MAX_VALUE)).add(BigDecimal.valueOf(<span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>```</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/12/Cuda异常捕捉/" rel="next" title="Cuda异常捕捉">
+                <i class="fa fa-chevron-left"></i> Cuda异常捕捉
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Johan007" />
+          <p class="site-author-name" itemprop="name">Johan007</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/weihansheng/" title="Github主页" target="_blank">Github主页</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://puzzle.bmob.site" title="天天拼图" target="_blank">天天拼图</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-bytes数组与基本类型的相互转换"><span class="nav-text">Java bytes数组与基本类型的相互转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件-–-bytes"><span class="nav-text">文件 – bytes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Int-gt-Bytes"><span class="nav-text">Int -> Bytes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bytes-gt-Int"><span class="nav-text">Bytes -> Int</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Uint-gt-Bytes"><span class="nav-text">Uint -> Bytes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bytes-gt-Uint"><span class="nav-text">Bytes -> Uint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Float-Double-lt-–-gt-Bytes"><span class="nav-text">Float Double <–> Bytes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-lt-–-gt-Bytes"><span class="nav-text">String <–> Bytes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bytes-gt-Radix"><span class="nav-text">Bytes -> Radix</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johan007</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2135629"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("FbSpn4W0g080XqqvI0wdpLmP-gzGzoHsz", "x1DqSSPyNXSnRG72bIb59cAw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
