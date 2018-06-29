@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+    
+  <url>
+    <loc>http://shesmile.cn/2018/02/01/Java-bytes%E6%95%B0%E7%BB%84%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/</loc>
+    <lastmod>2018-02-01T08:02:09.139Z</lastmod>
+    <data>
+        <display>
+        <title>Java bytes数组与基本类型的相互转换</title>
+        <pubTime>2018-02-01T08:01:35.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://shesmile.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/07/12/Cuda%E5%BC%82%E5%B8%B8%E6%8D%95%E6%8D%89/</loc>
+    <lastmod>2017-07-12T09:37:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cuda异常捕捉</title>
+        <pubTime>2017-07-12T09:33:01.000Z</pubTime>
+        
+        <tag>Cuda</tag>
+         
+         
+           
+             
+              <breadCrumb title="Cuda" url="http://shesmile.cn/categories/Cuda/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/07/12/CUDA%E9%9B%B6%E5%A4%8D%E5%88%B6-Zero-Copy-%E9%9B%B6%E6%8B%B7%E8%B4%9D%E5%86%85%E5%AD%98/</loc>
+    <lastmod>2017-07-12T09:24:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Cuda零复制(Zero Copy)(零拷贝内存)</title>
+        <pubTime>2017-07-12T09:23:58.000Z</pubTime>
+        
+        <tag>Cuda</tag>
+         
+         
+           
+             
+              <breadCrumb title="Cuda" url="http://shesmile.cn/categories/Cuda/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/07/07/ubuntu14-04%E6%9B%B4%E6%96%B0%E5%90%8E%E7%99%BB%E9%99%86%E6%AD%BB%E5%BE%AA%E7%8E%AF-%E9%87%8D%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/</loc>
+    <lastmod>2017-07-07T08:06:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>ubuntu14.04更新后登陆死循环--重装显卡驱动</title>
+        <pubTime>2017-07-07T08:06:11.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="Ubuntu" url="http://shesmile.cn/categories/Ubuntu/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/07/03/AIDL%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-07-03T09:42:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>AIDL使用教程</title>
+        <pubTime>2017-07-03T09:35:31.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/06/08/%E4%BD%BF%E7%94%A8docker%E5%8F%91%E5%B8%83spring-cloud%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2017-06-08T11:13:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用docker发布spring cloud应用</title>
+        <pubTime>2017-06-08T11:08:00.000Z</pubTime>
+        
+        <tag>Docker</tag>
+         
+        <tag>Spring cloud</tag>
+         
+         
+           
+             
+              <breadCrumb title="Docker" url="http://shesmile.cn/categories/Docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/05/29/hexo%E5%91%BD%E4%BB%A4%E5%8F%8AMarkdown%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2017-06-04T11:38:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>hexo命令及Markdown语法</title>
+        <pubTime>2017-05-29T07:18:46.000Z</pubTime>
+        
+        <tag>MarkDown</tag>
+         
+         
+           
+             
+              <breadCrumb title="MarkDown" url="http://shesmile.cn/categories/MarkDown/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/06/04/Retrofit+RxJava+OkHttp%E5%B0%81%E8%A3%85/</loc>
+    <lastmod>2017-06-04T11:23:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>Retrofit+RxJava+OkHttp封装</title>
+        <pubTime>2017-06-04T09:55:48.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Retrofit</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/06/04/Retrofit%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-06-04T09:50:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>Retrofit入门</title>
+        <pubTime>2017-06-04T08:52:45.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Retrofit</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/01/18/Retrofit-2-0-OkHttp-3-0-%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2017-06-04T08:53:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>Retrofit 2.0 + OkHttp 3.0 配置</title>
+        <pubTime>2017-01-18T05:57:52.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/06/04/Android-Studio%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8Lambda/</loc>
+    <lastmod>2017-06-04T07:45:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Studio下配置和使用Lambda</title>
+        <pubTime>2017-06-04T07:13:26.000Z</pubTime>
+        
+        <tag>Anrdoid</tag>
+         
+        <tag>Lambda</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/05/31/Ubuntu-14-04%E5%AE%89%E8%A3%85teamviewer-%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</loc>
+    <lastmod>2017-05-31T11:04:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 14.04安装teamviewer 远程桌面</title>
+        <pubTime>2017-05-31T11:02:38.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="Ubuntu" url="http://shesmile.cn/categories/Ubuntu/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/01/22/Git%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E5%92%8C%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%81/</loc>
+    <lastmod>2017-05-30T03:59:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git常见操作和常见错误！</title>
+        <pubTime>2015-01-22T03:47:14.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://shesmile.cn/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/04/22/%E5%85%B3%E4%BA%8EGit-add/</loc>
+    <lastmod>2017-05-30T03:37:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于Git add</title>
+        <pubTime>2016-04-22T03:30:00.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://shesmile.cn/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/01/25/Git%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2017-05-30T03:35:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git入门</title>
+        <pubTime>2015-01-25T03:17:33.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://shesmile.cn/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/15/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2017-05-30T03:16:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git常用命令</title>
+        <pubTime>2016-03-15T03:15:17.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://shesmile.cn/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/04/17/git-pull-%E5%B9%B6%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9/</loc>
+    <lastmod>2017-05-30T03:14:55.000Z</lastmod>
+    <data>
+        <display>
+        <title>git pull 并强制覆盖本地修改</title>
+        <pubTime>2016-04-17T03:14:06.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="http://shesmile.cn/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/01/25/weight%E4%BC%98%E5%85%88%E7%BA%A7/</loc>
+    <lastmod>2017-05-30T03:12:58.000Z</lastmod>
+    <data>
+        <display>
+        <title>weight优先级</title>
+        <pubTime>2015-01-25T07:00:59.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/02/25/%E5%B8%B8%E7%94%A8sql%E8%AF%AD%E5%8F%A5/</loc>
+    <lastmod>2017-05-30T03:12:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用sql语句</title>
+        <pubTime>2015-02-25T07:11:17.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/01/25/%E8%8E%B7%E5%BE%97-LayoutInflater-%E5%AE%9E%E4%BE%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2017-05-30T03:12:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>获得 LayoutInflater 实例的三种方式</title>
+        <pubTime>2015-01-25T07:12:21.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/01/15/Gson%E8%BD%AC%E5%8C%96%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2017-05-30T03:11:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Gson转化类型</title>
+        <pubTime>2015-01-15T02:09:53.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/03/11/Android-%E6%B5%81%E5%BC%8F%E5%B8%83%E5%B1%80FlowLayout-%E5%AE%9E%E7%8E%B0%E5%85%B3%E9%94%AE%E5%AD%97%E6%A0%87%E7%AD%BE/</loc>
+    <lastmod>2017-05-30T03:07:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android 流式布局FlowLayout 实现关键字标签</title>
+        <pubTime>2015-03-11T03:07:10.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/30/Android-Fildder%E7%9C%9F%E6%9C%BA%E6%8A%93%E5%8C%85/</loc>
+    <lastmod>2017-05-30T02:50:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android Fildder真机抓包</title>
+        <pubTime>2016-03-30T02:35:54.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/04/13/Android%E5%AE%9E%E7%8E%B0%E4%B8%8B%E5%88%92%E7%BA%BF/</loc>
+    <lastmod>2017-05-30T02:49:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android实现下划线</title>
+        <pubTime>2015-04-13T02:47:30.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/04/20/Android%E5%AE%9E%E7%8E%B0%E9%80%80%E5%87%BA%E6%89%80%E6%9C%89Activity/</loc>
+    <lastmod>2017-05-30T02:47:02.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android实现退出所有Activity</title>
+        <pubTime>2015-04-20T02:43:53.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/05/07/Android-widget%E5%A4%A7%E5%B0%8F/</loc>
+    <lastmod>2017-05-30T02:43:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android widget大小</title>
+        <pubTime>2015-05-07T02:42:38.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/01/16/ListView%E6%BB%91%E5%8A%A8%E8%B7%9D%E7%A6%BB/</loc>
+    <lastmod>2017-05-30T02:41:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>ListView滑动距离</title>
+        <pubTime>2016-01-16T02:40:19.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2015/01/16/%E5%BC%B9%E5%87%BA-%E5%85%B3%E9%97%AD%E8%BD%AF%E9%94%AE%E7%9B%98/</loc>
+    <lastmod>2017-05-30T02:29:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>弹出/关闭软键盘</title>
+        <pubTime>2015-01-16T02:27:44.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/01/17/%E4%BC%91%E7%9C%A03%E7%A7%92%E5%90%8E%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2017-05-30T02:27:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>休眠3秒后操作</title>
+        <pubTime>2016-01-17T02:26:36.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/05/10/%E5%9C%A8Android-Studio%E4%B8%AD%E4%BD%BF%E7%94%A8Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
+    <lastmod>2017-05-30T02:25:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Android Studio中使用Lambda表达式</title>
+        <pubTime>2016-05-10T02:22:20.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/05/18/Fragment%E5%88%87%E6%8D%A2%E6%97%B6%E4%B8%8D%E9%94%80%E6%AF%81/</loc>
+    <lastmod>2017-05-30T02:20:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Fragment切换时不销毁</title>
+        <pubTime>2016-05-18T02:19:15.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/19/Json%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2017-05-30T02:18:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Json解析</title>
+        <pubTime>2016-03-19T07:09:29.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/05/18/Java%E9%81%8D%E5%8E%86Map/</loc>
+    <lastmod>2017-05-30T02:18:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java遍历Map</title>
+        <pubTime>2016-05-18T02:16:35.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://shesmile.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/06/17/Bmob%E9%94%99%E8%AF%AF-java-lang-UnsatisfiedLinkError-Couldn-t-load-bmob-from-loader-dalvik-system/</loc>
+    <lastmod>2017-05-30T02:15:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bmob错误:java.lang.UnsatisfiedLinkError: Couldn't load bmob from loader dalvik.system</title>
+        <pubTime>2016-06-17T02:14:05.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/05/30/%E5%8F%8B%E7%9B%9F%E6%8E%A8%E9%80%81%E8%AF%A5%E5%8C%85%E5%90%8D%E6%94%B6%E4%B8%8D%E5%88%B0%E6%8E%A8%E9%80%81/</loc>
+    <lastmod>2017-05-30T02:12:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>友盟推送该包名收不到推送</title>
+        <pubTime>2016-05-30T02:11:40.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/06/28/Listview%E7%9A%84item%E6%98%AF%E4%B8%80%E4%B8%AAHorizontalScrollView%EF%BC%8C%E5%88%99%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94onItemClickListener%E7%9B%91%E5%90%AC%E5%99%A8%E4%BA%8B%E4%BB%B6%E4%BA%86%E3%80%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2017-05-30T02:07:22.000Z</lastmod>
+    <data>
+        <display>
+        <title>Listview的item是一个HorizontalScrollView，则无法响应onItemClickListener监听器事件了。解决方案</title>
+        <pubTime>2016-06-28T06:49:28.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/18/include%E7%9A%84%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2017-05-29T07:17:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>include的用法</title>
+        <pubTime>2016-03-18T07:16:53.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/21/handler%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E5%8F%8A%E6%9B%B4%E6%96%B0UI/</loc>
+    <lastmod>2017-05-29T07:15:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>handler传递数据及更新UI</title>
+        <pubTime>2016-03-21T07:14:35.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/20/%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4/</loc>
+    <lastmod>2017-05-29T07:08:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>获取当前时间</title>
+        <pubTime>2016-03-20T07:07:59.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/05/29/%E5%AD%90%E7%BA%BF%E7%A8%8B%E6%9B%B4%E6%96%B0ui/</loc>
+    <lastmod>2017-05-29T07:07:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>子线程更新ui</title>
+        <pubTime>2017-05-29T07:02:38.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/29/%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0Fragment/</loc>
+    <lastmod>2017-05-29T07:00:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>动态添加Fragment</title>
+        <pubTime>2016-03-29T06:56:52.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/03/29/tabview%E6%A0%87%E9%A2%98%E5%B1%85%E4%B8%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2017-05-29T06:56:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>tabview标题居中的两种方式</title>
+        <pubTime>2016-03-29T06:53:53.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/04/29/%E7%82%B9%E5%87%BB%E8%87%AA%E5%AE%9A%E4%B9%89listview%E7%9A%84item%E5%90%AF%E5%8A%A8%E5%8F%A6%E4%B8%80%E4%B8%AAactivity/</loc>
+    <lastmod>2017-05-29T06:53:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>点击自定义listview的item启动另一个activity</title>
+        <pubTime>2016-04-29T06:51:53.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/05/29/%E5%88%A0%E9%99%A4listview%E7%9A%84item/</loc>
+    <lastmod>2017-05-29T06:50:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>删除listview的item</title>
+        <pubTime>2016-05-29T06:48:14.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/05/29/listview%E4%B8%8B%E5%88%92%E7%BA%BF%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2017-05-29T06:47:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>listview下划线问题</title>
+        <pubTime>2017-05-29T06:46:55.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/06/28/%E7%82%B9%E5%87%BBlistview%E9%98%BB%E6%AD%A2button%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-05-29T06:46:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>点击listview阻止button的方法</title>
+        <pubTime>2016-06-28T06:44:15.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/06/26/ButterKnife-Android%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E4%B8%80%E5%A4%A7%E5%88%A9%E5%99%A8/</loc>
+    <lastmod>2017-05-29T06:43:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>ButterKnife Android程序员的一大利器</title>
+        <pubTime>2016-06-26T06:36:02.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/06/25/Java%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2017-05-29T06:34:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>Java反射机制</title>
+        <pubTime>2016-06-25T06:22:12.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://shesmile.cn/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/07/08/Android%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8B%E5%9C%A8Android-Studio%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80%E5%88%AB%E4%BA%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2017-05-29T06:20:29.000Z</lastmod>
+    <data>
+        <display>
+        <title>Android小技巧之在Android Studio下快速打开别人项目的正确方式</title>
+        <pubTime>2016-07-08T06:16:45.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2016/12/30/Json%E8%A7%A3%E6%9E%90%E9%94%99%E8%AF%AF/</loc>
+    <lastmod>2017-05-29T06:15:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>Json解析错误</title>
+        <pubTime>2016-12-30T06:10:07.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/01/23/%E9%98%B2%E6%AD%A2%E8%BF%9E%E7%BB%AD%E5%A4%9A%E6%AC%A1%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2017-05-29T06:05:16.000Z</lastmod>
+    <data>
+        <display>
+        <title>防止连续多次操作</title>
+        <pubTime>2017-01-23T06:03:27.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/04/28/Bmob%E6%B7%BB%E5%8A%A0%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB/</loc>
+    <lastmod>2017-05-29T06:03:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bmob添加多对多关系</title>
+        <pubTime>2017-04-28T05:49:33.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/03/28/%E9%95%BF%E6%97%B6%E9%97%B4%E6%97%A0%E6%93%8D%E4%BD%9C%E7%9B%91%E5%90%AC/</loc>
+    <lastmod>2017-05-29T05:57:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>长时间无操作监听</title>
+        <pubTime>2017-03-28T05:52:20.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/05/08/GreenDao%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-05-29T05:50:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>GreenDao的简单使用</title>
+        <pubTime>2017-05-08T13:30:41.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/04/08/Bmob%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%AF%B9%E5%A4%9A/</loc>
+    <lastmod>2017-05-29T05:47:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bmob查询多对多</title>
+        <pubTime>2017-04-08T13:30:41.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/04/02/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E7%9A%84%E8%B0%83%E8%AF%95%E7%89%88SHA1%E4%B8%8E%E5%8F%91%E5%B8%83%E7%89%88SHA1%E5%88%86%E5%88%AB%E7%9A%84%E8%8E%B7%E5%8F%96/</loc>
+    <lastmod>2017-05-29T05:44:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>高德地图的调试版SHA1与发布版SHA1分别的获取</title>
+        <pubTime>2017-04-02T13:30:41.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/04/08/Bomb%E5%86%85%E9%83%A8%E6%9F%A5%E8%AF%A2/</loc>
+    <lastmod>2017-05-29T05:34:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>Bomb内部查询</title>
+        <pubTime>2017-04-08T05:20:24.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="http://shesmile.cn/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://shesmile.cn/2017/05/26/Ubuntu-14-04-%E4%B8%8A%E5%AE%89%E8%A3%85-CUDA-8-0-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-05-28T06:08:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 14.04 上安装 CUDA 8.0 详细教程</title>
+        <pubTime>2017-05-26T11:58:19.000Z</pubTime>
+        
+        <tag>Cuda</tag>
+         
+         
+           
+             
+              <breadCrumb title="Cuda" url="http://shesmile.cn/categories/Cuda/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>
