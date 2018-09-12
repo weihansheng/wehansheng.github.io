@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Johan007" />
 
 
 
@@ -108,17 +108,15 @@
 
 
 
-<meta name="description" content="用于OnItemClick事件被屏蔽在activity中先在主类中定义  public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;再在Adapter中的Ontouch中启动activity 123Intent intent =new Intent()">
-<meta name="keywords" content="Android">
-<meta property="og:type" content="article">
-<meta property="og:title" content="点击自定义listview的item启动另一个activity">
-<meta property="og:url" content="http://shesmile.cn/2016/04/29/点击自定义listview的item启动另一个activity/index.html">
+<meta name="description" content="Stay Hungry,Stay Foolish.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Johan007">
+<meta property="og:url" content="http://shesmile.cn/page/7/index.html">
 <meta property="og:site_name" content="Johan007">
-<meta property="og:description" content="用于OnItemClick事件被屏蔽在activity中先在主类中定义  public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;再在Adapter中的Ontouch中启动activity 123Intent intent =new Intent()">
-<meta property="og:updated_time" content="2017-05-29T06:53:28.000Z">
+<meta property="og:description" content="Stay Hungry,Stay Foolish.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="点击自定义listview的item启动另一个activity">
-<meta name="twitter:description" content="用于OnItemClick事件被屏蔽在activity中先在主类中定义  public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;再在Adapter中的Ontouch中启动activity 123Intent intent =new Intent()">
+<meta name="twitter:title" content="Johan007">
+<meta name="twitter:description" content="Stay Hungry,Stay Foolish.">
 
 
 
@@ -146,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://shesmile.cn/2016/04/29/点击自定义listview的item启动另一个activity/"/>
+  <link rel="canonical" href="http://shesmile.cn/page/7/"/>
 
 
 
 
 
-  <title>点击自定义listview的item启动另一个activity | Johan007</title>
+  <title>Johan007</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -188,7 +186,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -329,9 +329,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -340,7 +340,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://shesmile.cn/2016/04/29/点击自定义listview的item启动另一个activity/">
+    <link itemprop="mainEntityOfPage" href="http://shesmile.cn/2015/01/15/Gson转化类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johan007">
@@ -357,7 +357,9 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">点击自定义listview的item启动另一个activity</h2>
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/15/Gson转化类型/" itemprop="url">Gson转化类型</a></h2>
         
 
         <div class="post-meta">
@@ -369,8 +371,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-29T14:51:53+08:00">
-                2016-04-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-01-15T10:09:53+08:00">
+                2015-01-15
               </time>
             
 
@@ -409,7 +411,7 @@
 
           
           
-             <span id="/2016/04/29/点击自定义listview的item启动另一个activity/" class="leancloud_visitors" data-flag-title="点击自定义listview的item启动另一个activity">
+             <span id="/2015/01/15/Gson转化类型/" class="leancloud_visitors" data-flag-title="Gson转化类型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -437,105 +439,56 @@
       
 
       
-        <p>用于OnItemClick事件被屏蔽<br>在activity中<br>先在主类中定义 </p>
-<p>public static MainUserInfoActivity mactivity;      MainUserInfoActivity 为该类名  onCreate  mactivity=this;<br>再在Adapter中的Ontouch中启动activity</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent =<span class="keyword">new</span> Intent();</div><div class="line">intent.setClass(mContext, NewsDetailActivity.class); </div><div class="line">MainUserInfoActivity.mactivity.startActivity(intent);</div></pre></td></tr></table></figure>
-<p>在fragment中<br>先在主类中定义 public static FragmentDrafts mactivity;     FragmentDrafts 为该类名   onCreateView   </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mactivity=<span class="keyword">this</span>;</div><div class="line">再在Adapter中的Ontouch中启动activity</div><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setClass(mContext, DraftsEditActivity.class);</div><div class="line">FragmentDrafts.mactivity.startActivity(intent);</div></pre></td></tr></table></figure>
-
+        
+          
+          123456789101112131415161718192021222324252627282930Gson gson = new GsonBuilder()          .excludeFieldsWithoutExposeAnnotation() //不导出实体中没有用@Expose注解
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/01/15/Gson转化类型/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
-        </div>
+
       
 
       
-        
-      
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/22/关于Git-add/" rel="next" title="关于Git add">
-                <i class="fa fa-chevron-left"></i> 关于Git add
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/10/在Android-Studio中使用Lambda表达式/" rel="prev" title="在Android Studio中使用Lambda表达式">
-                在Android Studio中使用Lambda表达式 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+  </nav>
 
-      
-    </div>
-  </div>
 
 
           </div>
@@ -543,12 +496,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="uyan_frame"></div>
-    
-  </div>
-
 
         </div>
         
@@ -769,10 +716,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
@@ -804,10 +747,6 @@
   
     
 
-    
-      <!-- UY BEGIN -->
-      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2135629"></script>
-      <!-- UY END -->
     
   
 
