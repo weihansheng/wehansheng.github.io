@@ -92,7 +92,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Johan007" />
+  <meta name="keywords" content="算法 - 动态规划," />
 
 
 
@@ -108,16 +108,17 @@
 
 
 
-<meta name="description" content="Stay Hungry,Stay Foolish.">
+<meta name="description" content="动态规划-高楼上扔m个玻璃珠,确定临界层从n层大楼往下扔m颗玻璃珠确定珠子破碎的临界楼层 这道题可以搜索google扔玻璃珠笔试题以及腾讯2017的校招笔试也有一道这样的题，不同的是，以上的题中只是用了两颗玻璃珠，而这里是m颗玻璃珠； 不过，同样是扔珠子，所以思路都是一样，只不过变得更有普适性； 思路假设有m颗珠子，然后有n层楼，至少要扔a(m, n)次那么随机扔到k层，有两个结果：  珠子碎了：">
+<meta name="keywords" content="算法 - 动态规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划-高楼上扔m个玻璃珠,确定临界层">
 <meta property="og:url" content="http://shesmile.cn/2018/09/12/动态规划-高楼上扔m个玻璃珠-确定临界层/index.html">
 <meta property="og:site_name" content="Johan007">
-<meta property="og:description" content="Stay Hungry,Stay Foolish.">
-<meta property="og:updated_time" content="2018-09-12T08:53:25.667Z">
+<meta property="og:description" content="动态规划-高楼上扔m个玻璃珠,确定临界层从n层大楼往下扔m颗玻璃珠确定珠子破碎的临界楼层 这道题可以搜索google扔玻璃珠笔试题以及腾讯2017的校招笔试也有一道这样的题，不同的是，以上的题中只是用了两颗玻璃珠，而这里是m颗玻璃珠； 不过，同样是扔珠子，所以思路都是一样，只不过变得更有普适性； 思路假设有m颗珠子，然后有n层楼，至少要扔a(m, n)次那么随机扔到k层，有两个结果：  珠子碎了：">
+<meta property="og:updated_time" content="2018-09-12T08:59:45.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划-高楼上扔m个玻璃珠,确定临界层">
-<meta name="twitter:description" content="Stay Hungry,Stay Foolish.">
+<meta name="twitter:description" content="动态规划-高楼上扔m个玻璃珠,确定临界层从n层大楼往下扔m颗玻璃珠确定珠子破碎的临界楼层 这道题可以搜索google扔玻璃珠笔试题以及腾讯2017的校招笔试也有一道这样的题，不同的是，以上的题中只是用了两颗玻璃珠，而这里是m颗玻璃珠； 不过，同样是扔珠子，所以思路都是一样，只不过变得更有普适性； 思路假设有m颗珠子，然后有n层楼，至少要扔a(m, n)次那么随机扔到k层，有两个结果：  珠子碎了：">
 
 
 
@@ -379,6 +380,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/动态规划/" itemprop="url" rel="index">
+                    <span itemprop="name">动态规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -414,7 +448,20 @@
       
 
       
-        
+        <h2 id="动态规划-高楼上扔m个玻璃珠-确定临界层"><a href="#动态规划-高楼上扔m个玻璃珠-确定临界层" class="headerlink" title="动态规划-高楼上扔m个玻璃珠,确定临界层"></a>动态规划-高楼上扔m个玻璃珠,确定临界层</h2><p>从n层大楼往下扔m颗玻璃珠确定珠子破碎的临界楼层</p>
+<p>这道题可以搜索google扔玻璃珠笔试题以及腾讯2017的校招笔试也有一道这样的题，不同的是，以上的题中只是用了两颗玻璃珠，而这里是m颗玻璃珠；</p>
+<p>不过，同样是扔珠子，所以思路都是一样，只不过变得更有普适性；</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>假设有m颗珠子，然后有n层楼，至少要扔a(m, n)次<br>那么随机扔到k层，有两个结果：</p>
+<ul>
+<li>珠子碎了：从1到k-1层继续扔，结果是a(m-1, k-1);</li>
+<li>珠子没碎：从k+1到n层继续扔，结果是a(m, n-k);</li>
+</ul>
+<p>那么max{a(m-1, k-1)+1, a(m, n-k)+1}就是从第k层楼扔玻璃珠需要试的最大次数</p>
+<p>所以a(m,n) = min{max{a(m-1, 0)+1, a(m, n)+1},max{a(m-1, 1)+1, a(m, n-1)+1}…max{a(m-1, n)+1, a(m, 0)+1}}</p>
+<p>初始条件：a(m, 0) = 0, a(m, 1) = 1; a(0, n) = 0, a(1, n) = n</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">(<span class="keyword">int</span> M,<span class="keyword">int</span> N)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span>[][] dp=<span class="keyword">new</span> <span class="keyword">int</span>[M+<span class="number">1</span>][N+<span class="number">1</span>];</div><div class="line">        <span class="comment">//初始化边界值</span></div><div class="line">        dp[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;=M ; i++) &#123;</div><div class="line">            dp[i][<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">            dp[i][<span class="number">1</span>]=<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;=N ; i++) &#123;</div><div class="line">            dp[<span class="number">0</span>][i]=<span class="number">0</span>;</div><div class="line">            dp[<span class="number">1</span>][i]=i;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> m = <span class="number">2</span>; m &lt;=M ; m++) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">2</span>; n &lt;=N ; n++) &#123;</div><div class="line">                <span class="comment">//求dp[m][n]</span></div><div class="line">                <span class="keyword">int</span> min=Integer.MAX_VALUE;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;=n ; k++) &#123;</div><div class="line">                    <span class="keyword">int</span> max=Math.max(dp[m-<span class="number">1</span>][k-<span class="number">1</span>],dp[m][n-k])+<span class="number">1</span>;</div><div class="line">                    <span class="keyword">if</span> (max&lt;min)&#123;</div><div class="line">                        min=max;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                dp[m][n]=min;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> dp[M][N];</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/classicer/article/details/52708880" target="_blank" rel="external">Reference</a></p>
+
       
     </div>
 
@@ -440,6 +487,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法-动态规划/" rel="tag"># 算法 - 动态规划</a>
+          
+        </div>
       
 
       
@@ -530,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -611,6 +673,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划-高楼上扔m个玻璃珠-确定临界层"><span class="nav-text">动态规划-高楼上扔m个玻璃珠,确定临界层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-text">思路</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
