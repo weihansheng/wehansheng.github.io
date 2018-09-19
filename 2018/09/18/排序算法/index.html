@@ -115,7 +115,7 @@
 <meta property="og:url" content="http://shesmile.cn/2018/09/18/排序算法/index.html">
 <meta property="og:site_name" content="Johan007">
 <meta property="og:description" content="我们通常所说的排序算法往往指的是内部排序算法，即数据记录在内存中进行排序。 排序算法大体可分为两种： 一种是比较排序，时间复杂度O(nlogn) ~ O(n^2)，主要有：冒泡排序，选择排序，插入排序，归并排序，堆排序，快速排序等。 另一种是非比较排序，时间复杂度可以达到O(n)，主要有：计数排序，基数排序，桶排序等。 1 比较排序1.1 冒泡排序冒泡排序是一种极其简单的排序算法。它重复地走访过要">
-<meta property="og:updated_time" content="2018-09-18T04:18:07.977Z">
+<meta property="og:updated_time" content="2018-09-19T02:50:39.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法">
 <meta name="twitter:description" content="我们通常所说的排序算法往往指的是内部排序算法，即数据记录在内存中进行排序。 排序算法大体可分为两种： 一种是比较排序，时间复杂度O(nlogn) ~ O(n^2)，主要有：冒泡排序，选择排序，插入排序，归并排序，堆排序，快速排序等。 另一种是非比较排序，时间复杂度可以达到O(n)，主要有：计数排序，基数排序，桶排序等。 1 比较排序1.1 冒泡排序冒泡排序是一种极其简单的排序算法。它重复地走访过要">
@@ -508,8 +508,47 @@
 <p> 所需辅助空间 —— O(1)</p>
 <p> 稳定性 ———— 不稳定</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort</span><span class="params">(<span class="keyword">int</span> a[])</span></span>&#123;</div><div class="line">        <span class="comment">// i为已排序序列的末尾</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;a.length ; i++) &#123;</div><div class="line">            <span class="keyword">int</span> min = i;</div><div class="line">            <span class="comment">// 从未排序序列中找最小值</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt;a.length ; j++) &#123;</div><div class="line">                <span class="keyword">if</span> (a[j]&lt;a[min])&#123;</div><div class="line">                    min=j;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (min!=i)&#123;</div><div class="line">                <span class="comment">// 放到已排序序列的末尾，该操作很有可能把稳定性打乱，所以选择排序是不稳定的排序算法</span></div><div class="line">                <span class="keyword">int</span> tmp=a[i];</div><div class="line">                a[i]=a[min];</div><div class="line">                a[min]=tmp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="1-6-堆排序"><a href="#1-6-堆排序" class="headerlink" title="1.6 堆排序"></a>1.6 堆排序</h3><p>直接选择排序中，第一次选择经过了n-1次比较，只是从排序码序列中选出了一个最小的排序码，而没有保存其他中间比较结果。所以后一趟排序时又要重复许多比较操作，降低了效率。J. Willioms和Floyd在1964年提出了堆排序方法，避免这一缺点。</p>
+<p>堆的性质：</p>
+<ul>
+<li><p>性质：完全二叉树或者是近似完全二叉树； </p>
+</li>
+<li><p>分类：大顶堆：父节点不小于子节点键值，小顶堆：父节点不大于子节点键值；图展示一个最小堆： </p>
+</li>
+</ul>
+<ul>
+<li><p>左右孩子：没有大小的顺序。</p>
+</li>
+<li><p>堆的存储</p>
+</li>
+<li><p>堆的操作 </p>
+<p>  以最小堆为例，如果以数组存储元素时，一个数组具有对应的树表示形式，但树并不满足堆的条件，需要重新排列元素，可以建立“堆化”的树。</p>
+<ul>
+<li><p>插入：<br>将一个新元素插入到表尾，即数组末尾时，如果新构成的二叉树不满足堆的性质，需要重新排列元素，下图演示了插入15时，堆的调整。</p>
+</li>
+<li><p>删除：<br>堆排序中，删除一个元素总是发生在堆顶，因为堆顶的元素是最小的（小顶堆中）。表中最后一个元素用来填补空缺位置，结果树被更新以满足堆条件。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>堆排序是指利用堆这种数据结构所设计的一种选择排序算法。堆是一种近似完全二叉树的结构（通常堆是通过一维数组来实现的），并满足性质：以最大堆（也叫大根堆、大顶堆）为例，其中父结点的值总是大于它的孩子节点。</p>
+<p>堆排序的过程：</p>
+<ul>
+<li>由输入的无序数组构造一个最大堆，作为初始的无序区</li>
+<li>把堆顶元素（最大值）和堆尾元素互换</li>
+<li>把堆（无序区）的尺寸缩小1，并调用AdjustDown(a, 0，n)从新的堆顶元素开始进行堆调整</li>
+<li>重复步骤2，直到堆的尺寸为1</li>
+</ul>
+<p>分类 ————– 内部比较排序</p>
+<p>数据结构 ———- 数组</p>
+<p> 最差时间复杂度 —- O(nlogn)</p>
+<p> 最优时间复杂度 —- O(nlogn)</p>
+<p> 平均时间复杂度 —- O(nlogn)</p>
+<p> 所需辅助空间 —— O(1)</p>
+<p> 稳定性 ———— 不稳定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 分类 -------------- 内部比较排序</span></div><div class="line"><span class="comment">// 数据结构 ---------- 数组</span></div><div class="line"><span class="comment">// 最差时间复杂度 ---- O(nlogn)</span></div><div class="line"><span class="comment">// 最优时间复杂度 ---- O(nlogn)</span></div><div class="line"><span class="comment">// 平均时间复杂度 ---- O(nlogn)</span></div><div class="line"><span class="comment">// 所需辅助空间 ------ O(1)</span></div><div class="line"><span class="comment">// 稳定性 ------------ 不稳定</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(<span class="keyword">int</span> a[])</span></span>&#123;</div><div class="line">        MakeHeap(a);</div><div class="line">        <span class="keyword">int</span> n=a.length;</div><div class="line">        <span class="comment">// 调整堆结构+交换堆顶元素与末尾元素</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt;=<span class="number">0</span> ; i--) &#123;</div><div class="line">            <span class="comment">// 交换值</span></div><div class="line">            <span class="keyword">int</span> tmp=a[i];</div><div class="line">            a[i]=a[<span class="number">0</span>];</div><div class="line">            a[<span class="number">0</span>]=tmp;</div><div class="line">            AdjustDown(a,<span class="number">0</span>,i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//构建大顶堆</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">MakeHeap</span><span class="params">(<span class="keyword">int</span> a[])</span><span class="comment">//建堆</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> n=a.length;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n / <span class="number">2</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)<span class="comment">//((n-1)*2)+1 =n/2-1</span></div><div class="line">        &#123;</div><div class="line">            <span class="comment">//从第一个非叶子结点从下至上，从右至左调整结构</span></div><div class="line">            AdjustDown(a, i, n);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/*</span></div><div class="line">     * (最大)堆的向下调整算法</div><div class="line">     * 注：数组实现的堆中，第N个节点的左孩子的索引值是(2N+1)，右孩子的索引是(2N+2)。</div><div class="line">     *     其中，N为数组下标索引值，如数组中第1个数对应的N为0。</div><div class="line">     * 参数说明：</div><div class="line">     *     a -- 待排序的数组</div><div class="line">     *     i -- 被下调节点的起始位置(一般为0，表示从第1个开始)</div><div class="line">     *     n   -- 截至范围(一般为数组中最后一个元素的索引)</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">AdjustDown</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span> i,<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">int</span> j = i * <span class="number">2</span> + <span class="number">1</span>;<span class="comment">//左子节点</span></div><div class="line">        <span class="keyword">while</span>(j&lt;n)&#123;</div><div class="line">            <span class="comment">//j+1为右子节点，左右两孩子中选择较大者</span></div><div class="line">            <span class="keyword">if</span> (j+<span class="number">1</span>&lt;n&amp;&amp;a[j+<span class="number">1</span>]&gt;a[j])&#123;</div><div class="line">                j++;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (a[i]&gt;a[j])&#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">// 交换值</span></div><div class="line">            <span class="keyword">int</span> tmp=a[i];</div><div class="line">            a[i]=a[j];</div><div class="line">            a[j]=tmp;</div><div class="line">            <span class="comment">//调整下面的</span></div><div class="line">            i = j;</div><div class="line">            j = i * <span class="number">2</span> + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h2 id="2-非比较排序"><a href="#2-非比较排序" class="headerlink" title="2 非比较排序"></a>2 非比较排序</h2><p><a href="http://www.cnblogs.com/eniac12/p/5329396.html" target="_blank" rel="external">Reference1</a></p>
-<p><a href="https://blog.csdn.net/coolwriter/article/details/78732728" target="_blank" rel="external">Reference2</a></p>
+<p><a href="https://blog.csdn.net/coolwriter/article/details/78732728" target="_blank" rel="external">Reference2</a><br><a href="https://blog.csdn.net/her__0_0/article/details/72511047" target="_blank" rel="external">Reference3</a></p>
 
       
     </div>
@@ -734,7 +773,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-比较排序"><span class="nav-text">1 比较排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-冒泡排序"><span class="nav-text">1.1 冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-快速排序"><span class="nav-text">1.2 快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-直接插入排序"><span class="nav-text">1.3 直接插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Shell排序"><span class="nav-text">1.4 Shell排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-直接选择排序"><span class="nav-text">1.5 直接选择排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-非比较排序"><span class="nav-text">2 非比较排序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-比较排序"><span class="nav-text">1 比较排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-冒泡排序"><span class="nav-text">1.1 冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-快速排序"><span class="nav-text">1.2 快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-直接插入排序"><span class="nav-text">1.3 直接插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Shell排序"><span class="nav-text">1.4 Shell排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-直接选择排序"><span class="nav-text">1.5 直接选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-堆排序"><span class="nav-text">1.6 堆排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-非比较排序"><span class="nav-text">2 非比较排序</span></a></li></ol></div>
             
 
           </div>
